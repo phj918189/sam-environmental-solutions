@@ -1,0 +1,44 @@
+.filterRow {
+  @apply flex flex-wrap gap-2 justify-center mb-12;
+}
+
+.filterButton {
+  @apply gap-2;
+}
+
+.grid {
+  display: grid;
+  @apply gap-6 md:grid-cols-2 lg:grid-cols-3;
+}
+
+.card {
+  @apply h-full hover:shadow-lg transition-shadow cursor-pointer;
+}
+
+.cardTitle {
+  @apply text-lg group-hover:text-primary transition-colors mt-2;
+}
+
+.cardDescription {
+  @apply text-sm text-muted-foreground mb-4;
+}
+
+.metaRow {
+  @apply flex items-center gap-4 text-xs text-muted-foreground;
+}
+
+.metaItem {
+  @apply flex items-center gap-1;
+}
+
+.ctaWrap {
+  @apply text-center;
+}
+
+.ctaTitle {
+  @apply text-2xl font-bold mb-4;
+}
+
+.ctaSubtitle {
+  @apply text-muted-foreground mb-8;
+}
