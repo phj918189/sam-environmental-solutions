@@ -1,0 +1,7 @@
+.list {
+  @apply space-y-3;
+}
+
+.item {
+  @apply flex items-start gap-3;
+}

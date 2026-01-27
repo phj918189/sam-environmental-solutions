@@ -1,0 +1,90 @@
+.infoGrid {
+  display: grid;
+  @apply gap-6 md:grid-cols-2 lg:grid-cols-4 mb-16;
+}
+
+.infoCardContent {
+  @apply pt-6 text-center;
+}
+
+.infoIconWrap {
+  @apply w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-4;
+}
+
+.infoTitle {
+  @apply font-semibold mb-1;
+}
+
+.infoValue {
+  @apply text-foreground font-medium;
+}
+
+.infoDesc {
+  @apply text-sm text-muted-foreground;
+}
+
+.contentGrid {
+  display: grid;
+  @apply gap-12 lg:grid-cols-2;
+}
+
+.form {
+  @apply space-y-6;
+}
+
+.fieldGrid {
+  display: grid;
+  @apply gap-4 md:grid-cols-2;
+}
+
+.fieldStack {
+  @apply space-y-2;
+}
+
+.checkboxRow {
+  @apply flex items-start gap-2;
+}
+
+.privacyLabel {
+  @apply text-sm leading-relaxed cursor-pointer;
+}
+
+.privacyLink {
+  @apply text-primary underline;
+}
+
+.submitButton {
+  @apply w-full gap-2;
+}
+
+.mapTitle {
+  @apply font-semibold mb-4;
+}
+
+.mapBox {
+  @apply aspect-square md:aspect-auto md:h-[500px] bg-muted rounded-lg flex items-center justify-center;
+}
+
+.mapText {
+  @apply text-center text-muted-foreground;
+}
+
+.mapTextSmall {
+  @apply text-sm mt-2;
+}
+
+.successWrap {
+  @apply max-w-lg mx-auto text-center;
+}
+
+.successIconWrap {
+  @apply w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6;
+}
+
+.successTitle {
+  @apply text-2xl font-bold mb-4;
+}
+
+.successDesc {
+  @apply text-muted-foreground mb-8;
+}

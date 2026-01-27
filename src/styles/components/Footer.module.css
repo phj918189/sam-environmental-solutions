@@ -1,0 +1,76 @@
+.footer {
+  @apply bg-primary text-primary-foreground;
+}
+
+.container {
+  width: 100%;
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  @apply px-4 py-12 sm:px-6 lg:px-8;
+}
+
+.grid {
+  display: grid;
+  @apply gap-8 md:grid-cols-2 lg:grid-cols-4;
+}
+
+.logoWrap {
+  @apply space-y-4;
+}
+
+.logoRow {
+  @apply flex items-center gap-2;
+}
+
+.logoIcon {
+  @apply w-10 h-10 bg-primary-foreground/20 rounded-lg flex items-center justify-center;
+}
+
+.logoText {
+  @apply font-bold;
+}
+
+.description {
+  @apply text-sm text-primary-foreground/80;
+}
+
+.sectionTitle {
+  @apply font-semibold mb-4;
+}
+
+.linkList {
+  @apply space-y-2 text-sm text-primary-foreground/80;
+}
+
+.link {
+  @apply hover:text-primary-foreground transition-colors;
+}
+
+.contactList {
+  @apply space-y-3 text-sm text-primary-foreground/80;
+}
+
+.contactItem {
+  @apply flex items-start gap-2;
+}
+
+.contactItemInline {
+  @apply flex items-center gap-2;
+}
+
+.businessList {
+  @apply space-y-2 text-sm text-primary-foreground/80;
+}
+
+.footerBottom {
+  @apply mt-12 pt-8 border-t border-primary-foreground/20;
+}
+
+.bottomRow {
+  @apply flex flex-col sm:flex-row justify-between items-center gap-4 text-sm text-primary-foreground/60;
+}
+
+.bottomLinks {
+  @apply flex gap-4;
+}
