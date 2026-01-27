@@ -1,0 +1,71 @@
+.header {
+  @apply fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border;
+}
+
+.nav {
+  width: 100%;
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  @apply px-4 sm:px-6 lg:px-8;
+}
+
+.navRow {
+  @apply flex h-16 items-center justify-between;
+}
+
+.brand {
+  @apply flex items-center gap-2;
+}
+
+.brandIcon {
+  @apply w-10 h-10 bg-primary rounded-lg flex items-center justify-center;
+}
+
+.brandTitle {
+  @apply hidden sm:block;
+}
+
+.brandTitleText {
+  @apply font-bold text-foreground;
+}
+
+.desktopNav {
+  @apply hidden lg:flex items-center gap-1;
+}
+
+.langButton {
+  @apply gap-1;
+}
+
+.quoteButton {
+  @apply hidden sm:flex;
+}
+
+.mobileToggle {
+  @apply lg:hidden;
+}
+
+.mobileNav {
+  @apply lg:hidden py-4 border-t border-border;
+}
+
+.mobileNavList {
+  @apply flex flex-col gap-2;
+}
+
+.mobileSectionTitle {
+  @apply block px-3 py-2 text-sm font-medium text-muted-foreground;
+}
+
+.mobileChildLink {
+  @apply block px-6 py-2 text-sm hover:bg-muted rounded-md;
+}
+
+.mobileLink {
+  @apply block px-3 py-2 text-sm font-medium hover:bg-muted rounded-md;
+}
+
+.mobileQuote {
+  @apply mt-2;
+}

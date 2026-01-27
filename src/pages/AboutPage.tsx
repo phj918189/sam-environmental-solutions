@@ -1,9 +1,11 @@
 import { Link } from 'react-router-dom';
-import { Target, Eye, Heart, Users, Award, Microscope, Building } from 'lucide-react';
+import { Target, Eye, Heart, Users, Microscope, Building } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Section, SectionHeader } from '@/components/ui/section';
+import PageHero from '@/components/common/PageHero';
+import styles from '@/styles/pages/AboutPage.module.css';
 
 const AboutPage = () => {
   const { language, t } = useLanguage();
@@ -37,7 +39,7 @@ const AboutPage = () => {
   ];
 
   const history = [
-    { year: '2010', event: t('삼양환경건설연구원 설립', 'Samyang Environmental established') },
+    { year: '2010', event: t('삼양건설환경연구소 설립', 'Samyang Environmental established') },
     { year: '2012', event: t('환경측정분석대행업 등록', 'Environmental Measurement Agency Registration') },
     { year: '2015', event: t('대기환경 측정 장비 도입', 'Air quality measurement equipment introduced') },
     { year: '2018', event: t('수질환경 분석 서비스 확대', 'Water quality analysis services expanded') },
@@ -72,28 +74,22 @@ const AboutPage = () => {
   return (
     <>
       {/* Hero */}
-      <section className="bg-primary text-primary-foreground py-20">
-        <div className="container mx-auto px-4 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            {t('회사소개', 'About Us')}
-          </h1>
-          <p className="text-xl text-primary-foreground/90 max-w-2xl mx-auto">
-            {t(
-              '환경을 생각하는 기업, 삼양환경건설연구원입니다.',
-              'Samyang Environmental - A company that cares for the environment.'
-            )}
-          </p>
-        </div>
-      </section>
+      <PageHero
+        title={t('회사소개', 'About Us')}
+        subtitle={t(
+          '환경을 생각하는 기업, 삼양건설환경연구소입니다.',
+          'Samyang Environmental - A company that cares for the environment.'
+        )}
+      />
 
       {/* Mission & Vision */}
       <Section>
-        <div className="grid gap-12 md:grid-cols-2 items-center">
+        <div className={styles.missionGrid}>
           <div>
-            <h2 className="text-3xl font-bold mb-6">{t('미션 & 비전', 'Mission & Vision')}</h2>
+            <h2 className={styles.sectionTitle}>{t('미션 & 비전', 'Mission & Vision')}</h2>
             <div className="space-y-6">
-              <div className="p-6 bg-muted rounded-lg">
-                <h3 className="font-semibold text-lg mb-2">{t('미션', 'Mission')}</h3>
+              <div className={styles.infoBox}>
+                <h3 className={styles.infoTitle}>{t('미션', 'Mission')}</h3>
                 <p className="text-muted-foreground">
                   {t(
                     '정확한 환경 측정과 분석을 통해 기업과 지역사회의 지속 가능한 발전에 기여합니다.',
@@ -101,8 +97,8 @@ const AboutPage = () => {
                   )}
                 </p>
               </div>
-              <div className="p-6 bg-muted rounded-lg">
-                <h3 className="font-semibold text-lg mb-2">{t('비전', 'Vision')}</h3>
+              <div className={styles.infoBox}>
+                <h3 className={styles.infoTitle}>{t('비전', 'Vision')}</h3>
                 <p className="text-muted-foreground">
                   {t(
                     '대한민국 환경 서비스 분야의 선도 기업이 되어 깨끗한 미래를 만들어갑니다.',
@@ -112,7 +108,7 @@ const AboutPage = () => {
               </div>
             </div>
           </div>
-          <div className="bg-primary/10 rounded-2xl p-8 flex items-center justify-center min-h-[300px]">
+          <div className={styles.iconPanel}>
             <Building className="w-32 h-32 text-primary" />
           </div>
         </div>
@@ -124,11 +120,11 @@ const AboutPage = () => {
           title={t('핵심 가치', 'Core Values')}
           subtitle={t('우리가 일하는 방식을 정의하는 가치들입니다.', 'Values that define how we work.')}
         />
-        <div className="grid gap-8 md:grid-cols-3">
+        <div className={styles.valuesGrid}>
           {values.map((value) => (
-            <Card key={value.title} className="text-center">
+            <Card key={value.title} className={styles.valueCard}>
               <CardHeader>
-                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                <div className={styles.valueIconWrap}>
                   <value.icon className="h-8 w-8 text-primary" />
                 </div>
                 <CardTitle>{value.title}</CardTitle>
@@ -145,18 +141,18 @@ const AboutPage = () => {
       <Section>
         <SectionHeader
           title={t('연혁', 'History')}
-          subtitle={t('삼양환경건설연구원의 발자취입니다.', 'Our journey over the years.')}
+          subtitle={t('삼양건설환경연구소의 발자취입니다.', 'Our journey over the years.')}
         />
-        <div className="max-w-3xl mx-auto">
+        <div className={styles.historyWrap}>
           <div className="relative">
-            <div className="absolute left-4 top-0 bottom-0 w-0.5 bg-border" />
+            <div className={styles.historyLine} />
             {history.map((item, index) => (
-              <div key={item.year} className="relative pl-12 pb-8 last:pb-0">
-                <div className="absolute left-0 w-8 h-8 bg-primary rounded-full flex items-center justify-center">
-                  <span className="text-xs font-bold text-primary-foreground">{index + 1}</span>
+              <div key={item.year} className={styles.historyItem}>
+                <div className={styles.historyBadge}>
+                  <span className={styles.historyBadgeText}>{index + 1}</span>
                 </div>
-                <div className="bg-card p-4 rounded-lg border">
-                  <span className="font-bold text-primary">{item.year}</span>
+                <div className={styles.historyCard}>
+                  <span className={styles.historyYear}>{item.year}</span>
                   <p className="text-foreground">{item.event}</p>
                 </div>
               </div>
@@ -171,16 +167,16 @@ const AboutPage = () => {
           title={t('전문가 팀', 'Expert Team')}
           subtitle={t('풍부한 경험을 갖춘 전문가들이 함께합니다.', 'Experienced professionals at your service.')}
         />
-        <div className="grid gap-6 md:grid-cols-3">
+        <div className={styles.teamGrid}>
           {team.map((member) => (
             <Card key={member.role}>
               <CardContent className="pt-6 text-center">
-                <div className="w-20 h-20 bg-muted rounded-full flex items-center justify-center mx-auto mb-4">
+                <div className={styles.teamAvatar}>
                   <Users className="h-10 w-10 text-muted-foreground" />
                 </div>
-                <p className="text-sm text-primary font-medium">{member.role}</p>
+                <p className={styles.teamRole}>{member.role}</p>
                 <h3 className="font-semibold text-lg">{member.name}</h3>
-                <p className="text-sm text-muted-foreground mt-2">{member.description}</p>
+                <p className={styles.teamDesc}>{member.description}</p>
               </CardContent>
             </Card>
           ))}
@@ -193,14 +189,14 @@ const AboutPage = () => {
           title={t('보유 장비', 'Equipment & Capabilities')}
           subtitle={t('최신 장비로 정확한 측정과 분석을 수행합니다.', 'Accurate measurement and analysis with state-of-the-art equipment.')}
         />
-        <div className="grid gap-6 md:grid-cols-3">
+        <div className={styles.equipmentGrid}>
           {equipment.map((eq) => (
-            <div key={eq.category} className="p-6 bg-muted rounded-lg">
-              <div className="flex items-center gap-3 mb-4">
+            <div key={eq.category} className={styles.equipmentCard}>
+              <div className={styles.equipmentHeader}>
                 <Microscope className="h-6 w-6 text-primary" />
                 <h3 className="font-semibold">{eq.category}</h3>
               </div>
-              <p className="text-sm text-muted-foreground">{eq.items}</p>
+              <p className={styles.equipmentText}>{eq.items}</p>
             </div>
           ))}
         </div>
@@ -208,11 +204,11 @@ const AboutPage = () => {
 
       {/* CTA */}
       <Section variant="primary">
-        <div className="text-center">
-          <h2 className="text-3xl font-bold mb-4">
+        <div className={styles.ctaWrap}>
+          <h2 className={styles.ctaTitle}>
             {t('함께 일하고 싶으신가요?', 'Want to Work With Us?')}
           </h2>
-          <p className="text-primary-foreground/90 mb-8 max-w-2xl mx-auto">
+          <p className={styles.ctaSubtitle}>
             {t(
               '환경 문제에 대한 전문적인 상담을 받아보세요.',
               'Get professional consultation on your environmental challenges.'

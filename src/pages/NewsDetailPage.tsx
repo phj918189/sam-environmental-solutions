@@ -4,6 +4,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { Button } from '@/components/ui/button';
 import { Section } from '@/components/ui/section';
 import { Badge } from '@/components/ui/badge';
+import styles from '@/styles/pages/NewsDetailPage.module.css';
 
 const newsDetails = {
   '1': {
@@ -11,7 +12,7 @@ const newsDetails = {
     title: { ko: '2024년 신년 인사말씀', en: '2024 New Year Greetings' },
     date: '2024-01-02',
     content: {
-      ko: `안녕하세요, 삼양환경건설연구원입니다.
+      ko: `안녕하세요, 삼양건설환경연구소입니다.
 
 2024년 새해가 밝았습니다. 지난 한 해 동안 저희 연구원을 신뢰해 주시고 함께해 주신 모든 고객분들께 깊은 감사의 말씀을 드립니다.
 
@@ -21,7 +22,7 @@ const newsDetails = {
 
 감사합니다.
 
-삼양환경건설연구원 임직원 일동`,
+삼양건설환경연구소 임직원 일동`,
       en: `Hello, this is Samyang Environmental Construction Research Institute.
 
 The year 2024 has begun. We would like to express our sincere gratitude to all customers who trusted and partnered with us over the past year.
@@ -40,7 +41,7 @@ Samyang Environmental Staff`
     title: { ko: '환경측정분석 서비스 확대 안내', en: 'Environmental Measurement Analysis Service Expansion' },
     date: '2023-12-15',
     content: {
-      ko: `삼양환경건설연구원이 악취측정대행업 등록을 완료하였습니다.
+      ko: `삼양건설환경연구소이 악취측정대행업 등록을 완료하였습니다.
 
 이제 대기, 수질, 악취 분야의 종합 환경 서비스를 제공할 수 있게 되었습니다.
 
@@ -141,19 +142,19 @@ const NewsDetailPage = () => {
   return (
     <>
       {/* Hero */}
-      <section className="bg-primary text-primary-foreground py-16">
-        <div className="container mx-auto px-4">
+      <section className={styles.heroSection}>
+        <div className={styles.heroContainer}>
           <Link to={`${prefix}/news`}>
-            <Button variant="ghost" className="text-primary-foreground/80 hover:text-primary-foreground mb-6 gap-2">
+            <Button variant="ghost" className={styles.backButton}>
               <ArrowLeft className="h-4 w-4" />
               {t('목록으로', 'Back to List')}
             </Button>
           </Link>
-          <Badge variant="secondary" className="mb-4">{article.category[lang]}</Badge>
-          <h1 className="text-3xl md:text-4xl font-bold mb-4">
+          <Badge variant="secondary" className={styles.heroBadge}>{article.category[lang]}</Badge>
+          <h1 className={styles.heroTitle}>
             {article.title[lang]}
           </h1>
-          <div className="flex items-center gap-2 text-primary-foreground/80">
+          <div className={styles.heroMeta}>
             <Calendar className="h-4 w-4" />
             {article.date}
           </div>
@@ -162,21 +163,21 @@ const NewsDetailPage = () => {
 
       {/* Content */}
       <Section>
-        <div className="max-w-3xl mx-auto">
-          <article className="prose prose-lg max-w-none">
+        <div className={styles.contentWrap}>
+          <article className={styles.article}>
             {article.content[lang].split('\n').map((paragraph, i) => (
-              <p key={i} className="whitespace-pre-line">{paragraph}</p>
+              <p key={i} className={styles.paragraph}>{paragraph}</p>
             ))}
           </article>
 
-          <div className="mt-12 pt-8 border-t border-border flex items-center justify-between">
+          <div className={styles.footerRow}>
             <Link to={`${prefix}/news`}>
-              <Button variant="outline" className="gap-2">
+              <Button variant="outline" className={styles.buttonGap}>
                 <ArrowLeft className="h-4 w-4" />
                 {t('목록으로', 'Back to List')}
               </Button>
             </Link>
-            <Button variant="ghost" className="gap-2">
+            <Button variant="ghost" className={styles.buttonGap}>
               <Share2 className="h-4 w-4" />
               {t('공유하기', 'Share')}
             </Button>
@@ -186,8 +187,8 @@ const NewsDetailPage = () => {
 
       {/* CTA */}
       <Section variant="muted">
-        <div className="text-center">
-          <h2 className="text-2xl font-bold mb-4">
+        <div className={styles.ctaWrap}>
+          <h2 className={styles.ctaTitle}>
             {t('더 궁금한 점이 있으신가요?', 'Have More Questions?')}
           </h2>
           <Link to={`${prefix}/contact`}>

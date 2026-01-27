@@ -1,0 +1,97 @@
+.heroSection {
+  @apply bg-primary text-primary-foreground py-16;
+}
+
+.heroContainer {
+  width: 100%;
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  @apply px-4;
+}
+
+.backButton {
+  @apply text-primary-foreground/80 hover:text-primary-foreground mb-6 gap-2;
+}
+
+.heroBadge {
+  @apply gap-1 mb-4;
+}
+
+.heroTitle {
+  @apply text-3xl md:text-4xl font-bold mb-4;
+}
+
+.heroMeta {
+  @apply flex flex-wrap gap-6 text-primary-foreground/80;
+}
+
+.heroMetaItem {
+  @apply flex items-center gap-2;
+}
+
+.contentWrap {
+  @apply max-w-4xl mx-auto space-y-12;
+}
+
+.sectionTitle {
+  @apply text-2xl font-bold mb-4;
+}
+
+.challengeBox {
+  @apply bg-muted p-6 rounded-lg;
+}
+
+.list {
+  @apply space-y-3;
+}
+
+.listItem {
+  @apply flex items-start gap-3;
+}
+
+.listIndexWrap {
+  @apply w-6 h-6 bg-primary/10 rounded-full flex items-center justify-center shrink-0 mt-0.5;
+}
+
+.listIndex {
+  @apply text-xs font-bold text-primary;
+}
+
+.resultGrid {
+  display: grid;
+  @apply gap-4 md:grid-cols-2;
+}
+
+.resultItem {
+  @apply flex items-start gap-3 p-4 bg-accent/50 rounded-lg;
+}
+
+.mediaGrid {
+  display: grid;
+  @apply gap-4 md:grid-cols-2;
+}
+
+.mediaBox {
+  @apply aspect-video bg-muted rounded-lg flex items-center justify-center;
+}
+
+.mediaText {
+  @apply text-center text-muted-foreground;
+}
+
+.mediaLabel {
+  @apply text-sm;
+}
+
+.ctaWrap {
+  @apply text-center;
+}
+
+.ctaTitle {
+  @apply text-2xl font-bold mb-4;
+}
+
+.ctaSubtitle {
+  @apply text-muted-foreground mb-8;
+}

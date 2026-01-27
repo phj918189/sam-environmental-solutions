@@ -1,0 +1,107 @@
+.missionGrid {
+  display: grid;
+  @apply gap-12 md:grid-cols-2 items-center;
+}
+
+.sectionTitle {
+  @apply text-3xl font-bold mb-6;
+}
+
+.infoBox {
+  @apply p-6 bg-muted rounded-lg;
+}
+
+.infoTitle {
+  @apply font-semibold text-lg mb-2;
+}
+
+.iconPanel {
+  @apply bg-primary/10 rounded-2xl p-8 flex items-center justify-center min-h-[300px];
+}
+
+.valuesGrid {
+  display: grid;
+  @apply gap-8 md:grid-cols-3;
+}
+
+.valueCard {
+  @apply text-center;
+}
+
+.valueIconWrap {
+  @apply w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4;
+}
+
+.historyWrap {
+  @apply max-w-3xl mx-auto;
+}
+
+.historyLine {
+  @apply absolute left-4 top-0 bottom-0 w-0.5 bg-border;
+}
+
+.historyItem {
+  @apply relative pl-12 pb-8 last:pb-0;
+}
+
+.historyBadge {
+  @apply absolute left-0 w-8 h-8 bg-primary rounded-full flex items-center justify-center;
+}
+
+.historyBadgeText {
+  @apply text-xs font-bold text-primary-foreground;
+}
+
+.historyCard {
+  @apply bg-card p-4 rounded-lg border;
+}
+
+.historyYear {
+  @apply font-bold text-primary;
+}
+
+.teamGrid {
+  display: grid;
+  @apply gap-6 md:grid-cols-3;
+}
+
+.teamAvatar {
+  @apply w-20 h-20 bg-muted rounded-full flex items-center justify-center mx-auto mb-4;
+}
+
+.teamRole {
+  @apply text-sm text-primary font-medium;
+}
+
+.teamDesc {
+  @apply text-sm text-muted-foreground mt-2;
+}
+
+.equipmentGrid {
+  display: grid;
+  @apply gap-6 md:grid-cols-3;
+}
+
+.equipmentCard {
+  @apply p-6 bg-muted rounded-lg;
+}
+
+.equipmentHeader {
+  @apply flex items-center gap-3 mb-4;
+}
+
+.equipmentText {
+  @apply text-sm text-muted-foreground;
+}
+
+.ctaWrap {
+  @apply text-center;
+}
+
+.ctaTitle {
+  @apply text-3xl font-bold mb-4;
+}
+
+.ctaSubtitle {
+  @apply text-primary-foreground/90 mb-8 max-w-2xl mx-auto;
+}

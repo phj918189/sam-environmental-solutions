@@ -1,29 +1,20 @@
 import { useLanguage } from '@/contexts/LanguageContext';
-import { Section } from '@/components/ui/section';
+import LegalPageLayout from '@/components/common/LegalPageLayout';
+import styles from '@/styles/common/LegalPage.module.css';
 
 const PrivacyPage = () => {
   const { t } = useLanguage();
 
   return (
-    <>
-      <section className="bg-primary text-primary-foreground py-16">
-        <div className="container mx-auto px-4 text-center">
-          <h1 className="text-4xl font-bold">
-            {t('개인정보처리방침', 'Privacy Policy')}
-          </h1>
-        </div>
-      </section>
-
-      <Section>
-        <div className="max-w-3xl mx-auto prose prose-lg">
-          <p className="text-muted-foreground">
-            {t('최종 수정일: 2024년 1월 1일', 'Last updated: January 1, 2024')}
-          </p>
+    <LegalPageLayout title={t('개인정보처리방침', 'Privacy Policy')}>
+      <p className={styles.updated}>
+        {t('최종 수정일: 2024년 1월 1일', 'Last updated: January 1, 2024')}
+      </p>
 
           <h2>{t('1. 개인정보의 수집 및 이용 목적', '1. Purpose of Collecting Personal Information')}</h2>
           <p>
             {t(
-              '삼양환경건설연구원(이하 "회사")은 다음의 목적을 위해 개인정보를 수집하고 이용합니다.',
+              '삼양건설환경연구소(이하 "회사")은 다음의 목적을 위해 개인정보를 수집하고 이용합니다.',
               'Samyang Environmental Construction Research Institute ("Company") collects and uses personal information for the following purposes.'
             )}
           </p>
@@ -69,9 +60,7 @@ const PrivacyPage = () => {
               'Users can request access, correction, deletion, or suspension of processing of their personal information at any time.'
             )}
           </p>
-        </div>
-      </Section>
-    </>
+    </LegalPageLayout>
   );
 };
 

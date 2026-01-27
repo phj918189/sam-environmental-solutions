@@ -8,7 +8,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { Checkbox } from '@/components/ui/checkbox';
-import { Section, SectionHeader } from '@/components/ui/section';
+import { Section } from '@/components/ui/section';
 import {
   Select,
   SelectContent,
@@ -17,6 +17,8 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { useToast } from '@/hooks/use-toast';
+import PageHero from '@/components/common/PageHero';
+import styles from '@/styles/pages/ContactPage.module.css';
 
 const ContactPage = () => {
   const { language, t } = useLanguage();
@@ -88,22 +90,16 @@ const ContactPage = () => {
   if (submitted) {
     return (
       <>
-        <section className="bg-primary text-primary-foreground py-20">
-          <div className="container mx-auto px-4 text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">
-              {t('문의하기', 'Contact Us')}
-            </h1>
-          </div>
-        </section>
+        <PageHero title={t('문의하기', 'Contact Us')} />
         <Section>
-          <div className="max-w-lg mx-auto text-center">
-            <div className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+          <div className={styles.successWrap}>
+            <div className={styles.successIconWrap}>
               <CheckCircle className="h-10 w-10 text-primary" />
             </div>
-            <h2 className="text-2xl font-bold mb-4">
+            <h2 className={styles.successTitle}>
               {t('문의가 접수되었습니다', 'Your Inquiry Has Been Submitted')}
             </h2>
-            <p className="text-muted-foreground mb-8">
+            <p className={styles.successDesc}>
               {t(
                 '담당자가 확인 후 빠른 시일 내에 연락드리겠습니다. 감사합니다.',
                 'Our team will review and contact you shortly. Thank you.'
@@ -121,47 +117,41 @@ const ContactPage = () => {
   return (
     <>
       {/* Hero */}
-      <section className="bg-primary text-primary-foreground py-20">
-        <div className="container mx-auto px-4 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            {t('문의하기', 'Contact Us')}
-          </h1>
-          <p className="text-xl text-primary-foreground/90 max-w-2xl mx-auto">
-            {t(
-              '환경 문제에 대한 전문 상담을 받아보세요.',
-              'Get expert consultation on your environmental challenges.'
-            )}
-          </p>
-        </div>
-      </section>
+      <PageHero
+        title={t('문의하기', 'Contact Us')}
+        subtitle={t(
+          '환경 문제에 대한 전문 상담을 받아보세요.',
+          'Get expert consultation on your environmental challenges.'
+        )}
+      />
 
       {/* Contact Info Cards */}
       <Section>
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4 mb-16">
+        <div className={styles.infoGrid}>
           {contactInfo.map((info) => (
             <Card key={info.title}>
-              <CardContent className="pt-6 text-center">
-                <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-4">
+              <CardContent className={styles.infoCardContent}>
+                <div className={styles.infoIconWrap}>
                   <info.icon className="h-6 w-6 text-primary" />
                 </div>
-                <h3 className="font-semibold mb-1">{info.title}</h3>
-                <p className="text-foreground font-medium">{info.value}</p>
-                <p className="text-sm text-muted-foreground">{info.description}</p>
+                <h3 className={styles.infoTitle}>{info.title}</h3>
+                <p className={styles.infoValue}>{info.value}</p>
+                <p className={styles.infoDesc}>{info.description}</p>
               </CardContent>
             </Card>
           ))}
         </div>
 
-        <div className="grid gap-12 lg:grid-cols-2">
+        <div className={styles.contentGrid}>
           {/* Contact Form */}
           <Card>
             <CardHeader>
               <CardTitle>{t('문의 양식', 'Inquiry Form')}</CardTitle>
             </CardHeader>
             <CardContent>
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid gap-4 md:grid-cols-2">
-                  <div className="space-y-2">
+              <form onSubmit={handleSubmit} className={styles.form}>
+                <div className={styles.fieldGrid}>
+                  <div className={styles.fieldStack}>
                     <Label htmlFor="name">{t('성함', 'Name')} *</Label>
                     <Input
                       id="name"
@@ -171,7 +161,7 @@ const ContactPage = () => {
                       placeholder={t('홍길동', 'John Doe')}
                     />
                   </div>
-                  <div className="space-y-2">
+                  <div className={styles.fieldStack}>
                     <Label htmlFor="company">{t('회사명', 'Company')}</Label>
                     <Input
                       id="company"
@@ -182,8 +172,8 @@ const ContactPage = () => {
                   </div>
                 </div>
 
-                <div className="grid gap-4 md:grid-cols-2">
-                  <div className="space-y-2">
+                <div className={styles.fieldGrid}>
+                  <div className={styles.fieldStack}>
                     <Label htmlFor="phone">{t('연락처', 'Phone')} *</Label>
                     <Input
                       id="phone"
@@ -194,7 +184,7 @@ const ContactPage = () => {
                       placeholder="010-0000-0000"
                     />
                   </div>
-                  <div className="space-y-2">
+                  <div className={styles.fieldStack}>
                     <Label htmlFor="email">{t('이메일', 'Email')} *</Label>
                     <Input
                       id="email"
@@ -207,7 +197,7 @@ const ContactPage = () => {
                   </div>
                 </div>
 
-                <div className="space-y-2">
+                <div className={styles.fieldStack}>
                   <Label htmlFor="type">{t('문의 유형', 'Inquiry Type')} *</Label>
                   <Select
                     value={formData.type}
@@ -227,7 +217,7 @@ const ContactPage = () => {
                   </Select>
                 </div>
 
-                <div className="space-y-2">
+                <div className={styles.fieldStack}>
                   <Label htmlFor="message">{t('문의 내용', 'Message')} *</Label>
                   <Textarea
                     id="message"
@@ -242,7 +232,7 @@ const ContactPage = () => {
                   />
                 </div>
 
-                <div className="flex items-start gap-2">
+                <div className={styles.checkboxRow}>
                   <Checkbox
                     id="privacy"
                     checked={formData.privacy}
@@ -250,18 +240,18 @@ const ContactPage = () => {
                       setFormData({ ...formData, privacy: checked as boolean })
                     }
                   />
-                  <Label htmlFor="privacy" className="text-sm leading-relaxed cursor-pointer">
+                  <Label htmlFor="privacy" className={styles.privacyLabel}>
                     {t(
                       '개인정보 처리방침에 동의합니다.',
                       'I agree to the privacy policy.'
                     )}{' '}
-                    <Link to={`${prefix}/privacy`} className="text-primary underline">
+                    <Link to={`${prefix}/privacy`} className={styles.privacyLink}>
                       {t('보기', 'View')}
                     </Link>
                   </Label>
                 </div>
 
-                <Button type="submit" className="w-full gap-2">
+                <Button type="submit" className={styles.submitButton}>
                   <Send className="h-4 w-4" />
                   {t('문의 접수하기', 'Submit Inquiry')}
                 </Button>
@@ -271,12 +261,12 @@ const ContactPage = () => {
 
           {/* Map Placeholder */}
           <div>
-            <h3 className="font-semibold mb-4">{t('오시는 길', 'Location')}</h3>
-            <div className="aspect-square md:aspect-auto md:h-[500px] bg-muted rounded-lg flex items-center justify-center">
-              <div className="text-center text-muted-foreground">
+            <h3 className={styles.mapTitle}>{t('오시는 길', 'Location')}</h3>
+            <div className={styles.mapBox}>
+              <div className={styles.mapText}>
                 <MapPin className="h-12 w-12 mx-auto mb-2" />
                 <p>{t('지도가 표시될 영역입니다', 'Map will be displayed here')}</p>
-                <p className="text-sm mt-2">
+                <p className={styles.mapTextSmall}>
                   {t('대전광역시 유성구 (상세주소)', 'Yuseong-gu, Daejeon, South Korea')}
                 </p>
               </div>

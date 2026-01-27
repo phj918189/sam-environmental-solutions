@@ -1,0 +1,53 @@
+.contentGrid {
+  display: grid;
+  @apply gap-12 md:grid-cols-2;
+}
+
+.sectionTitle {
+  @apply text-2xl font-bold mb-6;
+}
+
+.scopeGrid {
+  display: grid;
+  @apply gap-8 md:grid-cols-2;
+}
+
+.scopeList {
+  @apply space-y-3;
+}
+
+.scopeItem {
+  @apply flex items-start gap-3;
+}
+
+.scopeIndexWrap {
+  @apply w-6 h-6 bg-primary/10 rounded-full flex items-center justify-center shrink-0;
+}
+
+.scopeIndex {
+  @apply text-xs font-bold text-primary;
+}
+
+.deliverableItem {
+  @apply flex items-start gap-3;
+}
+
+.faqWrap {
+  @apply max-w-3xl mx-auto;
+}
+
+.ctaWrap {
+  @apply text-center;
+}
+
+.ctaTitle {
+  @apply text-3xl font-bold mb-4;
+}
+
+.ctaSubtitle {
+  @apply text-primary-foreground/90 mb-8 max-w-2xl mx-auto;
+}
+
+.ctaButton {
+  @apply gap-2;
+}

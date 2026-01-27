@@ -1,0 +1,27 @@
+.listWrap {
+  @apply max-w-4xl mx-auto space-y-6;
+}
+
+.card {
+  @apply hover:shadow-lg transition-shadow cursor-pointer;
+}
+
+.cardHeaderRow {
+  @apply flex items-center justify-between mb-2;
+}
+
+.dateText {
+  @apply flex items-center gap-1 text-sm text-muted-foreground;
+}
+
+.cardTitle {
+  @apply group-hover:text-primary transition-colors;
+}
+
+.cardDescription {
+  @apply text-base;
+}
+
+.readMore {
+  @apply text-primary text-sm font-medium flex items-center gap-1 group-hover:gap-2 transition-all;
+}

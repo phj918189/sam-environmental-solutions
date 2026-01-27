@@ -1,0 +1,7 @@
+.wrapper {
+  @apply min-h-screen flex flex-col;
+}
+
+.main {
+  @apply flex-1 pt-16;
+}

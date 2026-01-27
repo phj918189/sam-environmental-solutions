@@ -9,6 +9,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+import styles from '@/styles/components/Header.module.css';
 
 const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -33,22 +34,22 @@ const Header = () => {
   ];
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
-      <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex h-16 items-center justify-between">
-          <Link to={prefix || '/'} className="flex items-center gap-2">
-            <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
+    <header className={styles.header}>
+      <nav className={styles.nav}>
+        <div className={styles.navRow}>
+          <Link to={prefix || '/'} className={styles.brand}>
+            <div className={styles.brandIcon}>
               <span className="text-primary-foreground font-bold text-lg">삼</span>
             </div>
-            <div className="hidden sm:block">
-              <span className="font-bold text-foreground">
-                {t('삼양환경건설연구원', 'Samyang Environmental')}
+            <div className={styles.brandTitle}>
+              <span className={styles.brandTitleText}>
+                {t('삼양건설환경연구소', 'Samyang Environmental')}
               </span>
             </div>
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center gap-1">
+          <div className={styles.desktopNav}>
             {navigation.map((item) =>
               item.children ? (
                 <DropdownMenu key={item.name}>
@@ -76,8 +77,8 @@ const Header = () => {
 
           <div className="flex items-center gap-2">
             <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="outline" size="sm" className="gap-1">
+            <DropdownMenuTrigger asChild>
+              <Button variant="outline" size="sm" className={styles.langButton}>
                   <Globe className="h-4 w-4" />
                   {language === 'ko' ? '한국어' : 'EN'}
                 </Button>
@@ -93,7 +94,7 @@ const Header = () => {
             </DropdownMenu>
 
             <Link to={`${prefix}/contact`}>
-              <Button size="sm" className="hidden sm:flex">
+              <Button size="sm" className={styles.quoteButton}>
                 {t('견적 문의', 'Get a Quote')}
               </Button>
             </Link>
@@ -101,7 +102,7 @@ const Header = () => {
             <Button
               variant="ghost"
               size="icon"
-              className="lg:hidden"
+              className={styles.mobileToggle}
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             >
               {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -111,20 +112,20 @@ const Header = () => {
 
         {/* Mobile Navigation */}
         {mobileMenuOpen && (
-          <div className="lg:hidden py-4 border-t border-border">
-            <div className="flex flex-col gap-2">
+          <div className={styles.mobileNav}>
+            <div className={styles.mobileNavList}>
               {navigation.map((item) => (
                 <div key={item.name}>
                   {item.children ? (
                     <div className="space-y-1">
-                      <span className="block px-3 py-2 text-sm font-medium text-muted-foreground">
+                      <span className={styles.mobileSectionTitle}>
                         {item.name}
                       </span>
                       {item.children.map((child) => (
                         <Link
                           key={child.href}
                           to={child.href}
-                          className="block px-6 py-2 text-sm hover:bg-muted rounded-md"
+                          className={styles.mobileChildLink}
                           onClick={() => setMobileMenuOpen(false)}
                         >
                           {child.name}
@@ -134,7 +135,7 @@ const Header = () => {
                   ) : (
                     <Link
                       to={item.href}
-                      className="block px-3 py-2 text-sm font-medium hover:bg-muted rounded-md"
+                      className={styles.mobileLink}
                       onClick={() => setMobileMenuOpen(false)}
                     >
                       {item.name}
@@ -144,7 +145,7 @@ const Header = () => {
               ))}
               <Link
                 to={`${prefix}/contact`}
-                className="mt-2"
+                className={styles.mobileQuote}
                 onClick={() => setMobileMenuOpen(false)}
               >
                 <Button className="w-full">{t('견적 문의', 'Get a Quote')}</Button>

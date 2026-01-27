@@ -1,0 +1,24 @@
+.grid {
+  display: grid;
+  @apply gap-6 md:grid-cols-5;
+}
+
+.step {
+  @apply text-center relative;
+}
+
+.iconWrap {
+  @apply w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-4;
+}
+
+.title {
+  @apply font-semibold mb-2;
+}
+
+.index {
+  @apply text-primary mr-2;
+}
+
+.description {
+  @apply text-sm text-muted-foreground;
+}

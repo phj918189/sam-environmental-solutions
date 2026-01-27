@@ -4,8 +4,10 @@ import { Wind, Droplets, Leaf, MapPin, Calendar } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { Section, SectionHeader } from '@/components/ui/section';
+import { Section } from '@/components/ui/section';
 import { Badge } from '@/components/ui/badge';
+import PageHero from '@/components/common/PageHero';
+import styles from '@/styles/pages/PortfolioPage.module.css';
 
 const portfolioItems = [
   {
@@ -119,29 +121,23 @@ const PortfolioPage = () => {
   return (
     <>
       {/* Hero */}
-      <section className="bg-primary text-primary-foreground py-20">
-        <div className="container mx-auto px-4 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            {t('포트폴리오', 'Portfolio')}
-          </h1>
-          <p className="text-xl text-primary-foreground/90 max-w-2xl mx-auto">
-            {t(
-              '삼양환경건설연구원이 수행한 주요 프로젝트입니다.',
-              'Key projects completed by Samyang Environmental.'
-            )}
-          </p>
-        </div>
-      </section>
+      <PageHero
+        title={t('포트폴리오', 'Portfolio')}
+        subtitle={t(
+          '삼양건설환경연구소이 수행한 주요 프로젝트입니다.',
+          'Key projects completed by Samyang Environmental.'
+        )}
+      />
 
       {/* Filter & List */}
       <Section>
-        <div className="flex flex-wrap gap-2 justify-center mb-12">
+        <div className={styles.filterRow}>
           {Object.entries(categoryInfo).map(([key, value]) => (
             <Button
               key={key}
               variant={filter === key ? 'default' : 'outline'}
               onClick={() => setFilter(key as typeof filter)}
-              className="gap-2"
+              className={styles.filterButton}
             >
               {value.icon && <value.icon className="h-4 w-4" />}
               {value[lang]}
@@ -149,25 +145,25 @@ const PortfolioPage = () => {
           ))}
         </div>
 
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div className={styles.grid}>
           {filteredItems.map((item) => (
             <Link key={item.id} to={`${prefix}/portfolio/${item.id}`}>
-              <Card className="h-full hover:shadow-lg transition-shadow cursor-pointer group">
+              <Card className={`${styles.card} group`}>
                 <CardHeader>
                   {getCategoryBadge(item.category)}
-                  <CardTitle className="text-lg group-hover:text-primary transition-colors mt-2">
+                  <CardTitle className={styles.cardTitle}>
                     {item.title[lang]}
                   </CardTitle>
                   <CardDescription>{item.client[lang]}</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-sm text-muted-foreground mb-4">{item.description[lang]}</p>
-                  <div className="flex items-center gap-4 text-xs text-muted-foreground">
-                    <span className="flex items-center gap-1">
+                  <p className={styles.cardDescription}>{item.description[lang]}</p>
+                  <div className={styles.metaRow}>
+                    <span className={styles.metaItem}>
                       <MapPin className="h-3 w-3" />
                       {item.location[lang]}
                     </span>
-                    <span className="flex items-center gap-1">
+                    <span className={styles.metaItem}>
                       <Calendar className="h-3 w-3" />
                       {item.date}
                     </span>
@@ -181,11 +177,11 @@ const PortfolioPage = () => {
 
       {/* CTA */}
       <Section variant="muted">
-        <div className="text-center">
-          <h2 className="text-2xl font-bold mb-4">
+        <div className={styles.ctaWrap}>
+          <h2 className={styles.ctaTitle}>
             {t('귀사의 프로젝트도 함께 하겠습니다', 'Let Us Handle Your Project')}
           </h2>
-          <p className="text-muted-foreground mb-8">
+          <p className={styles.ctaSubtitle}>
             {t(
               '환경 문제 해결을 위한 전문적인 지원을 제공합니다.',
               'We provide professional support for solving environmental challenges.'

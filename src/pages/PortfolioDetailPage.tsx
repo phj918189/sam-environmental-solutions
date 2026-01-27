@@ -2,9 +2,9 @@ import { useParams, Link } from 'react-router-dom';
 import { Wind, Droplets, Leaf, ArrowLeft, CheckCircle, MapPin, Calendar, Building, Image } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Section, SectionHeader } from '@/components/ui/section';
+import { Section } from '@/components/ui/section';
 import { Badge } from '@/components/ui/badge';
+import styles from '@/styles/pages/PortfolioDetailPage.module.css';
 
 const portfolioDetails = {
   '1': {
@@ -111,31 +111,31 @@ const PortfolioDetailPage = () => {
   return (
     <>
       {/* Hero */}
-      <section className="bg-primary text-primary-foreground py-16">
-        <div className="container mx-auto px-4">
+      <section className={styles.heroSection}>
+        <div className={styles.heroContainer}>
           <Link to={`${prefix}/portfolio`}>
-            <Button variant="ghost" className="text-primary-foreground/80 hover:text-primary-foreground mb-6 gap-2">
+            <Button variant="ghost" className={styles.backButton}>
               <ArrowLeft className="h-4 w-4" />
               {t('목록으로', 'Back to List')}
             </Button>
           </Link>
-          <Badge variant="secondary" className="gap-1 mb-4">
+          <Badge variant="secondary" className={styles.heroBadge}>
             <CategoryIcon className="h-3 w-3" />
             {category[lang]}
           </Badge>
-          <h1 className="text-3xl md:text-4xl font-bold mb-4">
+          <h1 className={styles.heroTitle}>
             {project.title[lang]}
           </h1>
-          <div className="flex flex-wrap gap-6 text-primary-foreground/80">
-            <span className="flex items-center gap-2">
+          <div className={styles.heroMeta}>
+            <span className={styles.heroMetaItem}>
               <Building className="h-4 w-4" />
               {project.client[lang]}
             </span>
-            <span className="flex items-center gap-2">
+            <span className={styles.heroMetaItem}>
               <MapPin className="h-4 w-4" />
               {project.location[lang]}
             </span>
-            <span className="flex items-center gap-2">
+            <span className={styles.heroMetaItem}>
               <Calendar className="h-4 w-4" />
               {project.date}
             </span>
@@ -145,29 +145,29 @@ const PortfolioDetailPage = () => {
 
       {/* Content */}
       <Section>
-        <div className="max-w-4xl mx-auto space-y-12">
+        <div className={styles.contentWrap}>
           {/* Overview */}
           <div>
-            <h2 className="text-2xl font-bold mb-4">{t('프로젝트 개요', 'Project Overview')}</h2>
+            <h2 className={styles.sectionTitle}>{t('프로젝트 개요', 'Project Overview')}</h2>
             <p className="text-muted-foreground leading-relaxed">{project.overview[lang]}</p>
           </div>
 
           {/* Challenge */}
           <div>
-            <h2 className="text-2xl font-bold mb-4">{t('해결 과제', 'Challenge')}</h2>
-            <div className="bg-muted p-6 rounded-lg">
+            <h2 className={styles.sectionTitle}>{t('해결 과제', 'Challenge')}</h2>
+            <div className={styles.challengeBox}>
               <p className="text-muted-foreground leading-relaxed">{project.challenge[lang]}</p>
             </div>
           </div>
 
           {/* Solution */}
           <div>
-            <h2 className="text-2xl font-bold mb-4">{t('솔루션', 'Solution')}</h2>
-            <ul className="space-y-3">
+            <h2 className={styles.sectionTitle}>{t('솔루션', 'Solution')}</h2>
+            <ul className={styles.list}>
               {project.solution[lang].map((item, i) => (
-                <li key={i} className="flex items-start gap-3">
-                  <div className="w-6 h-6 bg-primary/10 rounded-full flex items-center justify-center shrink-0 mt-0.5">
-                    <span className="text-xs font-bold text-primary">{i + 1}</span>
+                <li key={i} className={styles.listItem}>
+                  <div className={styles.listIndexWrap}>
+                    <span className={styles.listIndex}>{i + 1}</span>
                   </div>
                   <span>{item}</span>
                 </li>
@@ -177,10 +177,10 @@ const PortfolioDetailPage = () => {
 
           {/* Results */}
           <div>
-            <h2 className="text-2xl font-bold mb-4">{t('성과', 'Results')}</h2>
-            <div className="grid gap-4 md:grid-cols-2">
+            <h2 className={styles.sectionTitle}>{t('성과', 'Results')}</h2>
+            <div className={styles.resultGrid}>
               {project.results[lang].map((item, i) => (
-                <div key={i} className="flex items-start gap-3 p-4 bg-accent/50 rounded-lg">
+                <div key={i} className={styles.resultItem}>
                   <CheckCircle className="h-5 w-5 text-primary shrink-0 mt-0.5" />
                   <span className="font-medium">{item}</span>
                 </div>
@@ -190,13 +190,13 @@ const PortfolioDetailPage = () => {
 
           {/* Media Placeholder */}
           <div>
-            <h2 className="text-2xl font-bold mb-4">{t('프로젝트 사진', 'Project Photos')}</h2>
-            <div className="grid gap-4 md:grid-cols-2">
+            <h2 className={styles.sectionTitle}>{t('프로젝트 사진', 'Project Photos')}</h2>
+            <div className={styles.mediaGrid}>
               {[1, 2].map((i) => (
-                <div key={i} className="aspect-video bg-muted rounded-lg flex items-center justify-center">
-                  <div className="text-center text-muted-foreground">
+                <div key={i} className={styles.mediaBox}>
+                  <div className={styles.mediaText}>
                     <Image className="h-12 w-12 mx-auto mb-2" />
-                    <span className="text-sm">{t('사진 추가 예정', 'Photo coming soon')}</span>
+                    <span className={styles.mediaLabel}>{t('사진 추가 예정', 'Photo coming soon')}</span>
                   </div>
                 </div>
               ))}
@@ -207,11 +207,11 @@ const PortfolioDetailPage = () => {
 
       {/* CTA */}
       <Section variant="muted">
-        <div className="text-center">
-          <h2 className="text-2xl font-bold mb-4">
+        <div className={styles.ctaWrap}>
+          <h2 className={styles.ctaTitle}>
             {t('비슷한 프로젝트가 필요하신가요?', 'Need a Similar Project?')}
           </h2>
-          <p className="text-muted-foreground mb-8">
+          <p className={styles.ctaSubtitle}>
             {t(
               '전문가와 상담하고 맞춤형 솔루션을 받아보세요.',
               'Consult with our experts and get a customized solution.'
