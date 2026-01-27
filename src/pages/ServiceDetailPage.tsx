@@ -4,12 +4,16 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Section, SectionHeader } from '@/components/ui/section';
+import PageHero from '@/components/common/PageHero';
+import IconList from '@/components/common/IconList';
+import ProcessSteps from '@/components/common/ProcessSteps';
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from '@/components/ui/accordion';
+import styles from '@/styles/pages/ServiceDetailPage.module.css';
 
 const serviceData = {
   air: {
@@ -174,63 +178,40 @@ const ServiceDetailPage = () => {
   return (
     <>
       {/* Hero */}
-      <section className="bg-primary text-primary-foreground py-20">
-        <div className="container mx-auto px-4">
-          <div className="flex items-center gap-4 justify-center mb-6">
-            <div className={`w-16 h-16 ${service.bgColor} rounded-xl flex items-center justify-center`}>
-              <ServiceIcon className={`h-8 w-8 ${service.color}`} />
-            </div>
-          </div>
-          <h1 className="text-4xl md:text-5xl font-bold text-center mb-4">
-            {service.title[lang]}
-          </h1>
-          <p className="text-xl text-primary-foreground/90 text-center max-w-2xl mx-auto">
-            {service.subtitle[lang]}
-          </p>
-        </div>
-      </section>
+      <PageHero
+        title={service.title[lang]}
+        subtitle={service.subtitle[lang]}
+        icon={<ServiceIcon className={`h-8 w-8 ${service.color}`} />}
+        iconContainerClassName={service.bgColor}
+      />
 
       {/* Who It's For */}
       <Section>
-        <div className="grid gap-12 md:grid-cols-2">
+        <div className={styles.contentGrid}>
           <div>
-            <h2 className="text-2xl font-bold mb-6">{t('이런 분들께 필요합니다', 'Who This Is For')}</h2>
-            <ul className="space-y-3">
-              {service.audience[lang].map((item, i) => (
-                <li key={i} className="flex items-start gap-3">
-                  <CheckCircle className="h-5 w-5 text-primary mt-0.5 shrink-0" />
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
+            <h2 className={styles.sectionTitle}>{t('이런 분들께 필요합니다', 'Who This Is For')}</h2>
+            <IconList items={service.audience[lang]} icon={CheckCircle} iconClassName="text-primary" />
           </div>
           <div>
-            <h2 className="text-2xl font-bold mb-6">{t('활용 사례', 'Use Cases')}</h2>
-            <ul className="space-y-3">
-              {service.useCases[lang].map((item, i) => (
-                <li key={i} className="flex items-start gap-3">
-                  <ArrowRight className="h-5 w-5 text-accent mt-0.5 shrink-0" />
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
+            <h2 className={styles.sectionTitle}>{t('활용 사례', 'Use Cases')}</h2>
+            <IconList items={service.useCases[lang]} icon={ArrowRight} iconClassName="text-accent" />
           </div>
         </div>
       </Section>
 
       {/* Scope & Deliverables */}
       <Section variant="muted">
-        <div className="grid gap-8 md:grid-cols-2">
+        <div className={styles.scopeGrid}>
           <Card>
             <CardHeader>
               <CardTitle>{t('서비스 범위', 'Service Scope')}</CardTitle>
             </CardHeader>
             <CardContent>
-              <ul className="space-y-3">
+              <ul className={styles.scopeList}>
                 {service.scope[lang].map((item, i) => (
-                  <li key={i} className="flex items-start gap-3">
-                    <div className="w-6 h-6 bg-primary/10 rounded-full flex items-center justify-center shrink-0">
-                      <span className="text-xs font-bold text-primary">{i + 1}</span>
+                  <li key={i} className={styles.scopeItem}>
+                    <div className={styles.scopeIndexWrap}>
+                      <span className={styles.scopeIndex}>{i + 1}</span>
                     </div>
                     <span>{item}</span>
                   </li>
@@ -243,9 +224,9 @@ const ServiceDetailPage = () => {
               <CardTitle>{t('결과물', 'Deliverables')}</CardTitle>
             </CardHeader>
             <CardContent>
-              <ul className="space-y-3">
+              <ul className={styles.scopeList}>
                 {service.deliverables[lang].map((item, i) => (
-                  <li key={i} className="flex items-start gap-3">
+                  <li key={i} className={styles.deliverableItem}>
                     <FileText className="h-5 w-5 text-primary mt-0.5 shrink-0" />
                     <span>{item}</span>
                   </li>
@@ -262,20 +243,7 @@ const ServiceDetailPage = () => {
           title={t('진행 프로세스', 'Our Process')}
           subtitle={t('체계적인 절차로 정확하고 신뢰할 수 있는 결과를 제공합니다.', 'Systematic procedures ensure accurate and reliable results.')}
         />
-        <div className="grid gap-6 md:grid-cols-5">
-          {processSteps.map((step, index) => (
-            <div key={step.title} className="text-center relative">
-              <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
-                <step.icon className="h-8 w-8 text-primary-foreground" />
-              </div>
-              <h3 className="font-semibold mb-2">
-                <span className="text-primary mr-2">{index + 1}.</span>
-                {step.title}
-              </h3>
-              <p className="text-sm text-muted-foreground">{step.description}</p>
-            </div>
-          ))}
-        </div>
+        <ProcessSteps steps={processSteps} />
       </Section>
 
       {/* FAQ */}
@@ -283,7 +251,7 @@ const ServiceDetailPage = () => {
         <SectionHeader
           title={t('자주 묻는 질문', 'Frequently Asked Questions')}
         />
-        <div className="max-w-3xl mx-auto">
+        <div className={styles.faqWrap}>
           <Accordion type="single" collapsible className="w-full">
             {service.faq[lang].map((item, i) => (
               <AccordionItem key={i} value={`item-${i}`}>
@@ -297,18 +265,18 @@ const ServiceDetailPage = () => {
 
       {/* CTA */}
       <Section variant="primary">
-        <div className="text-center">
-          <h2 className="text-3xl font-bold mb-4">
+        <div className={styles.ctaWrap}>
+          <h2 className={styles.ctaTitle}>
             {t('지금 상담을 시작하세요', 'Start Your Consultation Now')}
           </h2>
-          <p className="text-primary-foreground/90 mb-8 max-w-2xl mx-auto">
+          <p className={styles.ctaSubtitle}>
             {t(
               '전문가가 귀사의 환경 문제를 분석하고 맞춤형 솔루션을 제안해 드립니다.',
               'Our experts will analyze your environmental challenges and propose tailored solutions.'
             )}
           </p>
           <Link to={`${prefix}/contact`}>
-            <Button size="lg" variant="secondary" className="gap-2">
+            <Button size="lg" variant="secondary" className={styles.ctaButton}>
               <Phone className="h-5 w-5" />
               {t('무료 상담 신청', 'Request Free Consultation')}
             </Button>

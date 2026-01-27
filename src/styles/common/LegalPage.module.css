@@ -1,0 +1,23 @@
+.content {
+  @apply max-w-3xl mx-auto text-foreground leading-relaxed;
+}
+
+.content :global(h2) {
+  @apply mt-8 mb-3 text-xl font-semibold text-foreground;
+}
+
+.content :global(p) {
+  @apply mt-4 text-muted-foreground;
+}
+
+.content :global(ul) {
+  @apply list-disc pl-6 mt-4 space-y-2;
+}
+
+.content :global(li) {
+  @apply text-muted-foreground;
+}
+
+.updated {
+  @apply text-muted-foreground mt-0;
+}

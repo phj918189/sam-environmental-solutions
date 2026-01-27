@@ -1,29 +1,20 @@
 import { useLanguage } from '@/contexts/LanguageContext';
-import { Section } from '@/components/ui/section';
+import LegalPageLayout from '@/components/common/LegalPageLayout';
+import styles from '@/styles/common/LegalPage.module.css';
 
 const TermsPage = () => {
   const { t } = useLanguage();
 
   return (
-    <>
-      <section className="bg-primary text-primary-foreground py-16">
-        <div className="container mx-auto px-4 text-center">
-          <h1 className="text-4xl font-bold">
-            {t('이용약관', 'Terms of Service')}
-          </h1>
-        </div>
-      </section>
-
-      <Section>
-        <div className="max-w-3xl mx-auto prose prose-lg">
-          <p className="text-muted-foreground">
-            {t('최종 수정일: 2024년 1월 1일', 'Last updated: January 1, 2024')}
-          </p>
+    <LegalPageLayout title={t('이용약관', 'Terms of Service')}>
+      <p className={styles.updated}>
+        {t('최종 수정일: 2024년 1월 1일', 'Last updated: January 1, 2024')}
+      </p>
 
           <h2>{t('제1조 (목적)', 'Article 1 (Purpose)')}</h2>
           <p>
             {t(
-              '이 약관은 삼양환경건설연구원(이하 "회사")이 제공하는 서비스의 이용조건 및 절차, 회사와 이용자의 권리, 의무 및 책임사항을 규정함을 목적으로 합니다.',
+              '이 약관은 삼양건설환경연구소(이하 "회사")이 제공하는 서비스의 이용조건 및 절차, 회사와 이용자의 권리, 의무 및 책임사항을 규정함을 목적으로 합니다.',
               'These Terms govern the conditions and procedures for using services provided by Samyang Environmental Construction Research Institute ("Company"), and define the rights, obligations, and responsibilities of the Company and users.'
             )}
           </p>
@@ -73,9 +64,7 @@ const TermsPage = () => {
               'Disputes regarding these Terms shall be governed by Korean law, and the court with jurisdiction over the Company\'s location shall have jurisdiction.'
             )}
           </p>
-        </div>
-      </Section>
-    </>
+    </LegalPageLayout>
   );
 };
 
