@@ -3,8 +3,12 @@
   @apply gap-8 md:grid-cols-4 text-center;
 }
 
+.item {
+  @apply flex flex-col items-center;
+}
+
 .value {
-  @apply text-4xl md:text-5xl font-bold mb-2;
+  @apply text-4xl md:text-5xl font-bold mb-2 text-primary-foreground;
 }
 
 .label {

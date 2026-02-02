@@ -1,5 +1,5 @@
 import { useParams, Link } from 'react-router-dom';
-import { Wind, Droplets, Leaf, CheckCircle, ArrowRight, Phone, FileText, Users, ClipboardCheck, Microscope } from 'lucide-react';
+import { Wind, Droplets, Trash2, CheckCircle, ArrowRight, Phone, FileText, Users, ClipboardCheck, Microscope } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -18,9 +18,9 @@ import styles from '@/styles/pages/ServiceDetailPage.module.css';
 const serviceData = {
   air: {
     icon: Wind,
-    color: 'text-blue-500',
-    bgColor: 'bg-blue-500/10',
-    title: { ko: '대기 환경 서비스', en: 'Air Quality Services' },
+    color: 'text-accent',
+    bgColor: 'bg-accent/10',
+    title: { ko: '대기환경 서비스', en: 'Air Quality Services' },
     subtitle: {
       ko: '정확한 측정과 분석으로 대기 환경 문제를 해결합니다.',
       en: 'Solving air quality issues through accurate measurement and analysis.'
@@ -60,9 +60,9 @@ const serviceData = {
   },
   water: {
     icon: Droplets,
-    color: 'text-cyan-500',
-    bgColor: 'bg-cyan-500/10',
-    title: { ko: '수질 환경 서비스', en: 'Water Quality Services' },
+    color: 'text-accent',
+    bgColor: 'bg-accent/10',
+    title: { ko: '수질환경 서비스', en: 'Water Quality Services' },
     subtitle: {
       ko: '수질 오염 분석부터 폐수 처리 컨설팅까지 종합 서비스를 제공합니다.',
       en: 'Comprehensive services from water pollution analysis to wastewater treatment consulting.'
@@ -101,10 +101,10 @@ const serviceData = {
     }
   },
   odor: {
-    icon: Leaf,
-    color: 'text-green-500',
-    bgColor: 'bg-green-500/10',
-    title: { ko: '악취 환경 서비스', en: 'Odor Control Services' },
+    icon: Trash2,
+    color: 'text-accent',
+    bgColor: 'bg-accent/10',
+    title: { ko: '악취환경 서비스', en: 'Odor Control Services' },
     subtitle: {
       ko: '악취 측정부터 저감 시설 설계까지, 악취 문제 전문 솔루션을 제공합니다.',
       en: 'From odor measurement to reduction facility design, we provide expert odor solutions.'

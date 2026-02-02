@@ -3,33 +3,35 @@
 }
 
 .background {
-  @apply absolute inset-0 bg-cover bg-center;
+  @apply absolute inset-0;
+  background: linear-gradient(135deg, hsl(210 70% 28%) 0%, hsl(210 70% 20%) 50%, hsl(160 60% 30%) 100%);
 }
 
 .overlay {
-  @apply absolute inset-0 bg-primary/80;
+  @apply absolute inset-0;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
 }
 
 .content {
-  @apply relative container mx-auto px-4 py-20 text-center;
+  @apply relative z-10 text-center text-primary-foreground px-4 max-w-4xl mx-auto;
 }
 
 .title {
-  @apply text-4xl md:text-5xl lg:text-6xl font-bold text-primary-foreground mb-6;
+  @apply text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight text-primary-foreground;
 }
 
 .subtitle {
-  @apply text-xl md:text-2xl text-primary-foreground/90 mb-8 max-w-3xl mx-auto;
+  @apply text-lg md:text-xl text-primary-foreground/90 mb-8 max-w-2xl mx-auto whitespace-pre-line;
 }
 
 .badgeRow {
-  @apply flex flex-wrap gap-3 justify-center mb-12;
+  @apply flex flex-wrap justify-center gap-4 mb-10;
 }
 
 .badge {
-  @apply flex items-center gap-2 bg-primary-foreground/10 rounded-full px-4 py-2 text-primary-foreground;
+  @apply flex items-center gap-2 px-4 py-2 bg-primary-foreground/10 backdrop-blur-sm rounded-full text-sm font-medium text-primary-foreground;
 }
 
 .actions {
-  @apply flex flex-wrap gap-4 justify-center;
+  @apply flex flex-col sm:flex-row justify-center gap-4;
 }

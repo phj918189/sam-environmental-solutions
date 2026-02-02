@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { Phone, Mail, MapPin } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
+import logo from '@/assets/logo.png';
 import styles from '@/styles/components/Footer.module.css';
 
 const Footer = () => {
@@ -14,17 +15,18 @@ const Footer = () => {
           {/* Company Info */}
           <div className={styles.logoWrap}>
             <div className={styles.logoRow}>
-              <div className={styles.logoIcon}>
-                <span className="text-primary-foreground font-bold text-lg">삼</span>
-              </div>
-              <span className={styles.logoText}>
-                {t('삼양건설환경연구소', 'Samyang Environmental')}
-              </span>
+              <img src={logo} alt="삼양건설환경연구소" className="h-8 w-auto brightness-0 invert" />
             </div>
             <p className={styles.description}>
               {t(
-                '대기 · 수질 · 악취 환경 전문 기관',
+                '대기 · 수질 · 악취 환경측정 전문기관',
                 'Air · Water · Odor Environmental Specialists'
+              )}
+            </p>
+            <p className="text-sm text-primary-foreground/70 mt-2">
+              {t(
+                '1992년 설립 이래 환경 통합 전문기업으로 성장',
+                'Growing as an integrated environmental company since 1992'
               )}
             </p>
           </div>
@@ -40,17 +42,22 @@ const Footer = () => {
               </li>
               <li>
                 <Link to={`${prefix}/services/air`} className={styles.link}>
-                  {t('대기 환경', 'Air Quality')}
+                  {t('대기환경', 'Air Quality')}
                 </Link>
               </li>
               <li>
                 <Link to={`${prefix}/services/water`} className={styles.link}>
-                  {t('수질 환경', 'Water Quality')}
+                  {t('수질환경', 'Water Quality')}
                 </Link>
               </li>
               <li>
                 <Link to={`${prefix}/services/odor`} className={styles.link}>
-                  {t('악취 환경', 'Odor Control')}
+                  {t('악취환경', 'Odor Control')}
+                </Link>
+              </li>
+              <li>
+                <Link to={`${prefix}/laboratory`} className={styles.link}>
+                  {t('분석실', 'Laboratory')}
                 </Link>
               </li>
             </ul>
@@ -64,18 +71,18 @@ const Footer = () => {
                 <MapPin className="h-4 w-4 mt-0.5 shrink-0" />
                 <span>
                   {t(
-                    '대전광역시 유성구 (상세주소)',
-                    'Yuseong-gu, Daejeon, South Korea'
+                    '(주소 추후 입력)',
+                    '(Address TBD)'
                   )}
                 </span>
               </li>
               <li className={styles.contactItemInline}>
                 <Phone className="h-4 w-4 shrink-0" />
-                <span>042-000-0000</span>
+                <span>(전화번호 추후 입력)</span>
               </li>
               <li className={styles.contactItemInline}>
                 <Mail className="h-4 w-4 shrink-0" />
-                <span>info@samyang-env.co.kr</span>
+                <span>(이메일 추후 입력)</span>
               </li>
             </ul>
           </div>
@@ -93,7 +100,7 @@ const Footer = () => {
         <div className={styles.footerBottom}>
           <div className={styles.bottomRow}>
             <p>
-              © {new Date().getFullYear()} {t('삼양건설환경연구소', 'Samyang Environmental Construction Research Institute')}. {t('All rights reserved.', 'All rights reserved.')}
+              © {new Date().getFullYear()} {t('삼양건설환경연구소', 'Samyang Environmental Research Institute')}. {t('All rights reserved.', 'All rights reserved.')}
             </p>
             <div className={styles.bottomLinks}>
               <Link to={`${prefix}/privacy`} className={styles.link}>

@@ -10,8 +10,7 @@ import AboutPage from "@/pages/AboutPage";
 import ServiceDetailPage from "@/pages/ServiceDetailPage";
 import PortfolioPage from "@/pages/PortfolioPage";
 import PortfolioDetailPage from "@/pages/PortfolioDetailPage";
-import NewsPage from "@/pages/NewsPage";
-import NewsDetailPage from "@/pages/NewsDetailPage";
+import LaboratoryPage from "@/pages/LaboratoryPage";
 import ContactPage from "@/pages/ContactPage";
 import PrivacyPage from "@/pages/PrivacyPage";
 import TermsPage from "@/pages/TermsPage";
@@ -31,8 +30,7 @@ const AppRoutes = () => {
           <Route path="/services/:serviceType" element={<ServiceDetailPage />} />
           <Route path="/portfolio" element={<PortfolioPage />} />
           <Route path="/portfolio/:id" element={<PortfolioDetailPage />} />
-          <Route path="/news" element={<NewsPage />} />
-          <Route path="/news/:id" element={<NewsDetailPage />} />
+          <Route path="/laboratory" element={<LaboratoryPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/privacy" element={<PrivacyPage />} />
           <Route path="/terms" element={<TermsPage />} />
@@ -43,8 +41,7 @@ const AppRoutes = () => {
           <Route path="/en/services/:serviceType" element={<ServiceDetailPage />} />
           <Route path="/en/portfolio" element={<PortfolioPage />} />
           <Route path="/en/portfolio/:id" element={<PortfolioDetailPage />} />
-          <Route path="/en/news" element={<NewsPage />} />
-          <Route path="/en/news/:id" element={<NewsDetailPage />} />
+          <Route path="/en/laboratory" element={<LaboratoryPage />} />
           <Route path="/en/contact" element={<ContactPage />} />
           <Route path="/en/privacy" element={<PrivacyPage />} />
           <Route path="/en/terms" element={<TermsPage />} />

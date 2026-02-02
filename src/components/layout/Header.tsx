@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Menu, X, ChevronDown, Globe } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Button } from '@/components/ui/button';
@@ -9,28 +9,28 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+import logo from '@/assets/logo.png';
 import styles from '@/styles/components/Header.module.css';
 
 const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { language, setLanguage, t } = useLanguage();
-  const location = useLocation();
   const prefix = language === 'en' ? '/en' : '';
 
   const navigation = [
     { name: t('회사소개', 'About'), href: `${prefix}/about` },
     {
-      name: t('서비스', 'Services'),
+      name: t('사업영역', 'Services'),
       href: `${prefix}/services`,
       children: [
-        { name: t('대기 환경', 'Air Quality'), href: `${prefix}/services/air` },
-        { name: t('수질 환경', 'Water Quality'), href: `${prefix}/services/water` },
-        { name: t('악취 환경', 'Odor Control'), href: `${prefix}/services/odor` },
+        { name: t('대기환경', 'Air Quality'), href: `${prefix}/services/air` },
+        { name: t('수질환경', 'Water Quality'), href: `${prefix}/services/water` },
+        { name: t('악취환경', 'Odor Control'), href: `${prefix}/services/odor` },
       ],
     },
-    { name: t('포트폴리오', 'Portfolio'), href: `${prefix}/portfolio` },
-    { name: t('소식', 'News'), href: `${prefix}/news` },
-    { name: t('문의', 'Contact'), href: `${prefix}/contact` },
+    { name: t('사업실적', 'Portfolio'), href: `${prefix}/portfolio` },
+    { name: t('분석실', 'Laboratory'), href: `${prefix}/laboratory` },
+    { name: t('견적문의', 'Contact'), href: `${prefix}/contact` },
   ];
 
   return (
@@ -38,14 +38,7 @@ const Header = () => {
       <nav className={styles.nav}>
         <div className={styles.navRow}>
           <Link to={prefix || '/'} className={styles.brand}>
-            <div className={styles.brandIcon}>
-              <span className="text-primary-foreground font-bold text-lg">삼</span>
-            </div>
-            <div className={styles.brandTitle}>
-              <span className={styles.brandTitleText}>
-                {t('삼양건설환경연구소', 'Samyang Environmental')}
-              </span>
-            </div>
+            <img src={logo} alt="삼양건설환경연구소" className="h-8 w-auto" />
           </Link>
 
           {/* Desktop Navigation */}
@@ -77,10 +70,10 @@ const Header = () => {
 
           <div className="flex items-center gap-2">
             <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="outline" size="sm" className={styles.langButton}>
+              <DropdownMenuTrigger asChild>
+                <Button variant="outline" size="sm" className={styles.langButton}>
                   <Globe className="h-4 w-4" />
-                  {language === 'ko' ? '한국어' : 'EN'}
+                  {language === 'ko' ? 'KO' : 'EN'}
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent>
@@ -95,7 +88,7 @@ const Header = () => {
 
             <Link to={`${prefix}/contact`}>
               <Button size="sm" className={styles.quoteButton}>
-                {t('견적 문의', 'Get a Quote')}
+                {t('견적 문의', 'Get Quote')}
               </Button>
             </Link>
 
@@ -148,7 +141,7 @@ const Header = () => {
                 className={styles.mobileQuote}
                 onClick={() => setMobileMenuOpen(false)}
               >
-                <Button className="w-full">{t('견적 문의', 'Get a Quote')}</Button>
+                <Button className="w-full">{t('견적 문의', 'Get Quote')}</Button>
               </Link>
             </div>
           </div>
