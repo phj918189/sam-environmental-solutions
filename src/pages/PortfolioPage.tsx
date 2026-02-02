@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Wind, Droplets, Leaf, MapPin, Calendar } from 'lucide-react';
+import { Wind, Droplets, Trash2, MapPin, Calendar } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
@@ -94,7 +94,7 @@ const categoryInfo = {
   all: { ko: '전체', en: 'All', icon: null },
   air: { ko: '대기', en: 'Air', icon: Wind },
   water: { ko: '수질', en: 'Water', icon: Droplets },
-  odor: { ko: '악취', en: 'Odor', icon: Leaf },
+  odor: { ko: '악취', en: 'Odor', icon: Trash2 },
 };
 
 const PortfolioPage = () => {
@@ -122,9 +122,9 @@ const PortfolioPage = () => {
     <>
       {/* Hero */}
       <PageHero
-        title={t('포트폴리오', 'Portfolio')}
+        title={t('사업실적', 'Portfolio')}
         subtitle={t(
-          '삼양건설환경연구소이 수행한 주요 프로젝트입니다.',
+          '삼양건설환경연구소가 수행한 주요 프로젝트입니다.',
           'Key projects completed by Samyang Environmental.'
         )}
       />

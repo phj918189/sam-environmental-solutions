@@ -16,7 +16,7 @@
 }
 
 .iconPanel {
-  @apply bg-primary/10 rounded-2xl p-8 flex items-center justify-center min-h-[300px];
+  @apply bg-accent/5 rounded-2xl p-8 flex items-center justify-center min-h-[300px];
 }
 
 .valuesGrid {
@@ -29,7 +29,7 @@
 }
 
 .valueIconWrap {
-  @apply w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4;
+  @apply w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center mx-auto mb-4;
 }
 
 .historyWrap {
@@ -57,7 +57,7 @@
 }
 
 .historyYear {
-  @apply font-bold text-primary;
+  @apply font-bold text-accent;
 }
 
 .teamGrid {
@@ -70,7 +70,7 @@
 }
 
 .teamRole {
-  @apply text-sm text-primary font-medium;
+  @apply text-sm text-accent font-medium;
 }
 
 .teamDesc {

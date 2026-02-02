@@ -6,17 +6,17 @@ const TrustSignalsSection = () => {
   const { t } = useLanguage();
 
   const trustSignals = [
-    { value: '500+', label: t('프로젝트 수행', 'Projects Completed') },
-    { value: '15+', label: t('업력 (년)', 'Years Experience') },
-    { value: '100%', label: t('고객 만족도', 'Client Satisfaction') },
-    { value: '24/7', label: t('긴급 대응', 'Emergency Response') },
+    { value: '1992', label: t('설립연도', 'Established') },
+    { value: '30+', label: t('업력 (년)', 'Years Experience') },
+    { value: '(TBD)', label: t('수행실적 (건)', 'Projects') },
+    { value: '100%', label: t('고객 재계약율', 'Retention Rate') },
   ];
 
   return (
     <Section variant="primary">
       <div className={styles.grid}>
         {trustSignals.map((signal) => (
-          <div key={signal.label}>
+          <div key={signal.label} className={styles.item}>
             <div className={styles.value}>{signal.value}</div>
             <div className={styles.label}>{signal.label}</div>
           </div>

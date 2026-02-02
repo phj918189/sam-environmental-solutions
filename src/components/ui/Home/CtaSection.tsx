@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Phone } from 'lucide-react';
+import { Phone, ArrowRight } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Button } from '@/components/ui/button';
 import { Section } from '@/components/ui/section';
@@ -13,24 +13,27 @@ const CtaSection = () => {
     <Section variant="muted">
       <div className={styles.wrapper}>
         <h2 className={styles.title}>
-          {t('환경 문제, 지금 상담하세요', 'Environmental Issues? Consult Now')}
+          {t('환경 측정 · 분석 · 설계', 'Environmental Measurement · Analysis · Design')}
+          <br />
+          <span className="text-accent">{t('지금 상담하세요', 'Consult Now')}</span>
         </h2>
         <p className={styles.subtitle}>
           {t(
-            '전문가가 귀사의 환경 문제를 함께 해결해 드립니다. 무료 상담 및 견적을 요청하세요.',
-            'Our experts will help solve your environmental challenges. Request a free consultation and quote.'
+            '30년 이상의 경험을 바탕으로 귀사의 환경 문제를 함께 해결해 드립니다.\n무료 상담 및 견적을 요청하세요.',
+            'With over 30 years of experience, we help solve your environmental challenges.\nRequest a free consultation and quote.'
           )}
         </p>
         <div className={styles.actions}>
           <Link to={`${prefix}/contact`}>
-            <Button size="lg" className="gap-2">
+            <Button size="lg" className="gap-2 bg-accent text-accent-foreground hover:bg-accent/90">
               <Phone className="h-5 w-5" />
-              {t('문의하기', 'Contact Us')}
+              {t('견적 문의하기', 'Request Quote')}
             </Button>
           </Link>
           <Link to={`${prefix}/portfolio`}>
-            <Button size="lg" variant="outline">
-              {t('수행 실적 보기', 'View Portfolio')}
+            <Button size="lg" variant="outline" className="gap-2 group">
+              {t('사업실적 보기', 'View Portfolio')}
+              <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
             </Button>
           </Link>
         </div>

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Target, Eye, Heart, Users, Microscope, Building } from 'lucide-react';
+import { Target, Eye, Heart, Users, Building, Leaf } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -32,43 +32,37 @@ const AboutPage = () => {
       icon: Eye,
       title: t('전문성', 'Expertise'),
       description: t(
-        '축적된 경험과 전문 지식으로 최적의 솔루션을 제안합니다.',
-        'Proposing optimal solutions with accumulated experience and expertise.'
+        '30년 이상 축적된 경험과 전문 지식으로 최적의 솔루션을 제안합니다.',
+        'Proposing optimal solutions with over 30 years of accumulated experience.'
       ),
     },
   ];
 
   const history = [
-    { year: '2010', event: t('삼양건설환경연구소 설립', 'Samyang Environmental established') },
-    { year: '2012', event: t('환경측정분석대행업 등록', 'Environmental Measurement Agency Registration') },
-    { year: '2015', event: t('대기환경 측정 장비 도입', 'Air quality measurement equipment introduced') },
-    { year: '2018', event: t('수질환경 분석 서비스 확대', 'Water quality analysis services expanded') },
-    { year: '2020', event: t('악취측정대행업 등록', 'Odor measurement agency registration') },
-    { year: '2023', event: t('ISO 인증 추진 (예정)', 'ISO certification planned') },
+    { year: '1992', event: t('오수처리시설 설계 및 시공, 수질환경관리 대행 사업 시작', 'Started sewage treatment facility design and water quality management') },
+    { year: '(연도)', event: t('환경측정분석대행업 등록', 'Environmental Measurement Agency Registration') },
+    { year: '(연도)', event: t('대기환경측정대행업 등록', 'Air Environment Measurement Registration') },
+    { year: '(연도)', event: t('악취측정대행업 등록', 'Odor Measurement Registration') },
+    { year: '(연도)', event: t('(추가 연혁 입력 예정)', '(Additional history to be added)') },
+    { year: t('현재', 'Present'), event: t('환경측정 및 분석 통합 전문기업으로 성장', 'Grown as an integrated environmental measurement company') },
   ];
 
   const team = [
     {
       role: t('대표', 'CEO'),
-      name: t('(대표자명)', '(Name)'),
-      description: t('환경공학 전문가, 20년 경력', 'Environmental engineering expert, 20 years experience'),
+      name: t('(대표자명 추후 입력)', '(Name TBD)'),
+      description: t('(경력 정보 추후 입력)', '(Experience TBD)'),
     },
     {
-      role: t('기술이사', 'Technical Director'),
-      name: t('(이름)', '(Name)'),
-      description: t('대기환경 전문가, 15년 경력', 'Air quality specialist, 15 years experience'),
+      role: t('기술책임자', 'Technical Lead'),
+      name: t('(이름 추후 입력)', '(Name TBD)'),
+      description: t('(경력 정보 추후 입력)', '(Experience TBD)'),
     },
     {
-      role: t('연구소장', 'Lab Director'),
-      name: t('(이름)', '(Name)'),
-      description: t('분석화학 전문가, 12년 경력', 'Analytical chemistry expert, 12 years experience'),
+      role: t('분석실장', 'Lab Manager'),
+      name: t('(이름 추후 입력)', '(Name TBD)'),
+      description: t('(경력 정보 추후 입력)', '(Experience TBD)'),
     },
-  ];
-
-  const equipment = [
-    { category: t('대기측정', 'Air Measurement'), items: t('굴뚝배출가스측정기, 미세먼지측정기 등', 'Stack gas analyzer, particulate matter monitor, etc.') },
-    { category: t('수질분석', 'Water Analysis'), items: t('분광광도계, TOC분석기, BOD측정기 등', 'Spectrophotometer, TOC analyzer, BOD meter, etc.') },
-    { category: t('악취분석', 'Odor Analysis'), items: t('악취측정기, GC-MS 분석장비 등', 'Olfactometer, GC-MS analyzer, etc.') },
   ];
 
   return (
@@ -77,45 +71,84 @@ const AboutPage = () => {
       <PageHero
         title={t('회사소개', 'About Us')}
         subtitle={t(
-          '환경을 생각하는 기업, 삼양건설환경연구소입니다.',
-          'Samyang Environmental - A company that cares for the environment.'
+          '환경 중시와 지속 가능한 발전을 목표로 하는 삼양건설환경연구소입니다.',
+          'Samyang Environmental Research Institute - Committed to environmental sustainability.'
         )}
       />
 
-      {/* Mission & Vision */}
+      {/* Company Introduction */}
       <Section>
         <div className={styles.missionGrid}>
           <div>
-            <h2 className={styles.sectionTitle}>{t('미션 & 비전', 'Mission & Vision')}</h2>
+            <h2 className={styles.sectionTitle}>{t('회사 개요', 'Company Overview')}</h2>
             <div className="space-y-6">
               <div className={styles.infoBox}>
-                <h3 className={styles.infoTitle}>{t('미션', 'Mission')}</h3>
-                <p className="text-muted-foreground">
+                <p className="text-muted-foreground leading-relaxed">
                   {t(
-                    '정확한 환경 측정과 분석을 통해 기업과 지역사회의 지속 가능한 발전에 기여합니다.',
-                    'Contributing to sustainable development of businesses and communities through accurate environmental measurement and analysis.'
+                    '삼양건설환경연구소는 환경 중시와 지속 가능한 발전을 목표로 1992년 오수처리시설 설계와 시공, 수질환경관리 대행을 시작으로 설립되어 현재 환경측정 및 분석 등 환경 통합 전문기업으로 성장하였습니다.',
+                    'Samyang Environmental Research Institute was established in 1992, starting with sewage treatment facility design, construction, and water quality management. We have since grown into an integrated environmental company specializing in environmental measurement and analysis.'
                   )}
                 </p>
               </div>
               <div className={styles.infoBox}>
-                <h3 className={styles.infoTitle}>{t('비전', 'Vision')}</h3>
+                <h3 className={styles.infoTitle}>{t('사업영역', 'Business Areas')}</h3>
                 <p className="text-muted-foreground">
                   {t(
-                    '대한민국 환경 서비스 분야의 선도 기업이 되어 깨끗한 미래를 만들어갑니다.',
-                    'Becoming a leading environmental services company in Korea, creating a cleaner future.'
+                    '대기, 수질, 악취 환경 측정부터 시설 설계, 시공, 관리까지 원스톱 솔루션을 제공합니다.',
+                    'We provide one-stop solutions from air, water, and odor measurement to facility design, construction, and management.'
                   )}
                 </p>
               </div>
             </div>
           </div>
           <div className={styles.iconPanel}>
-            <Building className="w-32 h-32 text-primary" />
+            <div className="w-32 h-32 rounded-full bg-accent/10 flex items-center justify-center">
+              <Leaf className="w-16 h-16 text-accent" />
+            </div>
           </div>
         </div>
       </Section>
 
-      {/* Core Values */}
+      {/* Mission & Vision */}
       <Section variant="muted">
+        <div className="grid gap-8 md:grid-cols-2 max-w-4xl mx-auto">
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Target className="h-5 w-5 text-accent" />
+                {t('미션', 'Mission')}
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-muted-foreground">
+                {t(
+                  '정확한 환경 측정과 분석을 통해 기업과 지역사회의 지속 가능한 발전에 기여합니다.',
+                  'Contributing to sustainable development of businesses and communities through accurate environmental measurement and analysis.'
+                )}
+              </p>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Eye className="h-5 w-5 text-accent" />
+                {t('비전', 'Vision')}
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-muted-foreground">
+                {t(
+                  '대한민국 환경 서비스 분야의 선도 기업이 되어 깨끗한 미래를 만들어갑니다.',
+                  'Becoming a leading environmental services company in Korea, creating a cleaner future.'
+                )}
+              </p>
+            </CardContent>
+          </Card>
+        </div>
+      </Section>
+
+      {/* Core Values */}
+      <Section>
         <SectionHeader
           title={t('핵심 가치', 'Core Values')}
           subtitle={t('우리가 일하는 방식을 정의하는 가치들입니다.', 'Values that define how we work.')}
@@ -125,7 +158,7 @@ const AboutPage = () => {
             <Card key={value.title} className={styles.valueCard}>
               <CardHeader>
                 <div className={styles.valueIconWrap}>
-                  <value.icon className="h-8 w-8 text-primary" />
+                  <value.icon className="h-8 w-8 text-accent" />
                 </div>
                 <CardTitle>{value.title}</CardTitle>
               </CardHeader>
@@ -138,16 +171,16 @@ const AboutPage = () => {
       </Section>
 
       {/* History */}
-      <Section>
+      <Section variant="muted">
         <SectionHeader
           title={t('연혁', 'History')}
-          subtitle={t('삼양건설환경연구소의 발자취입니다.', 'Our journey over the years.')}
+          subtitle={t('삼양건설환경연구소의 30년 발자취입니다.', 'Our 30-year journey.')}
         />
         <div className={styles.historyWrap}>
           <div className="relative">
             <div className={styles.historyLine} />
             {history.map((item, index) => (
-              <div key={item.year} className={styles.historyItem}>
+              <div key={`${item.year}-${index}`} className={styles.historyItem}>
                 <div className={styles.historyBadge}>
                   <span className={styles.historyBadgeText}>{index + 1}</span>
                 </div>
@@ -159,10 +192,13 @@ const AboutPage = () => {
             ))}
           </div>
         </div>
+        <p className="text-center text-sm text-muted-foreground mt-6">
+          {t('* 상세 연혁은 추후 업데이트 예정입니다.', '* Detailed history will be updated.')}
+        </p>
       </Section>
 
       {/* Team */}
-      <Section variant="muted">
+      <Section>
         <SectionHeader
           title={t('전문가 팀', 'Expert Team')}
           subtitle={t('풍부한 경험을 갖춘 전문가들이 함께합니다.', 'Experienced professionals at your service.')}
@@ -181,25 +217,9 @@ const AboutPage = () => {
             </Card>
           ))}
         </div>
-      </Section>
-
-      {/* Equipment */}
-      <Section>
-        <SectionHeader
-          title={t('보유 장비', 'Equipment & Capabilities')}
-          subtitle={t('최신 장비로 정확한 측정과 분석을 수행합니다.', 'Accurate measurement and analysis with state-of-the-art equipment.')}
-        />
-        <div className={styles.equipmentGrid}>
-          {equipment.map((eq) => (
-            <div key={eq.category} className={styles.equipmentCard}>
-              <div className={styles.equipmentHeader}>
-                <Microscope className="h-6 w-6 text-primary" />
-                <h3 className="font-semibold">{eq.category}</h3>
-              </div>
-              <p className={styles.equipmentText}>{eq.items}</p>
-            </div>
-          ))}
-        </div>
+        <p className="text-center text-sm text-muted-foreground mt-6">
+          {t('* 팀 정보는 추후 업데이트 예정입니다.', '* Team information will be updated.')}
+        </p>
       </Section>
 
       {/* CTA */}
@@ -216,7 +236,7 @@ const AboutPage = () => {
           </p>
           <Link to={`${prefix}/contact`}>
             <Button size="lg" variant="secondary">
-              {t('문의하기', 'Contact Us')}
+              {t('견적 문의하기', 'Request Quote')}
             </Button>
           </Link>
         </div>

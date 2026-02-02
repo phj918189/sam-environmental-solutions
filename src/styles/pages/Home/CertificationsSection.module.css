@@ -1,12 +1,35 @@
-.grid {
-  display: grid;
-  @apply gap-4 md:grid-cols-3 max-w-4xl mx-auto;
+.sliderContainer {
+  @apply overflow-hidden relative;
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+.slider {
+  @apply flex gap-6;
+  animation: scroll 30s linear infinite;
+}
+
+.slider:hover {
+  animation-play-state: paused;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
 }
 
 .item {
-  @apply flex items-center gap-3 p-4 bg-muted rounded-lg;
+  @apply flex items-center gap-3 px-6 py-4 bg-card border border-border rounded-xl shrink-0 transition-all hover:shadow-md hover:border-accent/30;
+}
+
+.iconWrap {
+  @apply w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center;
 }
 
 .text {
-  @apply text-sm font-medium;
+  @apply text-sm font-medium text-foreground whitespace-nowrap;
 }

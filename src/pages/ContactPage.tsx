@@ -56,19 +56,19 @@ const ContactPage = () => {
     {
       icon: Phone,
       title: t('전화', 'Phone'),
-      value: '042-000-0000',
+      value: '(전화번호 추후 입력)',
       description: t('평일 09:00 - 18:00', 'Mon-Fri 09:00 - 18:00'),
     },
     {
       icon: Mail,
       title: t('이메일', 'Email'),
-      value: 'info@samyang-env.co.kr',
+      value: '(이메일 추후 입력)',
       description: t('24시간 접수 가능', 'Available 24/7'),
     },
     {
       icon: MapPin,
       title: t('주소', 'Address'),
-      value: t('대전광역시 유성구 (상세주소)', 'Yuseong-gu, Daejeon, South Korea'),
+      value: t('(주소 추후 입력)', '(Address TBD)'),
       description: t('(지도 상세 위치)', '(Detailed location on map)'),
     },
     {
@@ -80,10 +80,10 @@ const ContactPage = () => {
   ];
 
   const inquiryTypes = [
-    { value: 'air', label: t('대기 환경', 'Air Quality') },
-    { value: 'water', label: t('수질 환경', 'Water Quality') },
-    { value: 'odor', label: t('악취 환경', 'Odor Control') },
-    { value: 'consulting', label: t('환경 컨설팅', 'Environmental Consulting') },
+    { value: 'air', label: t('대기환경', 'Air Quality') },
+    { value: 'water', label: t('수질환경', 'Water Quality') },
+    { value: 'odor', label: t('악취환경', 'Odor Control') },
+    { value: 'design', label: t('시설 설계·시공', 'Facility Design & Construction') },
     { value: 'other', label: t('기타 문의', 'Other') },
   ];
 
@@ -94,7 +94,7 @@ const ContactPage = () => {
         <Section>
           <div className={styles.successWrap}>
             <div className={styles.successIconWrap}>
-              <CheckCircle className="h-10 w-10 text-primary" />
+              <CheckCircle className="h-10 w-10 text-accent" />
             </div>
             <h2 className={styles.successTitle}>
               {t('문의가 접수되었습니다', 'Your Inquiry Has Been Submitted')}
@@ -118,10 +118,10 @@ const ContactPage = () => {
     <>
       {/* Hero */}
       <PageHero
-        title={t('문의하기', 'Contact Us')}
+        title={t('견적문의', 'Contact Us')}
         subtitle={t(
-          '환경 문제에 대한 전문 상담을 받아보세요.',
-          'Get expert consultation on your environmental challenges.'
+          '환경 문제에 대한 전문 상담과 견적을 받아보세요.',
+          'Get expert consultation and quotes on your environmental challenges.'
         )}
       />
 
@@ -132,7 +132,7 @@ const ContactPage = () => {
             <Card key={info.title}>
               <CardContent className={styles.infoCardContent}>
                 <div className={styles.infoIconWrap}>
-                  <info.icon className="h-6 w-6 text-primary" />
+                  <info.icon className="h-6 w-6 text-accent" />
                 </div>
                 <h3 className={styles.infoTitle}>{info.title}</h3>
                 <p className={styles.infoValue}>{info.value}</p>

@@ -2,7 +2,6 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, CheckCircle } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Button } from '@/components/ui/button';
-import heroBg from '@/assets/hero-bg.jpg';
 import styles from '@/styles/pages/Home/HeroSection.module.css';
 
 const HeroSection = () => {
@@ -11,31 +10,33 @@ const HeroSection = () => {
 
   return (
     <section className={styles.section}>
-      <div
-        className={styles.background}
-        style={{ backgroundImage: `url(${heroBg})` }}
-      />
+      <div className={styles.background} />
       <div className={styles.overlay} />
       <div className={styles.content}>
+        <div className="inline-block px-4 py-1.5 bg-accent/20 text-accent rounded-full text-sm font-medium mb-6">
+          {t('1992년 설립', 'Established 1992')}
+        </div>
         <h1 className={styles.title}>
-          {t('대기 · 수질 · 악취', 'Air · Water · Odor')}
+          {t('환경측정 전문기관', 'Environmental Measurement Experts')}
           <br />
-          {t('환경 전문 기관', 'Environmental Specialists')}
+          <span className="text-accent">
+            {t('삼양건설환경연구소', 'Samyang Environmental')}
+          </span>
         </h1>
         <p className={styles.subtitle}>
           {t(
-            '정확한 측정, 신뢰할 수 있는 분석, 체계적인 관리로  더 나은 환경을 만들어갑니다.',
-            'Creating a better environment through accurate measurement, reliable analysis, and systematic management.'
+            '대기 · 수질 · 악취 환경측정부터 시설 설계, 시공, 관리까지\n원스톱 솔루션을 제공합니다.',
+            'From air, water, and odor measurement to facility design, construction, and management.\nWe provide one-stop solutions.'
           )}
         </p>
         <div className={styles.badgeRow}>
           {[
             t('정밀 측정·분석', 'Precision Analysis'),
-            t('맞춤형 컨설팅', 'Custom Consulting'),
-            t('신속한 보고', 'Fast Reporting'),
+            t('시설 설계·시공', 'Design & Construction'),
+            t('통합 환경관리', 'Integrated Management'),
           ].map((item) => (
             <div key={item} className={styles.badge}>
-              <CheckCircle className="h-5 w-5" />
+              <CheckCircle className="h-5 w-5 text-accent" />
               <span>{item}</span>
             </div>
           ))}
@@ -49,7 +50,7 @@ const HeroSection = () => {
           </Link>
           <Link to={`${prefix}/services/air`}>
             <Button size="lg" variant="hero">
-              {t('서비스 알아보기', 'Explore Services')}
+              {t('사업영역 보기', 'View Services')}
             </Button>
           </Link>
         </div>
