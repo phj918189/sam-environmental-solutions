@@ -94,7 +94,7 @@ const ContactPage = () => {
         <Section>
           <div className={styles.successWrap}>
             <div className={styles.successIconWrap}>
-              <CheckCircle className="h-10 w-10 text-primary" />
+              <CheckCircle className={styles.successIcon} />
             </div>
             <h2 className={styles.successTitle}>
               {t('문의가 접수되었습니다', 'Your Inquiry Has Been Submitted')}
@@ -132,7 +132,7 @@ const ContactPage = () => {
             <Card key={info.title}>
               <CardContent className={styles.infoCardContent}>
                 <div className={styles.infoIconWrap}>
-                  <info.icon className="h-6 w-6 text-primary" />
+                  <info.icon className={styles.infoIcon} />
                 </div>
                 <h3 className={styles.infoTitle}>{info.title}</h3>
                 <p className={styles.infoValue}>{info.value}</p>
@@ -252,7 +252,7 @@ const ContactPage = () => {
                 </div>
 
                 <Button type="submit" className={styles.submitButton}>
-                  <Send className="h-4 w-4" />
+                  <Send className={styles.submitIcon} />
                   {t('문의 접수하기', 'Submit Inquiry')}
                 </Button>
               </form>
@@ -264,7 +264,7 @@ const ContactPage = () => {
             <h3 className={styles.mapTitle}>{t('오시는 길', 'Location')}</h3>
             <div className={styles.mapBox}>
               <div className={styles.mapText}>
-                <MapPin className="h-12 w-12 mx-auto mb-2" />
+                <MapPin className={styles.mapIcon} />
                 <p>{t('지도가 표시될 영역입니다', 'Map will be displayed here')}</p>
                 <p className={styles.mapTextSmall}>
                   {t('대전광역시 유성구 (상세주소)', 'Yuseong-gu, Daejeon, South Korea')}

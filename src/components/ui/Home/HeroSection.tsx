@@ -35,16 +35,16 @@ const HeroSection = () => {
             t('신속한 보고', 'Fast Reporting'),
           ].map((item) => (
             <div key={item} className={styles.badge}>
-              <CheckCircle className="h-5 w-5" />
+              <CheckCircle className={styles.badgeIcon} />
               <span>{item}</span>
             </div>
           ))}
         </div>
         <div className={styles.actions}>
           <Link to={`${prefix}/contact`}>
-            <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 gap-2">
+            <Button size="lg" className={styles.primaryButton}>
               {t('견적 문의하기', 'Request a Quote')}
-              <ArrowRight className="h-5 w-5" />
+              <ArrowRight className={styles.primaryButtonIcon} />
             </Button>
           </Link>
           <Link to={`${prefix}/services/air`}>

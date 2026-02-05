@@ -1,0 +1,17 @@
+.toaster {}
+
+.toast {
+  @apply bg-background text-foreground border-border shadow-lg;
+}
+
+.description {
+  @apply text-muted-foreground;
+}
+
+.actionButton {
+  @apply bg-primary text-primary-foreground;
+}
+
+.cancelButton {
+  @apply bg-muted text-muted-foreground;
+}

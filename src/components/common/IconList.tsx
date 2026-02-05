@@ -13,7 +13,7 @@ const IconList = ({ items, icon: Icon, iconClassName }: IconListProps) => {
     <ul className={styles.list}>
       {items.map((item, index) => (
         <li key={`${item}-${index}`} className={styles.item}>
-          <Icon className={cn('h-5 w-5 mt-0.5 shrink-0', iconClassName)} />
+          <Icon className={cn(styles.icon, iconClassName)} />
           <span>{item}</span>
         </li>
       ))}

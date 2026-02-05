@@ -1,5 +1,6 @@
-import { cn } from '@/lib/utils';
 import { ReactNode } from 'react';
+import { cn } from '@/lib/utils';
+import styles from '@/styles/components/Section.module.css';
 
 interface SectionProps {
   children: ReactNode;
@@ -8,19 +9,15 @@ interface SectionProps {
 }
 
 const Section = ({ children, className, variant = 'default' }: SectionProps) => {
+  const variantClass = {
+    default: styles.sectionDefault,
+    muted: styles.sectionMuted,
+    primary: styles.sectionPrimary,
+  }[variant];
+
   return (
-    <section
-      className={cn(
-        'py-16 md:py-24',
-        {
-          'bg-background': variant === 'default',
-          'bg-muted': variant === 'muted',
-          'bg-primary text-primary-foreground': variant === 'primary',
-        },
-        className
-      )}
-    >
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">{children}</div>
+    <section className={cn(styles.section, variantClass, className)}>
+      <div className={styles.container}>{children}</div>
     </section>
   );
 };
@@ -34,9 +31,9 @@ interface SectionHeaderProps {
 
 const SectionHeader = ({ title, subtitle, centered = true, className }: SectionHeaderProps) => {
   return (
-    <div className={cn('mb-12', centered && 'text-center', className)}>
-      <h2 className="text-3xl md:text-4xl font-bold mb-4">{title}</h2>
-      {subtitle && <p className="text-lg text-muted-foreground max-w-2xl mx-auto">{subtitle}</p>}
+    <div className={cn(styles.header, centered && styles.headerCentered, className)}>
+      <h2 className={styles.title}>{title}</h2>
+      {subtitle && <p className={styles.subtitle}>{subtitle}</p>}
     </div>
   );
 };

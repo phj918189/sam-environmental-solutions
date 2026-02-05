@@ -1,0 +1,51 @@
+.base {
+  @apply inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50;
+}
+
+.base svg {
+  @apply pointer-events-none h-4 w-4 shrink-0;
+}
+
+.variantDefault {
+  @apply bg-primary text-primary-foreground hover:bg-primary/90;
+}
+
+.variantDestructive {
+  @apply bg-destructive text-destructive-foreground hover:bg-destructive/90;
+}
+
+.variantOutline {
+  @apply border border-input bg-background hover:bg-accent hover:text-accent-foreground;
+}
+
+.variantSecondary {
+  @apply bg-secondary text-secondary-foreground hover:bg-secondary/80;
+}
+
+.variantGhost {
+  @apply hover:bg-accent hover:text-accent-foreground;
+}
+
+.variantLink {
+  @apply text-primary underline-offset-4 hover:underline;
+}
+
+.variantHero {
+  @apply border-2 border-primary-foreground/40 bg-transparent text-primary-foreground hover:bg-primary-foreground/10 hover:border-primary-foreground/60;
+}
+
+.sizeDefault {
+  @apply h-10 px-4 py-2;
+}
+
+.sizeSm {
+  @apply h-9 rounded-md px-3;
+}
+
+.sizeLg {
+  @apply h-11 rounded-md px-8;
+}
+
+.sizeIcon {
+  @apply h-10 w-10;
+}

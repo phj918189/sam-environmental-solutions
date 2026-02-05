@@ -87,10 +87,10 @@ const AboutPage = () => {
         <div className={styles.missionGrid}>
           <div>
             <h2 className={styles.sectionTitle}>{t('미션 & 비전', 'Mission & Vision')}</h2>
-            <div className="space-y-6">
+            <div className={styles.missionStack}>
               <div className={styles.infoBox}>
                 <h3 className={styles.infoTitle}>{t('미션', 'Mission')}</h3>
-                <p className="text-muted-foreground">
+                <p className={styles.mutedText}>
                   {t(
                     '정확한 환경 측정과 분석을 통해 기업과 지역사회의 지속 가능한 발전에 기여합니다.',
                     'Contributing to sustainable development of businesses and communities through accurate environmental measurement and analysis.'
@@ -99,7 +99,7 @@ const AboutPage = () => {
               </div>
               <div className={styles.infoBox}>
                 <h3 className={styles.infoTitle}>{t('비전', 'Vision')}</h3>
-                <p className="text-muted-foreground">
+                <p className={styles.mutedText}>
                   {t(
                     '대한민국 환경 서비스 분야의 선도 기업이 되어 깨끗한 미래를 만들어갑니다.',
                     'Becoming a leading environmental services company in Korea, creating a cleaner future.'
@@ -109,7 +109,7 @@ const AboutPage = () => {
             </div>
           </div>
           <div className={styles.iconPanel}>
-            <Building className="w-32 h-32 text-primary" />
+            <Building className={styles.iconPanelIcon} />
           </div>
         </div>
       </Section>
@@ -125,12 +125,12 @@ const AboutPage = () => {
             <Card key={value.title} className={styles.valueCard}>
               <CardHeader>
                 <div className={styles.valueIconWrap}>
-                  <value.icon className="h-8 w-8 text-primary" />
+                  <value.icon className={styles.valueIcon} />
                 </div>
                 <CardTitle>{value.title}</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-muted-foreground">{value.description}</p>
+                <p className={styles.mutedText}>{value.description}</p>
               </CardContent>
             </Card>
           ))}
@@ -144,7 +144,7 @@ const AboutPage = () => {
           subtitle={t('삼양건설환경연구소의 발자취입니다.', 'Our journey over the years.')}
         />
         <div className={styles.historyWrap}>
-          <div className="relative">
+          <div className={styles.historyTimeline}>
             <div className={styles.historyLine} />
             {history.map((item, index) => (
               <div key={item.year} className={styles.historyItem}>
@@ -153,7 +153,7 @@ const AboutPage = () => {
                 </div>
                 <div className={styles.historyCard}>
                   <span className={styles.historyYear}>{item.year}</span>
-                  <p className="text-foreground">{item.event}</p>
+                  <p className={styles.historyEvent}>{item.event}</p>
                 </div>
               </div>
             ))}
@@ -170,12 +170,12 @@ const AboutPage = () => {
         <div className={styles.teamGrid}>
           {team.map((member) => (
             <Card key={member.role}>
-              <CardContent className="pt-6 text-center">
+              <CardContent className={styles.teamCardContent}>
                 <div className={styles.teamAvatar}>
-                  <Users className="h-10 w-10 text-muted-foreground" />
+                  <Users className={styles.teamIcon} />
                 </div>
                 <p className={styles.teamRole}>{member.role}</p>
-                <h3 className="font-semibold text-lg">{member.name}</h3>
+                <h3 className={styles.teamName}>{member.name}</h3>
                 <p className={styles.teamDesc}>{member.description}</p>
               </CardContent>
             </Card>
@@ -193,8 +193,8 @@ const AboutPage = () => {
           {equipment.map((eq) => (
             <div key={eq.category} className={styles.equipmentCard}>
               <div className={styles.equipmentHeader}>
-                <Microscope className="h-6 w-6 text-primary" />
-                <h3 className="font-semibold">{eq.category}</h3>
+                <Microscope className={styles.equipmentIcon} />
+                <h3 className={styles.equipmentTitle}>{eq.category}</h3>
               </div>
               <p className={styles.equipmentText}>{eq.items}</p>
             </div>

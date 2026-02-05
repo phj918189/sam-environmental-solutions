@@ -3,6 +3,50 @@
   @apply gap-12 md:grid-cols-2;
 }
 
+.heroIcon {
+  @apply h-8 w-8;
+}
+
+.airIcon {
+  @apply text-blue-500;
+}
+
+.airIconBox {
+  @apply bg-blue-500/10;
+}
+
+.waterIcon {
+  @apply text-cyan-500;
+}
+
+.waterIconBox {
+  @apply bg-cyan-500/10;
+}
+
+.odorIcon {
+  @apply text-green-500;
+}
+
+.odorIconBox {
+  @apply bg-green-500/10;
+}
+
+.emptyState {
+  @apply text-center;
+}
+
+.emptyTitle {
+  @apply text-2xl font-bold mb-4;
+}
+
+.primaryIcon {
+  @apply text-primary;
+}
+
+.accentIcon {
+  @apply text-accent;
+}
+
 .sectionTitle {
   @apply text-2xl font-bold mb-6;
 }
@@ -32,8 +76,20 @@
   @apply flex items-start gap-3;
 }
 
+.deliverableIcon {
+  @apply h-5 w-5 text-primary mt-0.5 shrink-0;
+}
+
 .faqWrap {
   @apply max-w-3xl mx-auto;
+}
+
+.faqAccordion {
+  @apply w-full;
+}
+
+.accordionTrigger {
+  @apply text-left;
 }
 
 .ctaWrap {
@@ -50,4 +106,8 @@
 
 .ctaButton {
   @apply gap-2;
+}
+
+.ctaIcon {
+  @apply h-5 w-5;
 }

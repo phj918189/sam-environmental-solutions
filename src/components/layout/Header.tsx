@@ -39,7 +39,7 @@ const Header = () => {
         <div className={styles.navRow}>
           <Link to={prefix || '/'} className={styles.brand}>
             <div className={styles.brandIcon}>
-              <span className="text-primary-foreground font-bold text-lg">삼</span>
+              <span className={styles.brandSymbol}>삼</span>
             </div>
             <div className={styles.brandTitle}>
               <span className={styles.brandTitleText}>
@@ -54,9 +54,9 @@ const Header = () => {
               item.children ? (
                 <DropdownMenu key={item.name}>
                   <DropdownMenuTrigger asChild>
-                    <Button variant="ghost" className="gap-1">
+                    <Button variant="ghost" className={styles.navButton}>
                       {item.name}
-                      <ChevronDown className="h-4 w-4" />
+                      <ChevronDown className={styles.navIcon} />
                     </Button>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent>
@@ -75,11 +75,11 @@ const Header = () => {
             )}
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className={styles.actions}>
             <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="outline" size="sm" className={styles.langButton}>
-                  <Globe className="h-4 w-4" />
+                  <Globe className={styles.langIcon} />
                   {language === 'ko' ? '한국어' : 'EN'}
                 </Button>
               </DropdownMenuTrigger>
@@ -105,7 +105,7 @@ const Header = () => {
               className={styles.mobileToggle}
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             >
-              {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              {mobileMenuOpen ? <X className={styles.menuIcon} /> : <Menu className={styles.menuIcon} />}
             </Button>
           </div>
         </div>
@@ -117,7 +117,7 @@ const Header = () => {
               {navigation.map((item) => (
                 <div key={item.name}>
                   {item.children ? (
-                    <div className="space-y-1">
+                    <div className={styles.mobileGroup}>
                       <span className={styles.mobileSectionTitle}>
                         {item.name}
                       </span>
@@ -148,7 +148,7 @@ const Header = () => {
                 className={styles.mobileQuote}
                 onClick={() => setMobileMenuOpen(false)}
               >
-                <Button className="w-full">{t('견적 문의', 'Get a Quote')}</Button>
+                <Button className={styles.mobileQuoteButton}>{t('견적 문의', 'Get a Quote')}</Button>
               </Link>
             </div>
           </div>

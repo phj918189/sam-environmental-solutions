@@ -95,8 +95,8 @@ const PortfolioDetailPage = () => {
   if (!project) {
     return (
       <Section>
-        <div className="text-center">
-          <h1 className="text-2xl font-bold mb-4">{t('프로젝트를 찾을 수 없습니다', 'Project not found')}</h1>
+        <div className={styles.emptyState}>
+          <h1 className={styles.emptyTitle}>{t('프로젝트를 찾을 수 없습니다', 'Project not found')}</h1>
           <Link to={`${prefix}/portfolio`}>
             <Button>{t('목록으로 돌아가기', 'Back to Portfolio')}</Button>
           </Link>
@@ -115,12 +115,12 @@ const PortfolioDetailPage = () => {
         <div className={styles.heroContainer}>
           <Link to={`${prefix}/portfolio`}>
             <Button variant="ghost" className={styles.backButton}>
-              <ArrowLeft className="h-4 w-4" />
+              <ArrowLeft className={styles.buttonIcon} />
               {t('목록으로', 'Back to List')}
             </Button>
           </Link>
           <Badge variant="secondary" className={styles.heroBadge}>
-            <CategoryIcon className="h-3 w-3" />
+            <CategoryIcon className={styles.heroBadgeIcon} />
             {category[lang]}
           </Badge>
           <h1 className={styles.heroTitle}>
@@ -128,15 +128,15 @@ const PortfolioDetailPage = () => {
           </h1>
           <div className={styles.heroMeta}>
             <span className={styles.heroMetaItem}>
-              <Building className="h-4 w-4" />
+              <Building className={styles.heroMetaIcon} />
               {project.client[lang]}
             </span>
             <span className={styles.heroMetaItem}>
-              <MapPin className="h-4 w-4" />
+              <MapPin className={styles.heroMetaIcon} />
               {project.location[lang]}
             </span>
             <span className={styles.heroMetaItem}>
-              <Calendar className="h-4 w-4" />
+              <Calendar className={styles.heroMetaIcon} />
               {project.date}
             </span>
           </div>
@@ -149,14 +149,14 @@ const PortfolioDetailPage = () => {
           {/* Overview */}
           <div>
             <h2 className={styles.sectionTitle}>{t('프로젝트 개요', 'Project Overview')}</h2>
-            <p className="text-muted-foreground leading-relaxed">{project.overview[lang]}</p>
+            <p className={styles.bodyText}>{project.overview[lang]}</p>
           </div>
 
           {/* Challenge */}
           <div>
             <h2 className={styles.sectionTitle}>{t('해결 과제', 'Challenge')}</h2>
             <div className={styles.challengeBox}>
-              <p className="text-muted-foreground leading-relaxed">{project.challenge[lang]}</p>
+              <p className={styles.bodyText}>{project.challenge[lang]}</p>
             </div>
           </div>
 
@@ -181,8 +181,8 @@ const PortfolioDetailPage = () => {
             <div className={styles.resultGrid}>
               {project.results[lang].map((item, i) => (
                 <div key={i} className={styles.resultItem}>
-                  <CheckCircle className="h-5 w-5 text-primary shrink-0 mt-0.5" />
-                  <span className="font-medium">{item}</span>
+                  <CheckCircle className={styles.resultIcon} />
+                  <span className={styles.resultText}>{item}</span>
                 </div>
               ))}
             </div>
@@ -195,7 +195,7 @@ const PortfolioDetailPage = () => {
               {[1, 2].map((i) => (
                 <div key={i} className={styles.mediaBox}>
                   <div className={styles.mediaText}>
-                    <Image className="h-12 w-12 mx-auto mb-2" />
+                    <Image className={styles.mediaIcon} />
                     <span className={styles.mediaLabel}>{t('사진 추가 예정', 'Photo coming soon')}</span>
                   </div>
                 </div>

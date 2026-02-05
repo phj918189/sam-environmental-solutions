@@ -15,7 +15,7 @@ const Footer = () => {
           <div className={styles.logoWrap}>
             <div className={styles.logoRow}>
               <div className={styles.logoIcon}>
-                <span className="text-primary-foreground font-bold text-lg">삼</span>
+                <span className={styles.logoSymbol}>삼</span>
               </div>
               <span className={styles.logoText}>
                 {t('삼양건설환경연구소', 'Samyang Environmental')}
@@ -61,7 +61,7 @@ const Footer = () => {
             <h3 className={styles.sectionTitle}>{t('연락처', 'Contact')}</h3>
             <ul className={styles.contactList}>
               <li className={styles.contactItem}>
-                <MapPin className="h-4 w-4 mt-0.5 shrink-0" />
+                <MapPin className={`${styles.contactIcon} ${styles.contactIconTop}`} />
                 <span>
                   {t(
                     '대전광역시 유성구 (상세주소)',
@@ -70,11 +70,11 @@ const Footer = () => {
                 </span>
               </li>
               <li className={styles.contactItemInline}>
-                <Phone className="h-4 w-4 shrink-0" />
+                <Phone className={styles.contactIcon} />
                 <span>042-000-0000</span>
               </li>
               <li className={styles.contactItemInline}>
-                <Mail className="h-4 w-4 shrink-0" />
+                <Mail className={styles.contactIcon} />
                 <span>info@samyang-env.co.kr</span>
               </li>
             </ul>

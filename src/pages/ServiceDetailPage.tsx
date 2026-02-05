@@ -1,6 +1,7 @@
 import { useParams, Link } from 'react-router-dom';
 import { Wind, Droplets, Leaf, CheckCircle, ArrowRight, Phone, FileText, Users, ClipboardCheck, Microscope } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Section, SectionHeader } from '@/components/ui/section';
@@ -18,8 +19,8 @@ import styles from '@/styles/pages/ServiceDetailPage.module.css';
 const serviceData = {
   air: {
     icon: Wind,
-    color: 'text-blue-500',
-    bgColor: 'bg-blue-500/10',
+    iconClassName: styles.airIcon,
+    iconBoxClassName: styles.airIconBox,
     title: { ko: '대기 환경 서비스', en: 'Air Quality Services' },
     subtitle: {
       ko: '정확한 측정과 분석으로 대기 환경 문제를 해결합니다.',
@@ -60,8 +61,8 @@ const serviceData = {
   },
   water: {
     icon: Droplets,
-    color: 'text-cyan-500',
-    bgColor: 'bg-cyan-500/10',
+    iconClassName: styles.waterIcon,
+    iconBoxClassName: styles.waterIconBox,
     title: { ko: '수질 환경 서비스', en: 'Water Quality Services' },
     subtitle: {
       ko: '수질 오염 분석부터 폐수 처리 컨설팅까지 종합 서비스를 제공합니다.',
@@ -102,8 +103,8 @@ const serviceData = {
   },
   odor: {
     icon: Leaf,
-    color: 'text-green-500',
-    bgColor: 'bg-green-500/10',
+    iconClassName: styles.odorIcon,
+    iconBoxClassName: styles.odorIconBox,
     title: { ko: '악취 환경 서비스', en: 'Odor Control Services' },
     subtitle: {
       ko: '악취 측정부터 저감 시설 설계까지, 악취 문제 전문 솔루션을 제공합니다.',
@@ -154,8 +155,8 @@ const ServiceDetailPage = () => {
   if (!service) {
     return (
       <Section>
-        <div className="text-center">
-          <h1 className="text-2xl font-bold mb-4">{t('서비스를 찾을 수 없습니다', 'Service not found')}</h1>
+        <div className={styles.emptyState}>
+          <h1 className={styles.emptyTitle}>{t('서비스를 찾을 수 없습니다', 'Service not found')}</h1>
           <Link to={prefix || '/'}>
             <Button>{t('홈으로 돌아가기', 'Back to Home')}</Button>
           </Link>
@@ -181,8 +182,8 @@ const ServiceDetailPage = () => {
       <PageHero
         title={service.title[lang]}
         subtitle={service.subtitle[lang]}
-        icon={<ServiceIcon className={`h-8 w-8 ${service.color}`} />}
-        iconContainerClassName={service.bgColor}
+        icon={<ServiceIcon className={cn(styles.heroIcon, service.iconClassName)} />}
+        iconContainerClassName={service.iconBoxClassName}
       />
 
       {/* Who It's For */}
@@ -190,11 +191,11 @@ const ServiceDetailPage = () => {
         <div className={styles.contentGrid}>
           <div>
             <h2 className={styles.sectionTitle}>{t('이런 분들께 필요합니다', 'Who This Is For')}</h2>
-            <IconList items={service.audience[lang]} icon={CheckCircle} iconClassName="text-primary" />
+            <IconList items={service.audience[lang]} icon={CheckCircle} iconClassName={styles.primaryIcon} />
           </div>
           <div>
             <h2 className={styles.sectionTitle}>{t('활용 사례', 'Use Cases')}</h2>
-            <IconList items={service.useCases[lang]} icon={ArrowRight} iconClassName="text-accent" />
+            <IconList items={service.useCases[lang]} icon={ArrowRight} iconClassName={styles.accentIcon} />
           </div>
         </div>
       </Section>
@@ -227,7 +228,7 @@ const ServiceDetailPage = () => {
               <ul className={styles.scopeList}>
                 {service.deliverables[lang].map((item, i) => (
                   <li key={i} className={styles.deliverableItem}>
-                    <FileText className="h-5 w-5 text-primary mt-0.5 shrink-0" />
+                    <FileText className={styles.deliverableIcon} />
                     <span>{item}</span>
                   </li>
                 ))}
@@ -252,10 +253,10 @@ const ServiceDetailPage = () => {
           title={t('자주 묻는 질문', 'Frequently Asked Questions')}
         />
         <div className={styles.faqWrap}>
-          <Accordion type="single" collapsible className="w-full">
+          <Accordion type="single" collapsible className={styles.faqAccordion}>
             {service.faq[lang].map((item, i) => (
               <AccordionItem key={i} value={`item-${i}`}>
-                <AccordionTrigger className="text-left">{item.q}</AccordionTrigger>
+                <AccordionTrigger className={styles.accordionTrigger}>{item.q}</AccordionTrigger>
                 <AccordionContent>{item.a}</AccordionContent>
               </AccordionItem>
             ))}
@@ -277,7 +278,7 @@ const ServiceDetailPage = () => {
           </p>
           <Link to={`${prefix}/contact`}>
             <Button size="lg" variant="secondary" className={styles.ctaButton}>
-              <Phone className="h-5 w-5" />
+              <Phone className={styles.ctaIcon} />
               {t('무료 상담 신청', 'Request Free Consultation')}
             </Button>
           </Link>

@@ -17,7 +17,7 @@ const ProcessSteps = ({ steps }: ProcessStepsProps) => {
       {steps.map((step, index) => (
         <div key={step.title} className={styles.step}>
           <div className={styles.iconWrap}>
-            <step.icon className="h-8 w-8 text-primary-foreground" />
+            <step.icon className={styles.icon} />
           </div>
           <h3 className={styles.title}>
             <span className={styles.index}>{index + 1}.</span>

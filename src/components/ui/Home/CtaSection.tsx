@@ -23,8 +23,8 @@ const CtaSection = () => {
         </p>
         <div className={styles.actions}>
           <Link to={`${prefix}/contact`}>
-            <Button size="lg" className="gap-2">
-              <Phone className="h-5 w-5" />
+            <Button size="lg" className={styles.primaryButton}>
+              <Phone className={styles.primaryIcon} />
               {t('문의하기', 'Contact Us')}
             </Button>
           </Link>

@@ -10,12 +10,20 @@
   @apply flex items-center justify-between mb-2;
 }
 
+.dateIcon {
+  @apply h-4 w-4;
+}
+
 .dateText {
   @apply flex items-center gap-1 text-sm text-muted-foreground;
 }
 
 .cardTitle {
-  @apply group-hover:text-primary transition-colors;
+  @apply transition-colors;
+}
+
+.card:hover .cardTitle {
+  @apply text-primary;
 }
 
 .cardDescription {
@@ -23,5 +31,13 @@
 }
 
 .readMore {
-  @apply text-primary text-sm font-medium flex items-center gap-1 group-hover:gap-2 transition-all;
+  @apply text-primary text-sm font-medium flex items-center gap-1 transition-all;
+}
+
+.card:hover .readMore {
+  @apply gap-2;
+}
+
+.readMoreIcon {
+  @apply h-4 w-4;
 }

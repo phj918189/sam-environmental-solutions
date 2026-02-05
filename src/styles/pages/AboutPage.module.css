@@ -3,6 +3,10 @@
   @apply gap-12 md:grid-cols-2 items-center;
 }
 
+.missionStack {
+  @apply space-y-6;
+}
+
 .sectionTitle {
   @apply text-3xl font-bold mb-6;
 }
@@ -15,8 +19,16 @@
   @apply font-semibold text-lg mb-2;
 }
 
+.mutedText {
+  @apply text-muted-foreground;
+}
+
 .iconPanel {
   @apply bg-primary/10 rounded-2xl p-8 flex items-center justify-center min-h-[300px];
+}
+
+.iconPanelIcon {
+  @apply w-32 h-32 text-primary;
 }
 
 .valuesGrid {
@@ -32,8 +44,16 @@
   @apply w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4;
 }
 
+.valueIcon {
+  @apply h-8 w-8 text-primary;
+}
+
 .historyWrap {
   @apply max-w-3xl mx-auto;
+}
+
+.historyTimeline {
+  @apply relative;
 }
 
 .historyLine {
@@ -60,17 +80,33 @@
   @apply font-bold text-primary;
 }
 
+.historyEvent {
+  @apply text-foreground;
+}
+
 .teamGrid {
   display: grid;
   @apply gap-6 md:grid-cols-3;
+}
+
+.teamCardContent {
+  @apply pt-6 text-center;
 }
 
 .teamAvatar {
   @apply w-20 h-20 bg-muted rounded-full flex items-center justify-center mx-auto mb-4;
 }
 
+.teamIcon {
+  @apply h-10 w-10 text-muted-foreground;
+}
+
 .teamRole {
   @apply text-sm text-primary font-medium;
+}
+
+.teamName {
+  @apply font-semibold text-lg;
 }
 
 .teamDesc {
@@ -88,6 +124,14 @@
 
 .equipmentHeader {
   @apply flex items-center gap-3 mb-4;
+}
+
+.equipmentIcon {
+  @apply h-6 w-6 text-primary;
+}
+
+.equipmentTitle {
+  @apply font-semibold;
 }
 
 .equipmentText {

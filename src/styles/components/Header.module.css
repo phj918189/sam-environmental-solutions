@@ -22,6 +22,10 @@
   @apply w-10 h-10 bg-primary rounded-lg flex items-center justify-center;
 }
 
+.brandSymbol {
+  @apply text-primary-foreground font-bold text-lg;
+}
+
 .brandTitle {
   @apply hidden sm:block;
 }
@@ -32,6 +36,22 @@
 
 .desktopNav {
   @apply hidden lg:flex items-center gap-1;
+}
+
+.navButton {
+  @apply gap-1;
+}
+
+.navIcon {
+  @apply h-4 w-4;
+}
+
+.actions {
+  @apply flex items-center gap-2;
+}
+
+.langIcon {
+  @apply h-4 w-4;
 }
 
 .langButton {
@@ -46,6 +66,10 @@
   @apply lg:hidden;
 }
 
+.menuIcon {
+  @apply h-6 w-6;
+}
+
 .mobileNav {
   @apply lg:hidden py-4 border-t border-border;
 }
@@ -58,6 +82,10 @@
   @apply block px-3 py-2 text-sm font-medium text-muted-foreground;
 }
 
+.mobileGroup {
+  @apply space-y-1;
+}
+
 .mobileChildLink {
   @apply block px-6 py-2 text-sm hover:bg-muted rounded-md;
 }
@@ -68,4 +96,8 @@
 
 .mobileQuote {
   @apply mt-2;
+}
+
+.mobileQuoteButton {
+  @apply w-full;
 }

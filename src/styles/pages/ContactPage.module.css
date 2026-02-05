@@ -11,6 +11,10 @@
   @apply w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-4;
 }
 
+.infoIcon {
+  @apply h-6 w-6 text-primary;
+}
+
 .infoTitle {
   @apply font-semibold mb-1;
 }
@@ -57,6 +61,10 @@
   @apply w-full gap-2;
 }
 
+.submitIcon {
+  @apply h-4 w-4;
+}
+
 .mapTitle {
   @apply font-semibold mb-4;
 }
@@ -69,6 +77,10 @@
   @apply text-center text-muted-foreground;
 }
 
+.mapIcon {
+  @apply h-12 w-12 mx-auto mb-2;
+}
+
 .mapTextSmall {
   @apply text-sm mt-2;
 }
@@ -79,6 +91,10 @@
 
 .successIconWrap {
   @apply w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6;
+}
+
+.successIcon {
+  @apply h-10 w-10 text-primary;
 }
 
 .successTitle {

@@ -51,10 +51,10 @@ const ServicesSection = () => {
       />
       <div className={styles.grid}>
         {services.map((service) => (
-          <Card key={service.title} className={`${styles.card} group`}>
+          <Card key={service.title} className={styles.card}>
             <CardHeader>
               <div className={styles.iconWrap}>
-                <service.icon className="h-7 w-7 text-primary" />
+                <service.icon className={styles.serviceIcon} />
               </div>
               <CardTitle className={styles.title}>{service.title}</CardTitle>
               <CardDescription className={styles.description}>{service.description}</CardDescription>
@@ -63,7 +63,7 @@ const ServicesSection = () => {
               <Link to={service.href}>
                 <Button variant="ghost" className={styles.linkButton}>
                   {t('자세히 보기', 'Learn More')}
-                  <ArrowRight className="h-4 w-4" />
+                  <ArrowRight className={styles.linkIcon} />
                 </Button>
               </Link>
             </CardContent>

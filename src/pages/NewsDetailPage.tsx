@@ -129,8 +129,8 @@ const NewsDetailPage = () => {
   if (!article) {
     return (
       <Section>
-        <div className="text-center">
-          <h1 className="text-2xl font-bold mb-4">{t('게시글을 찾을 수 없습니다', 'Article not found')}</h1>
+        <div className={styles.emptyState}>
+          <h1 className={styles.emptyTitle}>{t('게시글을 찾을 수 없습니다', 'Article not found')}</h1>
           <Link to={`${prefix}/news`}>
             <Button>{t('목록으로 돌아가기', 'Back to News')}</Button>
           </Link>
@@ -146,7 +146,7 @@ const NewsDetailPage = () => {
         <div className={styles.heroContainer}>
           <Link to={`${prefix}/news`}>
             <Button variant="ghost" className={styles.backButton}>
-              <ArrowLeft className="h-4 w-4" />
+              <ArrowLeft className={styles.buttonIcon} />
               {t('목록으로', 'Back to List')}
             </Button>
           </Link>
@@ -155,7 +155,7 @@ const NewsDetailPage = () => {
             {article.title[lang]}
           </h1>
           <div className={styles.heroMeta}>
-            <Calendar className="h-4 w-4" />
+            <Calendar className={styles.metaIcon} />
             {article.date}
           </div>
         </div>
@@ -173,12 +173,12 @@ const NewsDetailPage = () => {
           <div className={styles.footerRow}>
             <Link to={`${prefix}/news`}>
               <Button variant="outline" className={styles.buttonGap}>
-                <ArrowLeft className="h-4 w-4" />
+                <ArrowLeft className={styles.buttonIcon} />
                 {t('목록으로', 'Back to List')}
               </Button>
             </Link>
             <Button variant="ghost" className={styles.buttonGap}>
-              <Share2 className="h-4 w-4" />
+              <Share2 className={styles.buttonIcon} />
               {t('공유하기', 'Share')}
             </Button>
           </div>

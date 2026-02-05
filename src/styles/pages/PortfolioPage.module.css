@@ -6,6 +6,18 @@
   @apply gap-2;
 }
 
+.filterIcon {
+  @apply h-4 w-4;
+}
+
+.badge {
+  @apply gap-1;
+}
+
+.badgeIcon {
+  @apply h-3 w-3;
+}
+
 .grid {
   display: grid;
   @apply gap-6 md:grid-cols-2 lg:grid-cols-3;
@@ -16,7 +28,11 @@
 }
 
 .cardTitle {
-  @apply text-lg group-hover:text-primary transition-colors mt-2;
+  @apply text-lg transition-colors mt-2;
+}
+
+.card:hover .cardTitle {
+  @apply text-primary;
 }
 
 .cardDescription {
@@ -29,6 +45,10 @@
 
 .metaItem {
   @apply flex items-center gap-1;
+}
+
+.metaIcon {
+  @apply h-3 w-3;
 }
 
 .ctaWrap {

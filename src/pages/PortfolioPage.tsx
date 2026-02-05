@@ -111,8 +111,8 @@ const PortfolioPage = () => {
     const info = categoryInfo[category as keyof typeof categoryInfo];
     const Icon = info?.icon;
     return (
-      <Badge variant="secondary" className="gap-1">
-        {Icon && <Icon className="h-3 w-3" />}
+      <Badge variant="secondary" className={styles.badge}>
+        {Icon && <Icon className={styles.badgeIcon} />}
         {info?.[lang]}
       </Badge>
     );
@@ -139,7 +139,7 @@ const PortfolioPage = () => {
               onClick={() => setFilter(key as typeof filter)}
               className={styles.filterButton}
             >
-              {value.icon && <value.icon className="h-4 w-4" />}
+              {value.icon && <value.icon className={styles.filterIcon} />}
               {value[lang]}
             </Button>
           ))}
@@ -148,7 +148,7 @@ const PortfolioPage = () => {
         <div className={styles.grid}>
           {filteredItems.map((item) => (
             <Link key={item.id} to={`${prefix}/portfolio/${item.id}`}>
-              <Card className={`${styles.card} group`}>
+              <Card className={styles.card}>
                 <CardHeader>
                   {getCategoryBadge(item.category)}
                   <CardTitle className={styles.cardTitle}>
@@ -160,11 +160,11 @@ const PortfolioPage = () => {
                   <p className={styles.cardDescription}>{item.description[lang]}</p>
                   <div className={styles.metaRow}>
                     <span className={styles.metaItem}>
-                      <MapPin className="h-3 w-3" />
+                      <MapPin className={styles.metaIcon} />
                       {item.location[lang]}
                     </span>
                     <span className={styles.metaItem}>
-                      <Calendar className="h-3 w-3" />
+                      <Calendar className={styles.metaIcon} />
                       {item.date}
                     </span>
                   </div>

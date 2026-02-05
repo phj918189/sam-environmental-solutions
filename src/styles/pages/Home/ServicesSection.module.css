@@ -8,7 +8,15 @@
 }
 
 .iconWrap {
-  @apply w-14 h-14 bg-primary/10 rounded-lg flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors;
+  @apply w-14 h-14 bg-primary/10 rounded-lg flex items-center justify-center mb-4 transition-colors;
+}
+
+.card:hover .iconWrap {
+  @apply bg-primary/20;
+}
+
+.serviceIcon {
+  @apply h-7 w-7 text-primary;
 }
 
 .title {
@@ -17,6 +25,10 @@
 
 .description {
   @apply text-base;
+}
+
+.linkIcon {
+  @apply h-4 w-4;
 }
 
 .linkButton {

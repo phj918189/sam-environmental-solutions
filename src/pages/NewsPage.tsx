@@ -82,12 +82,12 @@ const NewsPage = () => {
         <div className={styles.listWrap}>
           {newsItems.map((item) => (
             <Link key={item.id} to={`${prefix}/news/${item.id}`}>
-              <Card className={`${styles.card} group`}>
+              <Card className={styles.card}>
                 <CardHeader>
                   <div className={styles.cardHeaderRow}>
                     <Badge variant="secondary">{item.category[lang]}</Badge>
                     <span className={styles.dateText}>
-                      <Calendar className="h-4 w-4" />
+                      <Calendar className={styles.dateIcon} />
                       {item.date}
                     </span>
                   </div>
@@ -101,7 +101,7 @@ const NewsPage = () => {
                 <CardContent>
                   <span className={styles.readMore}>
                     {t('자세히 보기', 'Read More')}
-                    <ArrowRight className="h-4 w-4" />
+                    <ArrowRight className={styles.readMoreIcon} />
                   </span>
                 </CardContent>
               </Card>

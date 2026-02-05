@@ -14,6 +14,10 @@
   @apply text-primary-foreground/80 hover:text-primary-foreground mb-6 gap-2;
 }
 
+.buttonIcon {
+  @apply h-4 w-4;
+}
+
 .heroBadge {
   @apply mb-4;
 }
@@ -24,6 +28,18 @@
 
 .heroMeta {
   @apply flex items-center gap-2 text-primary-foreground/80;
+}
+
+.metaIcon {
+  @apply h-4 w-4;
+}
+
+.emptyState {
+  @apply text-center;
+}
+
+.emptyTitle {
+  @apply text-2xl font-bold mb-4;
 }
 
 .contentWrap {

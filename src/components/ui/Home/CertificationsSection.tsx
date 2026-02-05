@@ -24,7 +24,7 @@ const CertificationsSection = () => {
       <div className={styles.grid}>
         {certifications.map((cert) => (
           <div key={cert} className={styles.item}>
-            <Award className="h-6 w-6 text-primary shrink-0" />
+            <Award className={styles.icon} />
             <span className={styles.text}>{cert}</span>
           </div>
         ))}

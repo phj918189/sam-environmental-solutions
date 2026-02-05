@@ -11,6 +11,10 @@
   @apply w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-4;
 }
 
+.icon {
+  @apply h-8 w-8 text-primary-foreground;
+}
+
 .title {
   @apply font-semibold mb-2;
 }

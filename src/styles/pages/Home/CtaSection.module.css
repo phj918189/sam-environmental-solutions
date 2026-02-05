@@ -13,3 +13,11 @@
 .actions {
   @apply flex flex-wrap gap-4 justify-center;
 }
+
+.primaryButton {
+  @apply gap-2;
+}
+
+.primaryIcon {
+  @apply h-5 w-5;
+}
