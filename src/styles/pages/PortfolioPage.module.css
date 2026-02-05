@@ -6,6 +6,17 @@
   @apply gap-2;
 }
 
+.tabsList {
+  @apply grid w-full grid-cols-3 gap-2 bg-muted/60 p-2 rounded-xl border border-border mb-8 h-auto;
+}
+
+.tabTrigger {
+  @apply gap-2 py-3 text-sm md:text-base font-bold rounded-lg;
+  @apply hover:bg-background/70 hover:text-foreground;
+  @apply data-[state=active]:bg-accent data-[state=active]:text-accent-foreground data-[state=active]:shadow-md;
+  @apply data-[state=active]:ring-1 data-[state=active]:ring-accent/40;
+}
+
 .statsGrid {
   display: grid;
   @apply gap-6 md:grid-cols-4 text-center;

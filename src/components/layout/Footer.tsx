@@ -15,7 +15,7 @@ const Footer = () => {
           {/* Company Info */}
           <div className={styles.logoWrap}>
             <div className={styles.logoRow}>
-              <img src={logo} alt="삼양건설환경연구소" className="h-8 w-auto brightness-0 invert" />
+              <img src={logo} alt="삼양건설환경연구소" className={styles.logo} />
             </div>
             <p className={styles.description}>
               {t(
@@ -29,38 +29,6 @@ const Footer = () => {
                 'Growing as an integrated environmental company since 1992'
               )}
             </p>
-          </div>
-
-          {/* Quick Links */}
-          <div>
-            <h3 className={styles.sectionTitle}>{t('바로가기', 'Quick Links')}</h3>
-            <ul className={styles.linkList}>
-              <li>
-                <Link to={`${prefix}/about`} className={styles.link}>
-                  {t('회사소개', 'About Us')}
-                </Link>
-              </li>
-              <li>
-                <Link to={`${prefix}/services/air`} className={styles.link}>
-                  {t('대기환경', 'Air Quality')}
-                </Link>
-              </li>
-              <li>
-                <Link to={`${prefix}/services/water`} className={styles.link}>
-                  {t('수질환경', 'Water Quality')}
-                </Link>
-              </li>
-              <li>
-                <Link to={`${prefix}/services/odor`} className={styles.link}>
-                  {t('악취환경', 'Odor Control')}
-                </Link>
-              </li>
-              <li>
-                <Link to={`${prefix}/laboratory`} className={styles.link}>
-                  {t('분석실', 'Laboratory')}
-                </Link>
-              </li>
-            </ul>
           </div>
 
           {/* Contact Info */}

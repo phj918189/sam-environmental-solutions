@@ -62,13 +62,13 @@ const ContactPage = () => {
     {
       icon: Mail,
       title: t('이메일', 'Email'),
-      value: '(이메일 추후 입력)',
+      value: '(phj918189@gmail.com)',
       description: t('24시간 접수 가능', 'Available 24/7'),
     },
     {
       icon: MapPin,
       title: t('주소', 'Address'),
-      value: t('(주소 추후 입력)', '(Address TBD)'),
+      value: t('(대전 서구 가수원로 39)', '(Address TBD)'),
       description: t('(지도 상세 위치)', '(Detailed location on map)'),
     },
     {

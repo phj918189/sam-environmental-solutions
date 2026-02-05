@@ -36,6 +36,10 @@
 }
 
 .text {
-  @apply text-xs font-medium text-foreground text-center leading-tight;
-  max-width: 160px;
+  @apply block text-sm font-semibold text-foreground leading-snug;
+  max-width: 170px;
+  text-align: justify;
+  text-justify: inter-word;
+  word-break: keep-all;
+  overflow-wrap: break-word;
 }

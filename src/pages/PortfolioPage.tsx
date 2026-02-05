@@ -100,16 +100,16 @@ const PortfolioPage = () => {
       {/* Tabbed Content */}
       <Section>
         <Tabs defaultValue="operation" className="w-full">
-          <TabsList className="grid w-full grid-cols-3 mb-8">
-            <TabsTrigger value="operation" className="gap-2">
+          <TabsList className={styles.tabsList}>
+            <TabsTrigger value="operation" className={styles.tabTrigger}>
               <Droplets className="h-4 w-4" />
               {t('운영 실적', 'Operations')}
             </TabsTrigger>
-            <TabsTrigger value="construction" className="gap-2">
+            <TabsTrigger value="construction" className={styles.tabTrigger}>
               <Wrench className="h-4 w-4" />
               {t('공사 실적', 'Construction')}
             </TabsTrigger>
-            <TabsTrigger value="restarea" className="gap-2">
+            <TabsTrigger value="restarea" className={styles.tabTrigger}>
               <Building className="h-4 w-4" />
               {t('휴게소 시설', 'Rest Areas')}
             </TabsTrigger>

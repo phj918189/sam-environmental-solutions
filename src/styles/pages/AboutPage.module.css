@@ -3,6 +3,30 @@
   @apply gap-12 md:grid-cols-2 items-center;
 }
 
+.tabsList {
+  @apply w-full flex flex-wrap items-center justify-center gap-2 bg-muted/60 p-2 rounded-xl border border-border;
+}
+
+.tabsTrigger {
+  @apply px-4 py-2 text-sm md:text-base font-bold rounded-lg;
+  @apply hover:bg-background/70 hover:text-foreground;
+  @apply data-[state=active]:bg-accent data-[state=active]:text-accent-foreground data-[state=active]:shadow-md;
+}
+
+.tabsContent {
+  @apply mt-8;
+}
+
+.tabsHeader {
+  @apply mb-8;
+}
+
+.sectionSubtitle {
+  @apply text-muted-foreground leading-relaxed break-keep;
+  text-align: justify;
+  text-justify: inter-word;
+}
+
 .sectionTitle {
   @apply text-3xl font-bold mb-6;
 }
@@ -15,8 +39,22 @@
   @apply font-semibold text-lg mb-2;
 }
 
+.readableText {
+  @apply text-muted-foreground leading-relaxed break-keep whitespace-pre-line;
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+.signature {
+  @apply mt-4 font-semibold text-foreground;
+}
+
 .iconPanel {
-  @apply bg-accent/5 rounded-2xl p-8 flex items-center justify-center min-h-[300px];
+  @apply bg-accent/5 rounded-2xl p-8 flex flex-col items-center justify-center min-h-[300px] text-center gap-6;
+}
+
+.iconPanelText {
+  @apply space-y-2 max-w-sm;
 }
 
 .valuesGrid {

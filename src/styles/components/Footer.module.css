@@ -12,7 +12,7 @@
 
 .grid {
   display: grid;
-  @apply gap-8 md:grid-cols-2 lg:grid-cols-4;
+  @apply gap-8 md:grid-cols-2 lg:grid-cols-3;
 }
 
 .logoWrap {
@@ -21,6 +21,11 @@
 
 .logoRow {
   @apply flex items-center gap-2;
+}
+
+.logo {
+  @apply h-8 w-auto;
+  filter: drop-shadow(0 8px 18px hsl(0 0% 0% / 0.25));
 }
 
 .logoIcon {

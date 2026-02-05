@@ -9,7 +9,8 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import logo from '@/assets/logo.png';
+// import logo from '@/assets/logo.png';
+import logo from '@/assets/logo_2.svg';
 import styles from '@/styles/components/Header.module.css';
 
 const Header = () => {
@@ -47,7 +48,7 @@ const Header = () => {
               item.children ? (
                 <DropdownMenu key={item.name}>
                   <DropdownMenuTrigger asChild>
-                    <Button variant="ghost" className="gap-1">
+                    <Button variant="ghost" className={`${styles.navButton} gap-1`}>
                       {item.name}
                       <ChevronDown className="h-4 w-4" />
                     </Button>
@@ -62,7 +63,9 @@ const Header = () => {
                 </DropdownMenu>
               ) : (
                 <Link key={item.name} to={item.href}>
-                  <Button variant="ghost">{item.name}</Button>
+                  <Button variant="ghost" className={styles.navButton}>
+                    {item.name}
+                  </Button>
                 </Link>
               )
             )}
@@ -85,12 +88,6 @@ const Header = () => {
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
-
-            <Link to={`${prefix}/contact`}>
-              <Button size="sm" className={styles.quoteButton}>
-                {t('견적 문의', 'Get Quote')}
-              </Button>
-            </Link>
 
             <Button
               variant="ghost"

@@ -1,22 +1,49 @@
 .grid {
   display: grid;
-  @apply gap-8 md:grid-cols-3;
+  @apply gap-6 md:grid-cols-2 lg:grid-cols-3;
 }
 
 .card {
-  @apply h-full transition-all duration-300 hover:shadow-lg hover:-translate-y-1 border-border/50 bg-card;
+  @apply relative overflow-hidden h-full transition-all duration-300 border border-border/60 bg-card;
+  @apply hover:shadow-xl hover:-translate-y-2 hover:border-accent/40;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, hsl(var(--accent) / 0.14), transparent 55%);
+  opacity: 0;
+  transition: opacity 300ms ease;
+}
+
+.card:hover::before {
+  opacity: 1;
 }
 
 .cardContent {
-  @apply p-8 flex flex-col h-full;
+  @apply relative p-8 flex flex-col h-full;
 }
 
 .iconWrap {
-  @apply w-16 h-16 rounded-xl bg-accent/10 flex items-center justify-center mb-6;
+  @apply w-16 h-16 rounded-2xl bg-accent/10 flex items-center justify-center mb-6 border border-accent/15;
+  @apply transition-transform duration-300;
+}
+
+.card:hover .iconWrap {
+  transform: translateY(-2px) scale(1.03);
+}
+
+.icon {
+  @apply h-8 w-8 text-accent transition-transform duration-300;
+}
+
+.card:hover .icon {
+  transform: rotate(-6deg) scale(1.06);
 }
 
 .title {
-  @apply text-xl font-bold text-foreground mb-3;
+  @apply text-2xl font-bold text-foreground mb-3 tracking-tight;
 }
 
 .description {
@@ -28,5 +55,21 @@
 }
 
 .featureItem {
-  @apply flex items-center gap-2 text-sm text-muted-foreground;
+  @apply flex items-start gap-3 text-sm text-muted-foreground leading-relaxed;
+}
+
+.featureText {
+  @apply break-keep;
+}
+
+.ctaButton {
+  @apply w-full justify-between font-semibold;
+}
+
+.ctaIcon {
+  @apply h-4 w-4 transition-transform duration-300;
+}
+
+.card:hover .ctaIcon {
+  transform: translateX(4px);
 }

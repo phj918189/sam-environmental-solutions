@@ -66,25 +66,25 @@ const ServicesSection = () => {
       />
       <div className={styles.grid}>
         {services.map((service) => (
-          <Card key={service.title} className={styles.card}>
+          <Card key={service.title} className={`${styles.card} group`}>
             <CardContent className={styles.cardContent}>
               <div className={styles.iconWrap}>
-                <service.icon className="h-8 w-8 text-accent" />
+                <service.icon className={styles.icon} />
               </div>
               <h3 className={styles.title}>{service.title}</h3>
               <p className={styles.description}>{service.description}</p>
               <ul className={styles.featureList}>
                 {service.features.map((feature) => (
                   <li key={feature} className={styles.featureItem}>
-                    <span className="w-1.5 h-1.5 bg-accent rounded-full shrink-0" />
-                    {feature}
+                    <span className="w-1.5 h-1.5 bg-accent rounded-full shrink-0 mt-2" />
+                    <span className={styles.featureText}>{feature}</span>
                   </li>
                 ))}
               </ul>
               <Link to={service.href} className="mt-auto">
-                <Button variant="outline" className="w-full group">
+                <Button variant="outline" className={`${styles.ctaButton} group`}>
                   {t('자세히 보기', 'Learn More')}
-                  <ArrowRight className="h-4 w-4 ml-1 group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight className={styles.ctaIcon} />
                 </Button>
               </Link>
             </CardContent>

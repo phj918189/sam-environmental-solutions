@@ -13,7 +13,7 @@ const HeroSection = () => {
       <div className={styles.background} />
       <div className={styles.overlay} />
       <div className={styles.content}>
-        <div className="inline-block px-4 py-1.5 bg-accent/20 text-accent rounded-full text-sm font-medium mb-6">
+        <div className="inline-block px-4 py-1.5 bg-accent/20  rounded-full text-sm font-medium mb-6">
           {t('1992년 설립', 'Established 1992')}
         </div>
         <h1 className={styles.title}>
@@ -41,7 +41,7 @@ const HeroSection = () => {
             </div>
           ))}
         </div>
-        <div className={styles.actions}>
+        {/* <div className={styles.actions}>
           <Link to={`${prefix}/contact`}>
             <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 gap-2">
               {t('견적 문의하기', 'Request a Quote')}
@@ -53,7 +53,7 @@ const HeroSection = () => {
               {t('사업영역 보기', 'View Services')}
             </Button>
           </Link>
-        </div>
+        </div> */}
       </div>
     </section>
   );

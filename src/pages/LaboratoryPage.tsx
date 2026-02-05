@@ -3,6 +3,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import PageHero from '@/components/common/PageHero';
 import { Section, SectionHeader } from '@/components/ui/section';
 import { Card, CardContent } from '@/components/ui/card';
+import styles from '@/styles/pages/LaboratoryPage.module.css';
 
 const LaboratoryPage = () => {
   const { t } = useLanguage();
@@ -135,15 +136,51 @@ const LaboratoryPage = () => {
             'Laboratory photos and facility status will be updated.'
           )}
         />
-        <div className="grid gap-4 md:grid-cols-3">
-          {[1, 2, 3].map((i) => (
-            <div
-              key={i}
-              className="aspect-video bg-muted rounded-lg flex items-center justify-center text-muted-foreground"
-            >
-              {t('이미지 추후 업데이트', 'Image to be updated')}
+        <div className={styles.facilityGrid}>
+          <div className={`${styles.tile} aspect-[16/9] sm:col-span-2 lg:col-span-7`}>
+            <div className={styles.placeholder}>
+              <div className={styles.placeholderLabel}>
+                <p className={styles.tileTitle}>{t('분석실 전경', 'Laboratory Overview')}</p>
+                <p className={styles.tileHint}>{t('이미지 추후 업데이트', 'Image to be updated')}</p>
+              </div>
             </div>
-          ))}
+          </div>
+
+          <div className={`${styles.tile} aspect-[4/3] lg:col-span-5`}>
+            <div className={styles.placeholder}>
+              <div className={styles.placeholderLabel}>
+                <p className={styles.tileTitle}>{t('수질 분석실', 'Water Analysis Lab')}</p>
+                <p className={styles.tileHint}>{t('이미지 추후 업데이트', 'Image to be updated')}</p>
+              </div>
+            </div>
+          </div>
+
+          <div className={`${styles.tile} aspect-[4/3] lg:col-span-4`}>
+            <div className={styles.placeholder}>
+              <div className={styles.placeholderLabel}>
+                <p className={styles.tileTitle}>{t('대기 분석실', 'Air Analysis Lab')}</p>
+                <p className={styles.tileHint}>{t('이미지 추후 업데이트', 'Image to be updated')}</p>
+              </div>
+            </div>
+          </div>
+
+          <div className={`${styles.tile} aspect-square lg:col-span-4`}>
+            <div className={styles.placeholder}>
+              <div className={styles.placeholderLabel}>
+                <p className={styles.tileTitle}>{t('악취 분석실', 'Odor Analysis Lab')}</p>
+                <p className={styles.tileHint}>{t('이미지 추후 업데이트', 'Image to be updated')}</p>
+              </div>
+            </div>
+          </div>
+
+          <div className={`${styles.tile} aspect-[4/3] lg:col-span-4`}>
+            <div className={styles.placeholder}>
+              <div className={styles.placeholderLabel}>
+                <p className={styles.tileTitle}>{t('시료 전처리', 'Sample Preparation')}</p>
+                <p className={styles.tileHint}>{t('이미지 추후 업데이트', 'Image to be updated')}</p>
+              </div>
+            </div>
+          </div>
         </div>
       </Section>
     </>
