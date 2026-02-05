@@ -23,13 +23,19 @@
 }
 
 .item {
-  @apply flex items-center gap-3 px-6 py-4 bg-card border border-border rounded-xl shrink-0 transition-all hover:shadow-md hover:border-accent/30;
+  @apply flex flex-col items-center gap-3 px-4 py-4 bg-card border border-border rounded-xl shrink-0 transition-all hover:shadow-md hover:border-accent/30;
+  min-width: 180px;
 }
 
-.iconWrap {
-  @apply w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center;
+.imageWrap {
+  @apply w-full h-32 rounded-lg overflow-hidden bg-muted flex items-center justify-center;
+}
+
+.certImage {
+  @apply w-full h-full object-contain;
 }
 
 .text {
-  @apply text-sm font-medium text-foreground whitespace-nowrap;
+  @apply text-xs font-medium text-foreground text-center leading-tight;
+  max-width: 160px;
 }

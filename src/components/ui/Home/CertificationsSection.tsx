@@ -1,18 +1,27 @@
-import { Award, Shield, FileCheck, Building2 } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Section, SectionHeader } from '@/components/ui/section';
 import styles from '@/styles/pages/Home/CertificationsSection.module.css';
+
+// Import certificate images
+import odorAgency from '@/assets/certificates/odor-agency.jpg';
+import sewageRegistration from '@/assets/certificates/sewage-registration.jpg';
+import constructionRegistration from '@/assets/certificates/construction-registration.jpg';
+import airAgency from '@/assets/certificates/air-agency.jpg';
+import airEnvironment from '@/assets/certificates/air-environment.jpg';
+import waterAgency from '@/assets/certificates/water-agency.jpg';
+import waterEnvironment from '@/assets/certificates/water-environment.jpg';
 
 const CertificationsSection = () => {
   const { t } = useLanguage();
 
   const certifications = [
-    { icon: Shield, name: t('환경측정분석대행업 등록', 'Environmental Measurement Agency') },
-    { icon: FileCheck, name: t('대기환경측정대행업', 'Air Environment Measurement') },
-    { icon: Award, name: t('수질환경측정대행업', 'Water Environment Measurement') },
-    { icon: Building2, name: t('악취측정대행업', 'Odor Measurement Agency') },
-    { icon: Shield, name: t('오수처리시설 설계·시공', 'Sewage Facility Design') },
-    { icon: FileCheck, name: t('환경영향평가 협력기관', 'EIA Cooperation Agency') },
+    { image: airAgency, name: t('대기 측정대행업 등록증', 'Air Measurement Agency') },
+    { image: waterAgency, name: t('수질 측정대행업 등록증', 'Water Measurement Agency') },
+    { image: odorAgency, name: t('악취 측정대행업 등록증', 'Odor Measurement Agency') },
+    { image: airEnvironment, name: t('대기환경 관리 대행기관 지정서', 'Air Environment Management') },
+    { image: waterEnvironment, name: t('수질환경 관리 대행기관 지정서', 'Water Environment Management') },
+    { image: sewageRegistration, name: t('개인하수처리시설 설계·시공업 등록증', 'Sewage Facility Registration') },
+    { image: constructionRegistration, name: t('건설업 등록증', 'Construction Registration') },
   ];
 
   // 슬라이딩 애니메이션을 위해 2배로 복제
@@ -31,17 +40,14 @@ const CertificationsSection = () => {
         <div className={styles.slider}>
           {duplicatedCerts.map((cert, index) => (
             <div key={`${cert.name}-${index}`} className={styles.item}>
-              <div className={styles.iconWrap}>
-                <cert.icon className="h-6 w-6 text-accent" />
+              <div className={styles.imageWrap}>
+                <img src={cert.image} alt={cert.name} className={styles.certImage} />
               </div>
               <span className={styles.text}>{cert.name}</span>
             </div>
           ))}
         </div>
       </div>
-      <p className="text-center text-sm text-muted-foreground mt-6">
-        {t('* 실제 인증서/등록증 이미지는 추후 업데이트 예정', '* Actual certification images to be updated')}
-      </p>
     </Section>
   );
 };

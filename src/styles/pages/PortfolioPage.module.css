@@ -6,6 +6,60 @@
   @apply gap-2;
 }
 
+.statsGrid {
+  display: grid;
+  @apply gap-6 md:grid-cols-4 text-center;
+}
+
+.statItem {
+  @apply flex flex-col items-center;
+}
+
+.statValue {
+  @apply text-3xl md:text-4xl font-bold text-primary mb-1;
+}
+
+.statLabel {
+  @apply text-muted-foreground;
+}
+
+.tableWrap {
+  @apply overflow-x-auto rounded-lg border;
+}
+
+.table {
+  @apply w-full text-sm;
+}
+
+.table thead {
+  @apply bg-muted;
+}
+
+.table th {
+  @apply px-4 py-3 text-left font-semibold text-foreground;
+}
+
+.table td {
+  @apply px-4 py-3 border-t;
+}
+
+.table tbody tr:hover {
+  @apply bg-muted/50;
+}
+
+.summaryRow {
+  @apply bg-accent/5 font-medium text-accent;
+}
+
+.restAreaGrid {
+  display: grid;
+  @apply gap-4 md:grid-cols-3 lg:grid-cols-4;
+}
+
+.restAreaCard {
+  @apply hover:shadow-md transition-shadow;
+}
+
 .grid {
   display: grid;
   @apply gap-6 md:grid-cols-2 lg:grid-cols-3;

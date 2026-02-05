@@ -50,18 +50,18 @@ const AboutPage = () => {
   const team = [
     {
       role: t('대표', 'CEO'),
-      name: t('(대표자명 추후 입력)', '(Name TBD)'),
-      description: t('(경력 정보 추후 입력)', '(Experience TBD)'),
+      name: t('이의환', 'Lee Eui-hwan'),
+      description: t('경력 35년', '35 Years Experience'),
     },
     {
-      role: t('기술책임자', 'Technical Lead'),
-      name: t('(이름 추후 입력)', '(Name TBD)'),
-      description: t('(경력 정보 추후 입력)', '(Experience TBD)'),
+      role: t('이사', 'Director'),
+      name: t('김동은', 'Kim Dong-eun'),
+      description: t('경력 13년', '13 Years Experience'),
     },
     {
-      role: t('분석실장', 'Lab Manager'),
-      name: t('(이름 추후 입력)', '(Name TBD)'),
-      description: t('(경력 정보 추후 입력)', '(Experience TBD)'),
+      role: t('연구소장', 'Research Director'),
+      name: t('김명훈', 'Kim Myung-hoon'),
+      description: t('경력 15년', '15 Years Experience'),
     },
   ];
 
@@ -217,9 +217,6 @@ const AboutPage = () => {
             </Card>
           ))}
         </div>
-        <p className="text-center text-sm text-muted-foreground mt-6">
-          {t('* 팀 정보는 추후 업데이트 예정입니다.', '* Team information will be updated.')}
-        </p>
       </Section>
 
       {/* CTA */}
