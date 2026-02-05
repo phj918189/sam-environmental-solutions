@@ -8,7 +8,7 @@ const TrustSignalsSection = () => {
   const trustSignals = [
     { value: '1992', label: t('설립연도', 'Established') },
     { value: '30+', label: t('업력 (년)', 'Years Experience') },
-    { value: '(TBD)', label: t('수행실적 (건)', 'Projects') },
+    { value: '60+', label: t('관리 업체', 'Managed Facilities') },
     { value: '100%', label: t('고객 재계약율', 'Retention Rate') },
   ];
 
