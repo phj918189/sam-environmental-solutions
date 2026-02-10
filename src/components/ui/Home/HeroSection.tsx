@@ -13,7 +13,7 @@ const HeroSection = () => {
       <div className={styles.background} />
       <div className={styles.overlay} />
       <div className={styles.content}>
-        <div className="inline-block px-4 py-1.5 bg-accent/20  rounded-full text-sm font-medium mb-6">
+        <div className="inline-block px-4 py-1.5 bg-accent/20  rounded-full text-lg font-medium mb-6">
           {t('1992년 설립', 'Established 1992')}
         </div>
         <h1 className={styles.title}>

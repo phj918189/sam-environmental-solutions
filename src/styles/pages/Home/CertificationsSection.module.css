@@ -18,7 +18,7 @@
     transform: translateX(0);
   }
   100% {
-    transform: translateX(-50%);
+    transform: translateX(-100%);
   }
 }
 
@@ -28,7 +28,7 @@
 }
 
 .imageWrap {
-  @apply w-full h-32 rounded-lg overflow-hidden bg-muted flex items-center justify-center;
+  @apply w-full h-96 rounded-lg overflow-hidden bg-muted flex items-center justify-center;
 }
 
 .certImage {
@@ -36,10 +36,11 @@
 }
 
 .text {
-  @apply block text-sm font-semibold text-foreground leading-snug;
-  max-width: 170px;
+  @apply block font-semibold text-foreground leading-snug;
+  /* max-width: 170px; */
+  font-size: 1.2rem;
   text-align: justify;
-  text-justify: inter-word;
+  /* text-justify: inter-word; */
   word-break: keep-all;
   overflow-wrap: break-word;
 }

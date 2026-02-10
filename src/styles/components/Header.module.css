@@ -31,11 +31,11 @@
 }
 
 .desktopNav {
-  @apply hidden xl:flex items-center gap-1;
+  @apply hidden xl:flex items-center gap-8;
 }
 
 .navButton {
-  @apply text-base font-semibold tracking-tight;
+  @apply text-lg font-semibold tracking-tight;
 }
 
 .langButton {
