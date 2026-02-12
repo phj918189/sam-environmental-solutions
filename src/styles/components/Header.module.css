@@ -31,7 +31,7 @@
 }
 
 .desktopNav {
-  @apply hidden xl:flex items-center gap-8;
+  @apply hidden md:flex items-center gap-8;
 }
 
 .navButton {
@@ -43,11 +43,11 @@
 }
 
 .mobileToggle {
-  @apply xl:hidden;
+  @apply md:hidden;
 }
 
 .mobileNav {
-  @apply xl:hidden py-4 border-t border-border;
+  @apply md:hidden py-4 border-t border-border;
 }
 
 .mobileNavList {

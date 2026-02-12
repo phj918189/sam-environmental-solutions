@@ -13,7 +13,7 @@ const HeroSection = () => {
       <div className={styles.background} />
       <div className={styles.overlay} />
       <div className={styles.content}>
-        <div className="inline-block px-4 py-1.5 bg-accent/20  rounded-full text-lg font-medium mb-6">
+        <div className={`${styles.establishmentBadge} inline-block px-4 py-1.5 bg-accent/20 rounded-full font-medium mb-6`}>
           {t('1992년 설립', 'Established 1992')}
         </div>
         <h1 className={styles.title}>
@@ -25,9 +25,11 @@ const HeroSection = () => {
         </h1>
         <p className={styles.subtitle}>
           {t(
-            '대기 · 수질 · 악취 환경측정부터 시설 설계, 시공, 관리까지\n원스톱 솔루션을 제공합니다.',
-            'From air, water, and odor measurement to facility design, construction, and management.\nWe provide one-stop solutions.'
+            '대기 · 수질 · 악취 환경측정부터 시설 설계, 시공, 관리까지',
+            'From air, water, and odor measurement to facility design, construction, and management.'
           )}
+          <br />
+          {t('원스톱 솔루션을 제공합니다.', 'We provide one-stop solutions.')}
         </p>
         <div className={styles.badgeRow}>
           {[
@@ -36,7 +38,7 @@ const HeroSection = () => {
             t('통합 환경관리', 'Integrated Management'),
           ].map((item) => (
             <div key={item} className={styles.badge}>
-              <CheckCircle className="h-5 w-5 text-accent" />
+              <CheckCircle className="h-5 w-5 max-[481px]:h-4 max-[481px]:w-4 text-accent shrink-0" />
               <span>{item}</span>
             </div>
           ))}
