@@ -1,0 +1,94 @@
+.section {
+  @apply py-16 md:py-20;
+  background: hsl(210, 25%, 97%);
+}
+
+.sectionHeader {
+  @apply flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-4;
+}
+
+.sectionTitle {
+  @apply text-2xl md:text-3xl font-bold text-foreground;
+}
+
+.moreLink {
+  @apply inline-flex items-center gap-1.5 text-accent font-medium hover:underline shrink-0;
+}
+
+.sectionDesc {
+  @apply text-muted-foreground mb-10 max-w-2xl leading-relaxed;
+}
+
+.grid {
+  display: grid;
+  @apply gap-6 md:grid-cols-2;
+}
+
+.dataCard {
+  @apply p-6 rounded-xl border border-border bg-card;
+}
+
+.dataLabel {
+  @apply text-sm font-medium text-muted-foreground mb-4;
+}
+
+.chartWrap {
+  @apply w-full;
+}
+
+.legendRow {
+  @apply flex flex-wrap gap-4 mt-4;
+}
+
+.legendItem {
+  @apply flex items-center gap-2 text-sm;
+}
+
+.legendDot {
+  @apply w-3 h-3 rounded-full shrink-0;
+}
+
+.legendValue {
+  @apply font-medium text-foreground;
+}
+
+.dataNote {
+  @apply text-xs text-muted-foreground mt-3;
+}
+
+.statsCard {
+  @apply p-6 rounded-xl border border-border bg-card;
+}
+
+.statsLabel {
+  @apply text-sm font-medium text-muted-foreground mb-4;
+}
+
+.statsGrid {
+  display: grid;
+  @apply gap-6 grid-cols-2;
+}
+
+.statItem {
+  @apply flex flex-col;
+}
+
+.statValue {
+  @apply text-2xl md:text-3xl font-bold text-foreground;
+}
+
+.statLabel {
+  @apply text-sm text-muted-foreground mt-1;
+}
+
+.tooltip {
+  @apply px-3 py-2 rounded-md bg-foreground text-background text-sm shadow-md;
+}
+
+.tooltipName {
+  @apply block;
+}
+
+.tooltipValue {
+  @apply font-semibold ml-2;
+}

@@ -1,0 +1,46 @@
+.section {
+  @apply py-16 md:py-20;
+  background: hsl(var(--background));
+}
+
+.sectionHeader {
+  @apply flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-4;
+}
+
+.sectionTitle {
+  @apply text-2xl md:text-3xl font-bold text-foreground;
+}
+
+.moreLink {
+  @apply inline-flex items-center gap-1.5 text-accent font-medium hover:underline shrink-0;
+}
+
+.sectionDesc {
+  @apply text-muted-foreground mb-10 max-w-2xl leading-relaxed;
+}
+
+.stepsGrid {
+  display: grid;
+  @apply gap-6 grid-cols-2 sm:grid-cols-3 md:grid-cols-5;
+}
+
+.step {
+  @apply relative p-6 rounded-xl border border-border bg-card;
+  @apply transition-all duration-200 hover:border-accent/30 hover:shadow-md;
+}
+
+.stepIcon {
+  @apply w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center mb-4;
+}
+
+.stepNum {
+  @apply text-xs font-mono text-muted-foreground mb-2;
+}
+
+.stepTitle {
+  @apply text-lg font-bold text-foreground mb-2;
+}
+
+.stepDesc {
+  @apply text-sm text-muted-foreground leading-relaxed;
+}
