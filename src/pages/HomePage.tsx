@@ -1,17 +1,15 @@
-import HeroSection from '@/components/ui/Home/HeroSection';
-import ServicesSection from '@/components/ui/Home/ServicesSection';
+import VisualSection from '@/components/ui/Home/VisualSection';
+import DataSection from '@/components/ui/Home/DataSection';
 import ProcessSection from '@/components/ui/Home/ProcessSection';
-import TrustSignalsSection from '@/components/ui/Home/TrustSignalsSection';
 import CertificationsSection from '@/components/ui/Home/CertificationsSection';
 import CtaSection from '@/components/ui/Home/CtaSection';
 
 const HomePage = () => {
   return (
     <>
-      <HeroSection />
-      <ServicesSection />
+      <VisualSection />
+      <DataSection />
       <ProcessSection />
-      <TrustSignalsSection />
       <CertificationsSection />
       <CtaSection />
     </>

@@ -12,6 +12,7 @@ import PortfolioPage from "@/pages/PortfolioPage";
 import PortfolioDetailPage from "@/pages/PortfolioDetailPage";
 import LaboratoryPage from "@/pages/LaboratoryPage";
 import ContactPage from "@/pages/ContactPage";
+import NewsPage from "@/pages/NewsPage";
 import PrivacyPage from "@/pages/PrivacyPage";
 import TermsPage from "@/pages/TermsPage";
 import NotFound from "@/pages/NotFound";
