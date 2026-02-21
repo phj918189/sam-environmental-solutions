@@ -262,27 +262,6 @@ const ServiceDetailPage = () => {
           </Accordion>
         </div>
       </Section>
-
-      {/* CTA */}
-      <Section variant="primary">
-        <div className={styles.ctaWrap}>
-          <h2 className={styles.ctaTitle}>
-            {t('지금 상담을 시작하세요', 'Start Your Consultation Now')}
-          </h2>
-          <p className={styles.ctaSubtitle}>
-            {t(
-              '전문가가 귀사의 환경 문제를 분석하고 맞춤형 솔루션을 제안해 드립니다.',
-              'Our experts will analyze your environmental challenges and propose tailored solutions.'
-            )}
-          </p>
-          <Link to={`${prefix}/contact`}>
-            <Button size="lg" variant="secondary" className={styles.ctaButton}>
-              <Phone className="h-5 w-5" />
-              {t('무료 상담 신청', 'Request Free Consultation')}
-            </Button>
-          </Link>
-        </div>
-      </Section>
     </>
   );
 };

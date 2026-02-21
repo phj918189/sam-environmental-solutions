@@ -31,7 +31,7 @@
 }
 
 .desktopNav {
-  @apply hidden md:flex items-center gap-8;
+  @apply hidden items-center gap-8;
 }
 
 .navButton {
@@ -43,11 +43,12 @@
 }
 
 .mobileToggle {
-  @apply md:hidden;
+  /* <= 768px 에서만 보이도록 (769px 이상 숨김) */
 }
 
 .mobileNav {
-  @apply md:hidden py-4 border-t border-border;
+  /* <= 768px 에서만 보이도록 (769px 이상 숨김) */
+  @apply py-4 border-t border-border;
 }
 
 .mobileNavList {
@@ -68,4 +69,18 @@
 
 .mobileQuote {
   @apply mt-2;
+}
+
+@media (min-width: 769px) {
+  .desktopNav {
+    display: flex;
+  }
+
+  .mobileToggle {
+    display: none !important;
+  }
+
+  .mobileNav {
+    display: none !important;
+  }
 }

@@ -34,9 +34,19 @@ interface SectionHeaderProps {
 
 const SectionHeader = ({ title, subtitle, centered = true, className }: SectionHeaderProps) => {
   return (
-    <div className={cn('mb-12', centered && 'text-center', className)}>
-      <h2 className="text-3xl md:text-4xl font-bold mb-4">{title}</h2>
-      {subtitle && <p className="text-lg text-muted-foreground max-w-2xl mx-auto">{subtitle}</p>}
+    <div className={cn('mb-12', centered && 'text-center md:text-left', className)}>
+      <h2 className="text-2xl md:text-3xl font-bold mb-4">{title}</h2>
+      {subtitle && (
+        <p
+          className={cn(
+            'text-md text-muted-foreground mx-auto leading-relaxed break-keep',
+            centered ? 'text-center md:text-justify' : 'text-left md:text-justify'
+          )}
+          style={{ textJustify: 'inter-word' }}
+        >
+          {subtitle}
+        </p>
+      )}
     </div>
   );
 };

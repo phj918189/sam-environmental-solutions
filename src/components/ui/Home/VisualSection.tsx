@@ -48,7 +48,7 @@ const VisualSection = () => {
       ],
     },
     {
-      title: t('설계·시공', 'Design & Build'),
+      title: t('사업실적', 'Design & Build'),
       icon: Building2,
       items: [
         { label: t('사업실적', 'Portfolio'), href: `${prefix}/portfolio` },
@@ -74,8 +74,9 @@ const VisualSection = () => {
             <br />
             <strong>{t('삼양건설환경연구소', 'Samyang Environmental')}</strong>
           </h1>
-          <p className={styles.tagline}>
-            {t('대기·수질·악취 환경측정, 설계·시공, 정밀 분석', 'Air, water, odor measurement · Design · Precision analysis')}
+          <p className={styles.tagline}>            
+            {t('대기·수질·악취 환경측정부터 시설 설계·시공, 정밀 분석까지', 'Air, water, odor measurement · Design · Precision analysis')}<br />
+            {t('원스톱 솔루션을 제공합니다.', 'We provide one-stop solutions from air, water, and odor measurement to facility design, construction, and precision analysis.')}
           </p>
           <div className={styles.tagRow}>
             {tagLinks.map((tag) => (
@@ -92,8 +93,12 @@ const VisualSection = () => {
         <div className={styles.cardsGrid}>
           {cards.map((card) => (
             <div key={card.title} className={styles.card}>
-              <card.icon className={styles.cardIcon} />
-              <h3 className={styles.cardTitle}>{card.title}</h3>
+              <div className={styles.cardHeader}>
+                <div className={styles.cardIconWrap}>
+                  <card.icon className={styles.cardIcon} />
+                </div>
+                <h3 className={styles.cardTitle}>{card.title}</h3>
+              </div>
               <ul className={styles.cardList}>
                 {card.items.map((item) => (
                   <li key={item.label}>

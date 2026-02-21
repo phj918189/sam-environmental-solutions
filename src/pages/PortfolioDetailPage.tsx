@@ -204,24 +204,6 @@ const PortfolioDetailPage = () => {
           </div>
         </div>
       </Section>
-
-      {/* CTA */}
-      <Section variant="muted">
-        <div className={styles.ctaWrap}>
-          <h2 className={styles.ctaTitle}>
-            {t('비슷한 프로젝트가 필요하신가요?', 'Need a Similar Project?')}
-          </h2>
-          <p className={styles.ctaSubtitle}>
-            {t(
-              '전문가와 상담하고 맞춤형 솔루션을 받아보세요.',
-              'Consult with our experts and get a customized solution.'
-            )}
-          </p>
-          <Link to={`${prefix}/contact`}>
-            <Button size="lg">{t('문의하기', 'Contact Us')}</Button>
-          </Link>
-        </div>
-      </Section>
     </>
   );
 };

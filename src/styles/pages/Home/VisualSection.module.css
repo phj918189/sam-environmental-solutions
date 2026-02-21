@@ -27,12 +27,18 @@
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
 }
 
+.leftCol {
+  @apply w-full max-w-xl;
+}
+
 .title {
   font-size: clamp(1.75rem, 4vw, 2.75rem);
-  font-weight: 500;
-  line-height: 1.25;
+  font-weight: 600;
+  line-height: 1.38;
   margin-bottom: 0.75rem;
   color: hsl(0 0% 98%);
+  letter-spacing: -0.02em;
+  word-break: keep-all;
 }
 
 .title strong {
@@ -45,7 +51,8 @@
   font-style: italic;
   color: rgba(255, 255, 255, 0.9);
   margin-bottom: 1.5rem;
-  line-height: 1.5;
+  line-height: 1.75;
+  word-break: keep-all;
 }
 
 .tagRow {
@@ -56,10 +63,12 @@
   @apply px-3 py-1.5 rounded-full text-sm font-medium;
   background: rgba(255, 255, 255, 0.15);
   color: inherit;
+  transition: background 200ms ease, transform 200ms ease;
 }
 
 .tag:hover {
   background: rgba(255, 255, 255, 0.25);
+  transform: translateY(-1px);
 }
 
 .clock {
@@ -80,21 +89,54 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
-  max-width: 420px;
+  /* max-width: 420px; */
 }
 
 .card {
-  @apply p-5 rounded-xl;
+  @apply p-6 rounded-xl;
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(0.5rem);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  transition: transform 220ms ease, background 220ms ease, border-color 220ms ease, color 220ms ease;
+  width: 15.625rem;
+  height: 11rem;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 1);
+  border-color: rgba(255, 255, 255, 0.5);
+  color: #000;
+}
+
+.card:hover .cardTitle {
+  color: #333;
+}
+
+.cardHeader {
+  @apply flex items-center gap-2 mb-3;
+}
+
+.cardIconWrap {
+  @apply flex items-center justify-center shrink-0;
+  width: 2rem;
+  height: 2rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  transition: transform 400ms ease;
+}
+
+.card:hover .cardIconWrap {
+  background: rgba(255, 255, 255, 0.1);
+  transform: rotate(360deg);
 }
 
 .cardIcon {
-  @apply h-6 w-6 mb-3 text-accent;
+  @apply h-5 w-5 text-accent;
 }
 
 .cardTitle {
-  @apply text-base font-semibold mb-3;
+  @apply text-xl font-semibold;
   color: hsl(0 0% 98%);
 }
 
@@ -105,10 +147,16 @@
 .cardLink {
   @apply flex items-center justify-between text-sm;
   color: rgba(255, 255, 255, 0.9);
+  transition: color 200ms ease, transform 200ms ease;
 }
 
-.cardLink:hover {
-  color: hsl(155, 70%, 65%);
+.card:hover .cardLink {
+  color: rgba(0, 0, 0, 0.8);
+}
+
+.card:hover .cardLink:hover {
+  color: #000;
+  transform: translateX(4px);
 }
 
 .chevron {

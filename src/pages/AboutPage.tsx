@@ -1,7 +1,5 @@
-import { Link } from 'react-router-dom';
 import { Target, Eye, Heart, Users, Leaf } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Section } from '@/components/ui/section';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -9,8 +7,7 @@ import PageHero from '@/components/common/PageHero';
 import styles from '@/styles/pages/AboutPage.module.css';
 
 const AboutPage = () => {
-  const { language, t } = useLanguage();
-  const prefix = language === 'en' ? '/en' : '';
+  const { t } = useLanguage();
 
   const values = [
     {
@@ -281,26 +278,6 @@ const AboutPage = () => {
             </div>
           </TabsContent>
         </Tabs>
-      </Section>
-
-      {/* CTA */}
-      <Section variant="primary">
-        <div className={styles.ctaWrap}>
-          <h2 className={styles.ctaTitle}>
-            {t('함께 일하고 싶으신가요?', 'Want to Work With Us?')}
-          </h2>
-          <p className={styles.ctaSubtitle}>
-            {t(
-              '환경 문제에 대한 전문적인 상담을 받아보세요.',
-              'Get professional consultation on your environmental challenges.'
-            )}
-          </p>
-          <Link to={`${prefix}/contact`}>
-            <Button size="lg" variant="secondary">
-              {t('견적 문의하기', 'Request Quote')}
-            </Button>
-          </Link>
-        </div>
       </Section>
     </>
   );

@@ -1,7 +1,5 @@
-import { Link } from 'react-router-dom';
 import { Droplets, Building, MapPin, Wrench } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Section, SectionHeader } from '@/components/ui/section';
 import { Badge } from '@/components/ui/badge';
@@ -61,7 +59,6 @@ const restAreaItems = [
 
 const PortfolioPage = () => {
   const { language, t } = useLanguage();
-  const prefix = language === 'en' ? '/en' : '';
   const lang = language as 'ko' | 'en';
 
   return (
@@ -203,24 +200,6 @@ const PortfolioPage = () => {
             </div>
           </TabsContent>
         </Tabs>
-      </Section>
-
-      {/* CTA */}
-      <Section variant="muted">
-        <div className={styles.ctaWrap}>
-          <h2 className={styles.ctaTitle}>
-            {t('귀사의 프로젝트도 함께 하겠습니다', 'Let Us Handle Your Project')}
-          </h2>
-          <p className={styles.ctaSubtitle}>
-            {t(
-              '환경 문제 해결을 위한 전문적인 지원을 제공합니다.',
-              'We provide professional support for solving environmental challenges.'
-            )}
-          </p>
-          <Link to={`${prefix}/contact`}>
-            <Button size="lg">{t('문의하기', 'Contact Us')}</Button>
-          </Link>
-        </div>
       </Section>
     </>
   );

@@ -184,18 +184,6 @@ const NewsDetailPage = () => {
           </div>
         </div>
       </Section>
-
-      {/* CTA */}
-      <Section variant="muted">
-        <div className={styles.ctaWrap}>
-          <h2 className={styles.ctaTitle}>
-            {t('더 궁금한 점이 있으신가요?', 'Have More Questions?')}
-          </h2>
-          <Link to={`${prefix}/contact`}>
-            <Button size="lg">{t('문의하기', 'Contact Us')}</Button>
-          </Link>
-        </div>
-      </Section>
     </>
   );
 };

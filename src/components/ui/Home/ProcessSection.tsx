@@ -18,30 +18,33 @@ const ProcessSection = () => {
   return (
     <section className={styles.section}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className={styles.sectionHeader}>
+        <div className={styles.sectionTop}>
           <h2 className={styles.sectionTitle}>{t('업무 프로세스', 'Our Process')}</h2>
+          <p className={styles.sectionDesc}>
+          {t(
+            '체계적인 절차로 정확하고 신뢰할 수 있는 결과를 제공합니다.',
+            'Systematic procedures ensure accurate and reliable results.'
+          )}
+          </p>
           <Link to={`${prefix}/contact`} className={styles.moreLink}>
             {t('더 보기', 'More')}
             <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
-        <p className={styles.sectionDesc}>
-          {t(
-            '체계적인 절차로 정확하고 신뢰할 수 있는 결과를 제공합니다.',
-            'Systematic procedures ensure accurate and reliable results.'
-          )}
-        </p>
-        <div className={styles.stepsGrid}>
-          {steps.map((step, i) => (
-            <div key={step.title} className={styles.step}>
-              <div className={styles.stepIcon}>
-                <step.icon className="h-5 w-5 text-accent" />
+        <div className={styles.stepsWrapper}>
+          <div className={styles.connectorLine} aria-hidden />
+          <div className={styles.stepsGrid}>
+            {steps.map((step, i) => (
+              <div key={step.title} className={styles.step}>
+                <div className={styles.stepIcon}>
+                  <step.icon className="h-6 w-6 text-accent" />
+                </div>
+                <span className={styles.stepNum}>{String(i + 1).padStart(2, '0')}</span>
+                <h3 className={styles.stepTitle}>{step.title}</h3>
+                <p className={styles.stepDesc}>{step.desc}</p>
               </div>
-              <div className={styles.stepNum}>{String(i + 1).padStart(2, '0')}</div>
-              <h3 className={styles.stepTitle}>{step.title}</h3>
-              <p className={styles.stepDesc}>{step.desc}</p>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </section>
