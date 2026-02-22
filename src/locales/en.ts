@@ -237,6 +237,16 @@ export const en = {
     article6Content: "Disputes regarding these Terms shall be governed by Korean law, and the court with jurisdiction over the Company's location shall have jurisdiction.",
   },
 
+  chat: {
+    open: 'AI Inquiry',
+    close: 'Close chat',
+    placeholder: 'Ask a question...',
+    send: 'Send',
+    thinking: 'Generating response...',
+    error: 'An error occurred. Please try again later.',
+    intro: 'Samyang Environmental Research Institute AI assistant. Ask about quotes, services, certifications, contact info, and more.',
+  },
+
   notFound: {
     subtitle: 'Oops! Page not found',
     returnHome: 'Return to Home',

@@ -16,7 +16,7 @@
 ```
 src/
 ├── components/     # 공통·레이아웃·UI 컴포넌트
-│   ├── common/     # 페이지 간 공통 컴포넌트
+│   ├── common/     # 페이지 간 공통 컴포넌트 (ChatWidget, PageHero 등)
 │   ├── layout/     # Header, Footer, Layout
 │   └── ui/         # shadcn/ui 및 페이지별 UI
 ├── config/         # site.ts (VITE_SITE_URL 기반 설정)
@@ -26,8 +26,14 @@ src/
 ├── pages/          # 라우트별 페이지 컴포넌트
 ├── styles/         # CSS Modules
 └── assets/         # 정적 이미지·아이콘
+api/               # Vercel Serverless (AI 챗봇+RAG)
+├── chat.ts        # /api/chat 엔드포인트
+└── data/
+    ├── rag-content.md    # RAG 지식 베이스
+    └── embeddings.json  # 임베딩 (npm run generate-rag로 생성)
 scripts/
-└── replace-site-url.js   # 빌드 시 VITE_SITE_URL 반영
+├── replace-site-url.js
+└── generate-rag-embeddings.js
 ```
 
 ## 시작하기
@@ -48,6 +54,7 @@ npm run dev
 |------|------|
 | `VITE_SITE_URL` | 사이트 도메인 (예: `https://samyang-env.co.kr`). SEO(sitemap, robots.txt)와 메타 태그에 반영됨. |
 | `VITE_WEB3FORMS_ACCESS_KEY` | [Web3Forms](https://web3forms.com)에서 발급한 Access Key. Contact 페이지 문의 폼에서 사용. |
+| `OPENAI_API_KEY` | (Vercel 배포 시) [OpenAI API Keys](https://platform.openai.com/api-keys) 발급. AI 챗봇+RAG에 사용. 클라이언트에는 노출되지 않음. |
 
 ### 웹 주소(도메인) 변경
 
@@ -55,6 +62,8 @@ npm run dev
 2. `npm run replace-site-url` 실행 (또는 `npm run build` 시 자동 실행)
 
 적용 대상: `index.html`, `public/sitemap.xml`, `public/robots.txt`
+
+**배포 + 커스텀 도메인**: [docs/DEPLOYMENT.md](./docs/DEPLOYMENT.md) 참고
 
 ### 문의 폼 (Web3Forms)
 
@@ -64,6 +73,10 @@ Contact 페이지 문의 폼은 Web3Forms로 이메일 전송합니다.
 2. `.env`에 `VITE_WEB3FORMS_ACCESS_KEY=발급키` 추가
 3. `npm run dev` 재시작
 
+## AI 챗봇 & RAG
+
+**현재 비활성화 상태.** 나중에 사용 시 [docs/AI_SETUP.md](./docs/AI_SETUP.md) 참고.
+
 ## 스크립트
 
 | 명령 | 설명 |
@@ -71,6 +84,7 @@ Contact 페이지 문의 폼은 Web3Forms로 이메일 전송합니다.
 | `npm run dev` | 개발 서버 |
 | `npm run build` | 프로덕션 빌드 |
 | `npm run replace-site-url` | 사이트 URL 치환 |
+| `npm run generate-rag` | RAG 임베딩 생성 (OPENAI_API_KEY 필요) |
 | `npm run test` | Vitest 테스트 |
 
 ## 문서
