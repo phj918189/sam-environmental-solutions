@@ -9,4 +9,4 @@
  * - import.meta.env.VITE_SITE_URL 로 앱 내에서 참조 가능
  */
 export const SITE_URL =
-  (import.meta.env.VITE_SITE_URL as string) || 'https://samyang-env.co.kr';
+  (import.meta.env.VITE_SITE_URL as string) || 'https://samyangenv.com';

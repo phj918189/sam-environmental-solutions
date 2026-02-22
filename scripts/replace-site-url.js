@@ -13,7 +13,7 @@ import { dirname, join } from 'path';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = join(__dirname, '..');
 
-const DEFAULT_URL = 'https://samyang-env.co.kr';
+const DEFAULT_URL = 'https://samyangenv.com';
 
 function getSiteUrl() {
   try {

@@ -27,7 +27,7 @@
 | `VITE_SITE_URL` | `https://내도메인.com` | **커스텀 주소**. SEO(sitemap, robots, 메타)에 사용 |
 | `VITE_WEB3FORMS_ACCESS_KEY` | Web3Forms 발급 키 | 문의 폼 이메일 전송 |
 
-> `VITE_SITE_URL`은 **최종 사용할 도메인**으로 설정하세요. (예: `https://samyang-env.co.kr`)
+> `VITE_SITE_URL`은 **최종 사용할 도메인**으로 설정하세요. (예: `https://samyangenv.com`)
 
 ### 2-3. 배포 실행
 

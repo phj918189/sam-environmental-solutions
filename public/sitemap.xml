@@ -3,117 +3,117 @@
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <!-- 한국어 -->
   <url>
-    <loc>https://samyang-env.co.kr/</loc>
+    <loc>https://samyangenv.com/</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://samyang-env.co.kr/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://samyang-env.co.kr/en"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://samyangenv.com/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://samyangenv.com/en"/>
   </url>
   <url>
-    <loc>https://samyang-env.co.kr/about</loc>
+    <loc>https://samyangenv.com/about</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://samyang-env.co.kr/about"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://samyang-env.co.kr/en/about"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://samyangenv.com/about"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://samyangenv.com/en/about"/>
   </url>
   <url>
-    <loc>https://samyang-env.co.kr/services/air</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://samyang-env.co.kr/services/water</loc>
+    <loc>https://samyangenv.com/services/air</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://samyang-env.co.kr/services/odor</loc>
+    <loc>https://samyangenv.com/services/water</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://samyang-env.co.kr/portfolio</loc>
+    <loc>https://samyangenv.com/services/odor</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://samyangenv.com/portfolio</loc>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://samyang-env.co.kr/portfolio/1</loc>
+    <loc>https://samyangenv.com/portfolio/1</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://samyang-env.co.kr/portfolio/2</loc>
+    <loc>https://samyangenv.com/portfolio/2</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://samyang-env.co.kr/portfolio/3</loc>
+    <loc>https://samyangenv.com/portfolio/3</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://samyang-env.co.kr/laboratory</loc>
+    <loc>https://samyangenv.com/laboratory</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://samyang-env.co.kr/contact</loc>
+    <loc>https://samyangenv.com/contact</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://samyang-env.co.kr/news</loc>
+    <loc>https://samyangenv.com/news</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://samyang-env.co.kr/privacy</loc>
+    <loc>https://samyangenv.com/privacy</loc>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://samyang-env.co.kr/terms</loc>
+    <loc>https://samyangenv.com/terms</loc>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   <!-- English -->
   <url>
-    <loc>https://samyang-env.co.kr/en</loc>
+    <loc>https://samyangenv.com/en</loc>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://samyang-env.co.kr/en/about</loc>
+    <loc>https://samyangenv.com/en/about</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://samyang-env.co.kr/en/services/air</loc>
+    <loc>https://samyangenv.com/en/services/air</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://samyang-env.co.kr/en/services/water</loc>
+    <loc>https://samyangenv.com/en/services/water</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://samyang-env.co.kr/en/services/odor</loc>
+    <loc>https://samyangenv.com/en/services/odor</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://samyang-env.co.kr/en/portfolio</loc>
+    <loc>https://samyangenv.com/en/portfolio</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://samyang-env.co.kr/en/contact</loc>
+    <loc>https://samyangenv.com/en/contact</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://samyang-env.co.kr/en/news</loc>
+    <loc>https://samyangenv.com/en/news</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>

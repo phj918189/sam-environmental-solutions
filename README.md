@@ -52,7 +52,7 @@ npm run dev
 
 | 변수 | 설명 |
 |------|------|
-| `VITE_SITE_URL` | 사이트 도메인 (예: `https://samyang-env.co.kr`). SEO(sitemap, robots.txt)와 메타 태그에 반영됨. |
+| `VITE_SITE_URL` | 사이트 도메인 (예: `https://samyangenv.com`). SEO(sitemap, robots.txt)와 메타 태그에 반영됨. |
 | `VITE_WEB3FORMS_ACCESS_KEY` | [Web3Forms](https://web3forms.com)에서 발급한 Access Key. Contact 페이지 문의 폼에서 사용. |
 | `OPENAI_API_KEY` | (Vercel 배포 시) [OpenAI API Keys](https://platform.openai.com/api-keys) 발급. AI 챗봇+RAG에 사용. 클라이언트에는 노출되지 않음. |
 
