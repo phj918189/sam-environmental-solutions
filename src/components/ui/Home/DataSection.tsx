@@ -4,19 +4,8 @@ import { ArrowRight } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { ChartContainer } from '@/components/ui/chart';
 import { PieChart, Pie, Cell, Tooltip } from 'recharts';
+import { chartData, chartConfig } from '@/data/home';
 import styles from '@/styles/pages/Home/DataSection.module.css';
-
-const chartData = [
-  { name: '대기환경', value: 35, color: 'hsl(210, 70%, 45%)' },
-  { name: '수질환경', value: 40, color: 'hsl(190, 70%, 45%)' },
-  { name: '악취환경', value: 25, color: 'hsl(160, 60%, 40%)' },
-];
-
-const chartConfig = {
-  대기환경: { color: 'hsl(210, 70%, 45%)' },
-  수질환경: { color: 'hsl(190, 70%, 45%)' },
-  악취환경: { color: 'hsl(160, 60%, 40%)' },
-};
 
 const CustomTooltip = ({ active, payload }: { active?: boolean; payload?: Array<{ name: string; value: number; payload: { name: string } }> }) => {
   if (!active || !payload?.length) return null;
@@ -80,23 +69,20 @@ const DataSection = () => {
     <section className={styles.section}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className={styles.sectionTop}>
-          <h2 className={styles.sectionTitle}>{t('리서치', 'Research & Data')}</h2>
+          <h2 className={styles.sectionTitle}>{t('home.research')}</h2>
           <p className={styles.sectionDesc}>
-          {t(
-            '대기·수질·악취 환경측정 실적과 ',
-            'Reliable data based on over 30 years of environmental measurement expertise.'
-          )}
+          {t('home.researchDescLine1')}
           <br />
-          {t('30년 이상의 전문 경력을 바탕으로 한 신뢰할 수 있는 데이터를 제공합니다.', 'We provide reliable data backed by over 30 years of professional experience.')}
+          {t('home.researchDescLine2')}
           </p>
           <Link to={`${prefix}/about`} className={styles.moreLink}>
-            {t('더 보기', 'More')}
+            {t('common.more')}
             <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
         <div className={styles.grid}>
           <div className={styles.dataCard}>
-            <div className={styles.dataLabel}>{t('사업영역별 실적 비중', 'Service Distribution')}</div>
+            <div className={styles.dataLabel}>{t('home.serviceDistribution')}</div>
             <div className={styles.chartWrap}>
               <ChartContainer config={chartConfig} className="h-[260px] w-full">
                 <PieChart>
@@ -127,20 +113,20 @@ const DataSection = () => {
                 </div>
               ))}
             </div>
-            <p className={styles.dataNote}>{t('(환경측정 실적 기준)', '(Based on measurement records)')}</p>
+            <p className={styles.dataNote}>{t('home.basedOnRecords')}</p>
           </div>
           <div className={styles.statsCard}>
             <div className={styles.statsHeader}>
-              <h3 className={styles.statsTitle}>{t('신뢰 지표', 'Trust Indicators')}</h3>
+              <h3 className={styles.statsTitle}>{t('home.trustIndicators')}</h3>
               <p className={styles.statsSubtitle}>
-                {t('30년 이상 축적된 데이터와 신뢰', '30+ years of accumulated data and trust')}
+                {t('home.trustSubtitle')}
               </p>
             </div>
             <div className={styles.statsGrid}>
-              <CountUpStat target={1992} suffix="" label={t('설립연도', 'Established')} duration={2200} />
-              <CountUpStat target={30} suffix="+" label={t('업력 (년)', 'Years')} />
-              <CountUpStat target={60} suffix="+" label={t('관리 업체', 'Facilities')} />
-              <CountUpStat target={100} suffix="%" label={t('재계약율', 'Retention')} />
+              <CountUpStat target={1992} suffix="" label={t('home.established')} duration={2200} />
+              <CountUpStat target={30} suffix="+" label={t('home.years')} />
+              <CountUpStat target={60} suffix="+" label={t('home.facilities')} />
+              <CountUpStat target={100} suffix="%" label={t('home.retention')} />
             </div>
           </div>
         </div>

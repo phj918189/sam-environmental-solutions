@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Phone, Mail, MapPin, Clock, Send, CheckCircle } from 'lucide-react';
+import { Phone, Mail, MapPin, Clock, Send, CheckCircle, Loader2 } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { CONTACT, CONTACT_MAP_URL, CONTACT_MAP_EMBED_URL } from '@/data/contact';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -20,11 +21,14 @@ import { useToast } from '@/hooks/use-toast';
 import PageHero from '@/components/common/PageHero';
 import styles from '@/styles/pages/ContactPage.module.css';
 
+const WEB3FORMS_ENDPOINT = 'https://api.web3forms.com/submit';
+
 const ContactPage = () => {
   const { language, t } = useLanguage();
   const prefix = language === 'en' ? '/en' : '';
   const { toast } = useToast();
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     company: '',
@@ -35,78 +39,139 @@ const ContactPage = () => {
     privacy: false,
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const inquiryTypes = [
+    { value: 'air', labelKo: '대기환경', labelEn: 'Air Quality' },
+    { value: 'water', labelKo: '수질환경', labelEn: 'Water Quality' },
+    { value: 'odor', labelKo: '악취환경', labelEn: 'Odor Control' },
+    { value: 'design', labelKo: '시설 설계·시공', labelEn: 'Facility Design & Construction' },
+    { value: 'other', labelKo: '기타 문의', labelEn: 'Other' },
+  ];
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.privacy) {
       toast({
-        title: t('개인정보 처리방침에 동의해주세요', 'Please agree to the privacy policy'),
+        title: t('contact.agreePrivacy'),
         variant: 'destructive',
       });
       return;
     }
-    // Simulate form submission
-    setSubmitted(true);
-    toast({
-      title: t('문의가 접수되었습니다', 'Your inquiry has been submitted'),
-      description: t('빠른 시일 내에 연락드리겠습니다.', 'We will contact you shortly.'),
-    });
+
+    const accessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY;
+    if (!accessKey) {
+      toast({
+        title: t('contact.formConfigError'),
+        description: t(
+          'VITE_WEB3FORMS_ACCESS_KEY를 .env에 설정해주세요.',
+          'Please set VITE_WEB3FORMS_ACCESS_KEY in .env.'
+        ),
+        variant: 'destructive',
+      });
+      return;
+    }
+
+    setSubmitting(true);
+
+    try {
+      const typeLabel = inquiryTypes.find((i) => i.value === formData.type);
+      const inquiryTypeLabel = typeLabel
+        ? language === 'ko'
+          ? typeLabel.labelKo
+          : typeLabel.labelEn
+        : formData.type;
+
+      const response = await fetch(WEB3FORMS_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          access_key: accessKey,
+          subject: `[웹사이트 문의] ${formData.name} - ${inquiryTypeLabel || '문의 유형 미선택'}`,
+          email: formData.email,
+          from_name: formData.name,
+          name: formData.name,
+          company: formData.company,
+          phone: formData.phone,
+          inquiryType: inquiryTypeLabel,
+          message: formData.message,
+        }),
+      });
+
+      const data = await response.json().catch(() => ({}));
+      if (!response.ok || !data.success) {
+        throw new Error(data.message || data.error || `HTTP ${response.status}`);
+      }
+
+      setSubmitted(true);
+      toast({
+        title: t('contact.submitSuccess'),
+        description: t('contact.submittedDesc'),
+      });
+    } catch (err) {
+      toast({
+        title: t('contact.submitFail'),
+        description:
+          err instanceof Error
+            ? err.message
+            : t('contact.tryAgain'),
+        variant: 'destructive',
+      });
+    } finally {
+      setSubmitting(false);
+    }
   };
 
-  const contactInfo = [
+  const contactInfo: Array<{
+    icon: typeof Phone;
+    title: string;
+    value: string;
+    href?: string;
+    description: string;
+  }> = [
     {
       icon: Phone,
-      title: t('전화', 'Phone'),
-      value: '(전화번호 추후 입력)',
-      description: t('평일 09:00 - 18:00', 'Mon-Fri 09:00 - 18:00'),
+      title: t('contact.phoneLabel'),
+      value: CONTACT.phone,
+      href: `tel:${CONTACT.phone}`,
+      description: t('contact.phoneDesc'),
     },
     {
       icon: Mail,
-      title: t('이메일', 'Email'),
-      value: '(phj918189@gmail.com)',
-      description: t('24시간 접수 가능', 'Available 24/7'),
+      title: t('contact.email'),
+      value: CONTACT.email,
+      href: `mailto:${CONTACT.email}`,
+      description: t('contact.emailDesc'),
     },
     {
       icon: MapPin,
-      title: t('주소', 'Address'),
-      value: t('(대전 서구 가수원로 39)', '(Address TBD)'),
-      description: t('(지도 상세 위치)', '(Detailed location on map)'),
+      title: t('contact.address'),
+      value: t(CONTACT.addressKo, CONTACT.addressEn),
+      description: t('contact.mapLocation'),
     },
     {
       icon: Clock,
-      title: t('영업시간', 'Business Hours'),
-      value: t('월-금 09:00 - 18:00', 'Mon-Fri 09:00 - 18:00'),
-      description: t('토/일/공휴일 휴무', 'Closed on weekends/holidays'),
+      title: t('footer.businessHours'),
+      value: t(CONTACT.businessHoursKo, CONTACT.businessHoursEn),
+      description: t(CONTACT.closedDaysKo, CONTACT.closedDaysEn),
     },
-  ];
-
-  const inquiryTypes = [
-    { value: 'air', label: t('대기환경', 'Air Quality') },
-    { value: 'water', label: t('수질환경', 'Water Quality') },
-    { value: 'odor', label: t('악취환경', 'Odor Control') },
-    { value: 'design', label: t('시설 설계·시공', 'Facility Design & Construction') },
-    { value: 'other', label: t('기타 문의', 'Other') },
   ];
 
   if (submitted) {
     return (
       <>
-        <PageHero title={t('문의하기', 'Contact Us')} />
+        <PageHero title={t('contact.title')} />
         <Section>
           <div className={styles.successWrap}>
             <div className={styles.successIconWrap}>
               <CheckCircle className="h-10 w-10 text-accent" />
             </div>
             <h2 className={styles.successTitle}>
-              {t('문의가 접수되었습니다', 'Your Inquiry Has Been Submitted')}
+              {t('contact.submitSuccessFull')}
             </h2>
             <p className={styles.successDesc}>
-              {t(
-                '담당자가 확인 후 빠른 시일 내에 연락드리겠습니다. 감사합니다.',
-                'Our team will review and contact you shortly. Thank you.'
-              )}
+              {t('contact.successThankYou')}
             </p>
             <Link to={prefix || '/'}>
-              <Button>{t('홈으로 돌아가기', 'Back to Home')}</Button>
+              <Button>{t('common.backToHome')}</Button>
             </Link>
           </div>
         </Section>
@@ -118,11 +183,8 @@ const ContactPage = () => {
     <>
       {/* Hero */}
       <PageHero
-        title={t('견적문의', 'Contact Us')}
-        subtitle={t(
-          '환경 문제에 대한 전문 상담과 견적을 받아보세요.',
-          'Get expert consultation and quotes on your environmental challenges.'
-        )}
+        title={t('contact.contactUs')}
+        subtitle={t('contact.subtitleShort')}
       />
 
       {/* Contact Info Cards */}
@@ -135,7 +197,13 @@ const ContactPage = () => {
                   <info.icon className="h-6 w-6 text-accent" />
                 </div>
                 <h3 className={styles.infoTitle}>{info.title}</h3>
-                <p className={styles.infoValue}>{info.value}</p>
+                {info.href ? (
+                  <a href={info.href} className={styles.infoLink}>
+                    {info.value}
+                  </a>
+                ) : (
+                  <p className={styles.infoValue}>{info.value}</p>
+                )}
                 <p className={styles.infoDesc}>{info.description}</p>
               </CardContent>
             </Card>
@@ -146,35 +214,35 @@ const ContactPage = () => {
           {/* Contact Form */}
           <Card>
             <CardHeader>
-              <CardTitle>{t('문의 양식', 'Inquiry Form')}</CardTitle>
+              <CardTitle>{t('contact.formTitle')}</CardTitle>
             </CardHeader>
             <CardContent>
               <form onSubmit={handleSubmit} className={styles.form}>
                 <div className={styles.fieldGrid}>
                   <div className={styles.fieldStack}>
-                    <Label htmlFor="name">{t('성함', 'Name')} *</Label>
+                    <Label htmlFor="name">{t('contact.name')} *</Label>
                     <Input
                       id="name"
                       required
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      placeholder={t('홍길동', 'John Doe')}
+                      placeholder={t('contact.namePlaceholder')}
                     />
                   </div>
                   <div className={styles.fieldStack}>
-                    <Label htmlFor="company">{t('회사명', 'Company')}</Label>
+                    <Label htmlFor="company">{t('contact.company')}</Label>
                     <Input
                       id="company"
                       value={formData.company}
                       onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                      placeholder={t('(주)회사명', 'Company Inc.')}
+                      placeholder={t('contact.companyPlaceholder')}
                     />
                   </div>
                 </div>
 
                 <div className={styles.fieldGrid}>
                   <div className={styles.fieldStack}>
-                    <Label htmlFor="phone">{t('연락처', 'Phone')} *</Label>
+                    <Label htmlFor="phone">{t('contact.phone')} *</Label>
                     <Input
                       id="phone"
                       type="tel"
@@ -185,7 +253,7 @@ const ContactPage = () => {
                     />
                   </div>
                   <div className={styles.fieldStack}>
-                    <Label htmlFor="email">{t('이메일', 'Email')} *</Label>
+                    <Label htmlFor="email">{t('contact.email')} *</Label>
                     <Input
                       id="email"
                       type="email"
@@ -198,19 +266,19 @@ const ContactPage = () => {
                 </div>
 
                 <div className={styles.fieldStack}>
-                  <Label htmlFor="type">{t('문의 유형', 'Inquiry Type')} *</Label>
+                  <Label htmlFor="type">{t('contact.inquiryType')} *</Label>
                   <Select
                     value={formData.type}
                     onValueChange={(value) => setFormData({ ...formData, type: value })}
                     required
                   >
                     <SelectTrigger>
-                      <SelectValue placeholder={t('선택해주세요', 'Please select')} />
+                      <SelectValue placeholder={t('common.selectPlaceholder')} />
                     </SelectTrigger>
                     <SelectContent>
                       {inquiryTypes.map((type) => (
                         <SelectItem key={type.value} value={type.value}>
-                          {type.label}
+                          {language === 'ko' ? type.labelKo : type.labelEn}
                         </SelectItem>
                       ))}
                     </SelectContent>
@@ -218,17 +286,14 @@ const ContactPage = () => {
                 </div>
 
                 <div className={styles.fieldStack}>
-                  <Label htmlFor="message">{t('문의 내용', 'Message')} *</Label>
+                  <Label htmlFor="message">{t('contact.message')} *</Label>
                   <Textarea
                     id="message"
                     required
                     rows={5}
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    placeholder={t(
-                      '문의하실 내용을 자세히 적어주세요.',
-                      'Please describe your inquiry in detail.'
-                    )}
+                    placeholder={t('contact.messagePlaceholder')}
                   />
                 </div>
 
@@ -241,36 +306,53 @@ const ContactPage = () => {
                     }
                   />
                   <Label htmlFor="privacy" className={styles.privacyLabel}>
-                    {t(
-                      '개인정보 처리방침에 동의합니다.',
-                      'I agree to the privacy policy.'
-                    )}{' '}
+                    {t('contact.privacyAgree')}{' '}
                     <Link to={`${prefix}/privacy`} className={styles.privacyLink}>
-                      {t('보기', 'View')}
+                      {t('common.view')}
                     </Link>
                   </Label>
                 </div>
 
-                <Button type="submit" className={styles.submitButton}>
-                  <Send className="h-4 w-4" />
-                  {t('문의 접수하기', 'Submit Inquiry')}
+                <Button
+                  type="submit"
+                  className={styles.submitButton}
+                  disabled={submitting}
+                >
+                  {submitting ? (
+                    <Loader2 className="h-4 w-4 animate-spin" />
+                  ) : (
+                    <Send className="h-4 w-4" />
+                  )}
+                  {submitting
+                    ? t('common.sending')
+                    : t('contact.submit')}
                 </Button>
               </form>
             </CardContent>
           </Card>
 
-          {/* Map Placeholder */}
-          <div>
-            <h3 className={styles.mapTitle}>{t('오시는 길', 'Location')}</h3>
+          {/* Map / Location */}
+          <div className={styles.mapWrapper}>
+            <h3 className={styles.mapTitle}>{t('contact.location')}</h3>
             <div className={styles.mapBox}>
-              <div className={styles.mapText}>
-                <MapPin className="h-12 w-12 mx-auto mb-2" />
-                <p>{t('지도가 표시될 영역입니다', 'Map will be displayed here')}</p>
-                <p className={styles.mapTextSmall}>
-                  {t('대전광역시 유성구 (상세주소)', 'Yuseong-gu, Daejeon, South Korea')}
-                </p>
-              </div>
+              <iframe
+                title={t('contact.location')}
+                src={CONTACT_MAP_EMBED_URL}
+                className={styles.mapIframe}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
             </div>
+            <a
+              href={CONTACT_MAP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.mapLink}
+            >
+              <MapPin className="h-4 w-4" />
+              {t(CONTACT.addressKo, CONTACT.addressEn)} — {t('contact.viewOnMap')}
+            </a>
           </div>
         </div>
       </Section>

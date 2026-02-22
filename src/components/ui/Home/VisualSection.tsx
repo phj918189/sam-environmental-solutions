@@ -22,43 +22,43 @@ const VisualSection = () => {
   }, [language]);
 
   const tagLinks = [
-    { label: t('# 대기환경', '# Air Quality'), href: `${prefix}/services/air` },
-    { label: t('# 수질환경', '# Water Quality'), href: `${prefix}/services/water` },
-    { label: t('# 악취환경', '# Odor Control'), href: `${prefix}/services/odor` },
-    { label: t('# 시설 설계·시공', '# Design & Construction'), href: `${prefix}/portfolio` },
-    { label: t('# 정밀 측정', '# Precision Analysis'), href: `${prefix}/laboratory` },
+    { label: t('home.tagAir'), href: `${prefix}/services/air` },
+    { label: t('home.tagWater'), href: `${prefix}/services/water` },
+    { label: t('home.tagOdor'), href: `${prefix}/services/odor` },
+    { label: t('home.designConstruction'), href: `${prefix}/portfolio` },
+    { label: t('home.precisionAnalysis'), href: `${prefix}/laboratory` },
   ];
 
   const cards = [
     {
-      title: t('사업영역', 'Services'),
+      title: t('nav.services'),
       icon: FileText,
       items: [
-        { label: t('대기환경', 'Air Quality'), href: `${prefix}/services/air` },
-        { label: t('수질환경', 'Water Quality'), href: `${prefix}/services/water` },
-        { label: t('악취환경', 'Odor Control'), href: `${prefix}/services/odor` },
+        { label: t('nav.airQuality'), href: `${prefix}/services/air` },
+        { label: t('nav.waterQuality'), href: `${prefix}/services/water` },
+        { label: t('nav.odorControl'), href: `${prefix}/services/odor` },
       ],
     },
     {
-      title: t('분석실', 'Laboratory'),
+      title: t('nav.laboratory'),
       icon: BarChart3,
       items: [
-        { label: t('실험실 소개', 'Lab Overview'), href: `${prefix}/laboratory` },
-        { label: t('인증 및 장비', 'Certifications'), href: `${prefix}/laboratory` },
+        { label: t('home.labOverview'), href: `${prefix}/laboratory` },
+        { label: t('home.certificationsLabel'), href: `${prefix}/laboratory` },
       ],
     },
     {
-      title: t('사업실적', 'Design & Build'),
+      title: t('home.designBuild'),
       icon: Building2,
       items: [
-        { label: t('사업실적', 'Portfolio'), href: `${prefix}/portfolio` },
+        { label: t('nav.portfolio'), href: `${prefix}/portfolio` },
       ],
     },
     {
-      title: t('상담', 'Contact'),
+      title: t('home.contactLabel'),
       icon: Phone,
       items: [
-        { label: t('견적 문의', 'Request Quote'), href: `${prefix}/contact` },
+        { label: t('nav.getQuote'), href: `${prefix}/contact` },
       ],
     },
   ];
@@ -70,13 +70,13 @@ const VisualSection = () => {
       <div className={styles.content}>
         <div className={styles.leftCol}>
           <h1 className={styles.title}>
-            {t('환경측정 전문기관', 'Environmental Measurement')}
+            {t('home.heroTitle')}
             <br />
-            <strong>{t('삼양건설환경연구소', 'Samyang Environmental')}</strong>
+            <strong>{t('home.heroCompany')}</strong>
           </h1>
           <p className={styles.tagline}>            
-            {t('대기·수질·악취 환경측정부터 시설 설계·시공, 정밀 분석까지', 'Air, water, odor measurement · Design · Precision analysis')}<br />
-            {t('원스톱 솔루션을 제공합니다.', 'We provide one-stop solutions from air, water, and odor measurement to facility design, construction, and precision analysis.')}
+            {t('home.heroTagline1')}<br />
+            {t('home.heroTagline2')}
           </p>
           <div className={styles.tagRow}>
             {tagLinks.map((tag) => (

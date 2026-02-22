@@ -1,7 +1,6 @@
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { LanguageProvider } from "@/contexts/LanguageContext";
 import Layout from "@/components/layout/Layout";
@@ -13,11 +12,10 @@ import PortfolioDetailPage from "@/pages/PortfolioDetailPage";
 import LaboratoryPage from "@/pages/LaboratoryPage";
 import ContactPage from "@/pages/ContactPage";
 import NewsPage from "@/pages/NewsPage";
+import NewsDetailPage from "@/pages/NewsDetailPage";
 import PrivacyPage from "@/pages/PrivacyPage";
 import TermsPage from "@/pages/TermsPage";
 import NotFound from "@/pages/NotFound";
-
-const queryClient = new QueryClient();
 
 // Wrapper component that provides language context within BrowserRouter
 const AppRoutes = () => {
@@ -33,6 +31,8 @@ const AppRoutes = () => {
           <Route path="/portfolio/:id" element={<PortfolioDetailPage />} />
           <Route path="/laboratory" element={<LaboratoryPage />} />
           <Route path="/contact" element={<ContactPage />} />
+          <Route path="/news" element={<NewsPage />} />
+          <Route path="/news/:id" element={<NewsDetailPage />} />
           <Route path="/privacy" element={<PrivacyPage />} />
           <Route path="/terms" element={<TermsPage />} />
 
@@ -44,6 +44,8 @@ const AppRoutes = () => {
           <Route path="/en/portfolio/:id" element={<PortfolioDetailPage />} />
           <Route path="/en/laboratory" element={<LaboratoryPage />} />
           <Route path="/en/contact" element={<ContactPage />} />
+          <Route path="/en/news" element={<NewsPage />} />
+          <Route path="/en/news/:id" element={<NewsDetailPage />} />
           <Route path="/en/privacy" element={<PrivacyPage />} />
           <Route path="/en/terms" element={<TermsPage />} />
 
@@ -55,15 +57,13 @@ const AppRoutes = () => {
 };
 
 const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <AppRoutes />
-      </BrowserRouter>
-    </TooltipProvider>
-  </QueryClientProvider>
+  <TooltipProvider>
+    <Toaster />
+    <Sonner />
+    <BrowserRouter>
+      <AppRoutes />
+    </BrowserRouter>
+  </TooltipProvider>
 );
 
 export default App;

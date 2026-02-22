@@ -1,33 +1,30 @@
 import { Link } from 'react-router-dom';
-import { Phone, FileText, Users, Microscope, ClipboardCheck, ArrowRight } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { processStepsData } from '@/data/home';
 import styles from '@/styles/pages/Home/ProcessSection.module.css';
 
 const ProcessSection = () => {
   const { language, t } = useLanguage();
+  const lang = language as 'ko' | 'en';
   const prefix = language === 'en' ? '/en' : '';
 
-  const steps = [
-    { icon: Phone, title: t('상담', 'Consultation'), desc: t('전문가 상담 및 현장 파악', 'Expert consultation') },
-    { icon: ClipboardCheck, title: t('현장조사', 'Survey'), desc: t('현장 방문 및 시료 채취', 'On-site sampling') },
-    { icon: Microscope, title: t('분석', 'Analysis'), desc: t('정밀 분석 및 데이터 처리', 'Precision analysis') },
-    { icon: FileText, title: t('보고', 'Report'), desc: t('종합 보고서 작성', 'Comprehensive report') },
-    { icon: Users, title: t('사후관리', 'Follow-up'), desc: t('지속적인 모니터링', 'Ongoing monitoring') },
-  ];
+  const steps = processStepsData.map((step) => ({
+    icon: step.icon,
+    title: step.title[lang],
+    desc: step.description[lang],
+  }));
 
   return (
     <section className={styles.section}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className={styles.sectionTop}>
-          <h2 className={styles.sectionTitle}>{t('업무 프로세스', 'Our Process')}</h2>
+          <h2 className={styles.sectionTitle}>{t('home.ourProcess')}</h2>
           <p className={styles.sectionDesc}>
-          {t(
-            '체계적인 절차로 정확하고 신뢰할 수 있는 결과를 제공합니다.',
-            'Systematic procedures ensure accurate and reliable results.'
-          )}
+          {t('home.processDesc')}
           </p>
           <Link to={`${prefix}/contact`} className={styles.moreLink}>
-            {t('더 보기', 'More')}
+            {t('common.more')}
             <ArrowRight className="h-4 w-4" />
           </Link>
         </div>

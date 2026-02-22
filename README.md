@@ -1,73 +1,78 @@
-# Welcome to your Lovable project
+# 삼양건설환경연구소 공식 웹사이트
 
-## Project info
+삼양건설환경연구소(Samyang Environmental Research Institute)의 공식 기업 웹사이트입니다.  
+회사 소개, 사업 영역, 분석실, 사업실적, 소식, 견적 문의 등을 제공합니다.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+## 기술 스택
 
-## How can I edit this code?
+- **Vite** + TypeScript + React 18
+- **React Router** 6 (한국어/영어 URL 기반)
+- **Tailwind CSS** + CSS Modules
+- **shadcn/ui** (Radix UI)
+- React Hook Form + Zod (폼·검증)
 
-There are several ways of editing your application.
+## 프로젝트 구조
 
-**Use Lovable**
+```
+src/
+├── components/     # 공통·레이아웃·UI 컴포넌트
+│   ├── common/     # 페이지 간 공통 컴포넌트
+│   ├── layout/     # Header, Footer, Layout
+│   └── ui/         # shadcn/ui 및 페이지별 UI
+├── config/         # site.ts (VITE_SITE_URL 기반 설정)
+├── contexts/       # LanguageContext (다국어)
+├── data/           # 정적 데이터 (contact, portfolio, about, news, services, laboratory, home)
+├── locales/        # 번역 (ko.ts, en.ts) - key 기반 t()
+├── pages/          # 라우트별 페이지 컴포넌트
+├── styles/         # CSS Modules
+└── assets/         # 정적 이미지·아이콘
+scripts/
+└── replace-site-url.js   # 빌드 시 VITE_SITE_URL 반영
+```
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
-
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
+## 시작하기
 
 ```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
+# 의존성 설치
 npm i
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# 개발 서버 실행
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+## 필수 설정
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+프로젝트 루트에 `.env`를 생성하고 아래 값을 설정하세요. (`.env.example` 참고)
 
-**Use GitHub Codespaces**
+| 변수 | 설명 |
+|------|------|
+| `VITE_SITE_URL` | 사이트 도메인 (예: `https://samyang-env.co.kr`). SEO(sitemap, robots.txt)와 메타 태그에 반영됨. |
+| `VITE_WEB3FORMS_ACCESS_KEY` | [Web3Forms](https://web3forms.com)에서 발급한 Access Key. Contact 페이지 문의 폼에서 사용. |
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+### 웹 주소(도메인) 변경
 
-## What technologies are used for this project?
+1. `.env`에 `VITE_SITE_URL=https://내도메인.com` 추가
+2. `npm run replace-site-url` 실행 (또는 `npm run build` 시 자동 실행)
 
-This project is built with:
+적용 대상: `index.html`, `public/sitemap.xml`, `public/robots.txt`
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+### 문의 폼 (Web3Forms)
 
-## How can I deploy this project?
+Contact 페이지 문의 폼은 Web3Forms로 이메일 전송합니다.
 
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
+1. [web3forms.com](https://web3forms.com) → Get Access Key → 이메일 입력 후 키 발급
+2. `.env`에 `VITE_WEB3FORMS_ACCESS_KEY=발급키` 추가
+3. `npm run dev` 재시작
 
-## Can I connect a custom domain to my Lovable project?
+## 스크립트
 
-Yes, you can!
+| 명령 | 설명 |
+|------|------|
+| `npm run dev` | 개발 서버 |
+| `npm run build` | 프로덕션 빌드 |
+| `npm run replace-site-url` | 사이트 URL 치환 |
+| `npm run test` | Vitest 테스트 |
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+## 문서
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+- [PRD.md](./PRD.md) - 제품 요구사항 문서

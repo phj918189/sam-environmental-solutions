@@ -4,93 +4,57 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Section } from '@/components/ui/section';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import PageHero from '@/components/common/PageHero';
+import { values as valuesData, history as historyData, team as teamData } from '@/data/about';
 import styles from '@/styles/pages/AboutPage.module.css';
 
+const valueIcons = { accuracy: Target, integrity: Heart, expertise: Eye } as const;
+
 const AboutPage = () => {
-  const { t } = useLanguage();
+  const { language, t } = useLanguage();
+  const lang = language as 'ko' | 'en';
 
-  const values = [
-    {
-      icon: Target,
-      title: t('정확성', 'Accuracy'),
-      description: t(
-        '정밀한 측정과 분석으로 신뢰할 수 있는 데이터를 제공합니다.',
-        'Providing reliable data through precise measurement and analysis.'
-      ),
-    },
-    {
-      icon: Heart,
-      title: t('진정성', 'Integrity'),
-      description: t(
-        '고객의 환경 문제를 자사의 문제처럼 책임감 있게 해결합니다.',
-        "Solving clients' environmental issues with responsibility and care."
-      ),
-    },
-    {
-      icon: Eye,
-      title: t('전문성', 'Expertise'),
-      description: t(
-        '30년 이상 축적된 경험과 전문 지식으로 최적의 솔루션을 제안합니다.',
-        'Proposing optimal solutions with over 30 years of accumulated experience.'
-      ),
-    },
-  ];
+  const values = valuesData.map((v) => ({
+    icon: valueIcons[v.key as keyof typeof valueIcons],
+    title: v.title[lang],
+    description: v.description[lang],
+  }));
 
-  const history = [
-    { year: '1992', event: t('오수처리시설 설계 및 시공, 수질환경관리 대행 사업 시작', 'Started sewage treatment facility design and water quality management') },
-    { year: '(연도)', event: t('환경측정분석대행업 등록', 'Environmental Measurement Agency Registration') },
-    { year: '(연도)', event: t('대기환경측정대행업 등록', 'Air Environment Measurement Registration') },
-    { year: '(연도)', event: t('악취측정대행업 등록', 'Odor Measurement Registration') },
-    { year: '(연도)', event: t('(추가 연혁 입력 예정)', '(Additional history to be added)') },
-    { year: t('현재', 'Present'), event: t('환경측정 및 분석 통합 전문기업으로 성장', 'Grown as an integrated environmental measurement company') },
-  ];
+  const history = historyData.map((item) => ({
+    year: typeof item.year === 'string' ? item.year : item.year[lang],
+    event: item.event[lang],
+  }));
 
-  const team = [
-    {
-      role: t('대표', 'CEO'),
-      name: t('이의환', 'Lee Eui-hwan'),
-      description: t('경력 35년', '35 Years Experience'),
-    },
-    {
-      role: t('이사', 'Director'),
-      name: t('김동은', 'Kim Dong-eun'),
-      description: t('경력 13년', '13 Years Experience'),
-    },
-    {
-      role: t('연구소장', 'Research Director'),
-      name: t('김명훈', 'Kim Myung-hoon'),
-      description: t('경력 15년', '15 Years Experience'),
-    },
-  ];
+  const team = teamData.map((m) => ({
+    role: m.role[lang],
+    name: m.name[lang],
+    description: m.description[lang],
+  }));
 
   return (
     <>
       {/* Hero */}
       <PageHero
-        title={t('회사소개', 'About Us')}
-        subtitle={t(
-          '환경 중시와 지속 가능한 발전을 목표로 하는 삼양건설환경연구소입니다.',
-          'Samyang Environmental Research Institute - Committed to environmental sustainability.'
-        )}
+        title={t('about.title')}
+        subtitle={t('about.subtitle')}
       />
 
       <Section>
         <Tabs defaultValue="greeting" className="w-full">
           <TabsList className={styles.tabsList}>
             <TabsTrigger value="greeting" className={styles.tabsTrigger}>
-              {t('대표 인사말', 'Greeting')}
+              {t('about.greeting')}
             </TabsTrigger>
             <TabsTrigger value="mission" className={styles.tabsTrigger}>
-              {t('미션 및 비전', 'Mission & Vision')}
+              {t('about.missionVision')}
             </TabsTrigger>
             <TabsTrigger value="values" className={styles.tabsTrigger}>
-              {t('핵심 가치', 'Core Values')}
+              {t('about.coreValues')}
             </TabsTrigger>
             <TabsTrigger value="history" className={styles.tabsTrigger}>
-              {t('연혁', 'History')}
+              {t('about.history')}
             </TabsTrigger>
             <TabsTrigger value="organization" className={styles.tabsTrigger}>
-              {t('구성', 'Organization')}
+              {t('about.organization')}
             </TabsTrigger>
           </TabsList>
 
@@ -98,7 +62,7 @@ const AboutPage = () => {
           <TabsContent value="greeting" className={styles.tabsContent}>
             <div className={styles.missionGrid}>
               <div>
-                <h2 className={styles.sectionTitle}>{t('대표 인사말', 'Greeting from the CEO')}</h2>
+                <h2 className={styles.sectionTitle}>{t('about.greeting')}</h2>
                 <div className="space-y-6">
                   <div className={styles.infoBox}>
                     <p className={styles.readableText}>
@@ -108,12 +72,12 @@ const AboutPage = () => {
                       )}
                     </p>
                     <p className={styles.signature}>
-                      {t('삼양건설환경연구소 대표 이의환', 'CEO, Lee Eui-hwan')}
+                      {t('about.ceoName')}
                     </p>
                   </div>
 
                   <div className={styles.infoBox}>
-                    <h3 className={styles.infoTitle}>{t('회사 개요', 'Company Overview')}</h3>
+                    <h3 className={styles.infoTitle}>{t('about.companyOverview')}</h3>
                     <p className={styles.readableText}>
                       {t(
                         '삼양건설환경연구소는 환경 중시와 지속 가능한 발전을 목표로 1992년 오수처리시설 설계와 시공, 수질환경관리 대행을 시작으로 설립되어 현재 환경측정 및 분석 등 환경 통합 전문기업으로 성장하였습니다.',
@@ -123,7 +87,7 @@ const AboutPage = () => {
                   </div>
 
                   <div className={styles.infoBox}>
-                    <h3 className={styles.infoTitle}>{t('사업영역', 'Business Areas')}</h3>
+                    <h3 className={styles.infoTitle}>{t('about.businessAreas')}</h3>
                     <p className={styles.readableText}>
                       {t(
                         '대기, 수질, 악취 환경 측정부터 시설 설계, 시공, 관리까지 원스톱 솔루션을 제공합니다.',
@@ -140,7 +104,7 @@ const AboutPage = () => {
                 </div>
                 <div className={styles.iconPanelText}>
                   <p className="font-semibold">
-                    {t('정확한 데이터, 현실적인 개선', 'Accurate data, practical improvements')}
+                    {t('about.tagline')}
                   </p>
                   <p className="text-sm text-muted-foreground break-keep leading-relaxed">
                     {t(
@@ -156,7 +120,7 @@ const AboutPage = () => {
           {/* Mission & Vision */}
           <TabsContent value="mission" className={styles.tabsContent}>
             <div className={styles.tabsHeader}>
-              <h2 className={styles.sectionTitle}>{t('미션 및 비전', 'Mission & Vision')}</h2>
+              <h2 className={styles.sectionTitle}>{t('about.missionVision')}</h2>
               <p className={styles.sectionSubtitle}>
                 {t(
                   '우리는 정확한 환경 측정과 분석으로 고객과 지역사회의 지속 가능한 발전에 기여합니다.',
@@ -169,7 +133,7 @@ const AboutPage = () => {
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
                     <Target className="h-5 w-5 text-accent" />
-                    {t('미션', 'Mission')}
+                    {t('about.mission')}
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
@@ -185,7 +149,7 @@ const AboutPage = () => {
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
                     <Eye className="h-5 w-5 text-accent" />
-                    {t('비전', 'Vision')}
+                    {t('about.vision')}
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
@@ -203,9 +167,9 @@ const AboutPage = () => {
           {/* Values */}
           <TabsContent value="values" className={styles.tabsContent}>
             <div className={styles.tabsHeader}>
-              <h2 className={styles.sectionTitle}>{t('핵심 가치', 'Core Values')}</h2>
+              <h2 className={styles.sectionTitle}>{t('about.coreValues')}</h2>
               <p className={styles.sectionSubtitle}>
-                {t('우리가 일하는 방식을 정의하는 가치들입니다.', 'Values that define how we work.')}
+                {t('about.valuesDesc')}
               </p>
             </div>
             <div className={styles.valuesGrid}>
@@ -228,9 +192,9 @@ const AboutPage = () => {
           {/* History */}
           <TabsContent value="history" className={styles.tabsContent}>
             <div className={styles.tabsHeader}>
-              <h2 className={styles.sectionTitle}>{t('연혁', 'History')}</h2>
+              <h2 className={styles.sectionTitle}>{t('about.history')}</h2>
               <p className={styles.sectionSubtitle}>
-                {t('삼양건설환경연구소의 30년 발자취입니다.', 'Our 30-year journey.')}
+                {t('about.historyDesc')}
               </p>
             </div>
             <div className={styles.historyWrap}>
@@ -250,16 +214,16 @@ const AboutPage = () => {
               </div>
             </div>
             <p className="text-center text-sm text-muted-foreground mt-6">
-              {t('* 상세 연혁은 추후 업데이트 예정입니다.', '* Detailed history will be updated.')}
+              {t('about.historyNote')}
             </p>
           </TabsContent>
 
           {/* Organization */}
           <TabsContent value="organization" className={styles.tabsContent}>
             <div className={styles.tabsHeader}>
-              <h2 className={styles.sectionTitle}>{t('구성', 'Organization')}</h2>
+              <h2 className={styles.sectionTitle}>{t('about.organization')}</h2>
               <p className={styles.sectionSubtitle}>
-                {t('풍부한 경험을 갖춘 전문가들이 함께합니다.', 'Experienced professionals at your service.')}
+                {t('about.orgDesc')}
               </p>
             </div>
             <div className={styles.teamGrid}>

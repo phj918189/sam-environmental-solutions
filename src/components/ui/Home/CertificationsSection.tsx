@@ -7,32 +7,39 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog';
+import { certificationNames } from '@/data/home';
 import styles from '@/styles/pages/Home/CertificationsSection.module.css';
 
-// Import certificate images
+// Import certificate images (순서: certificationNames와 동일)
+import airAgency from '@/assets/certificates/air-agency.jpg';
+import waterAgency from '@/assets/certificates/water-agency.jpg';
 import odorAgency from '@/assets/certificates/odor-agency.jpg';
+import airEnvironment from '@/assets/certificates/air-environment.jpg';
+import waterEnvironment from '@/assets/certificates/water-environment.jpg';
 import sewageRegistration from '@/assets/certificates/sewage-registration.jpg';
 import constructionRegistration from '@/assets/certificates/construction-registration.jpg';
-import airAgency from '@/assets/certificates/air-agency.jpg';
-import airEnvironment from '@/assets/certificates/air-environment.jpg';
-import waterAgency from '@/assets/certificates/water-agency.jpg';
-import waterEnvironment from '@/assets/certificates/water-environment.jpg';
+
+const certImages = [
+  airAgency,
+  waterAgency,
+  odorAgency,
+  airEnvironment,
+  waterEnvironment,
+  sewageRegistration,
+  constructionRegistration,
+];
 
 type Cert = { image: string; name: string };
 
 const CertificationsSection = () => {
-  const { t } = useLanguage();
+  const { language, t } = useLanguage();
+  const lang = language as 'ko' | 'en';
   const [popupCert, setPopupCert] = useState<Cert | null>(null);
 
-  const certifications: Cert[] = [
-    { image: airAgency, name: t('대기 측정대행업 등록증', 'Air Measurement Agency') },
-    { image: waterAgency, name: t('수질 측정대행업 등록증', 'Water Measurement Agency') },
-    { image: odorAgency, name: t('악취 측정대행업 등록증', 'Odor Measurement Agency') },
-    { image: airEnvironment, name: t('대기환경 관리 대행기관 지정서', 'Air Environment Management') },
-    { image: waterEnvironment, name: t('수질환경 관리 대행기관 지정서', 'Water Environment Management') },
-    { image: sewageRegistration, name: t('개인하수처리시설 설계·시공업 등록증', 'Sewage Facility Registration') },
-    { image: constructionRegistration, name: t('건설업 등록증', 'Construction Registration') },
-  ];
+  const certifications: Cert[] = certificationNames.map((cert, i) => ({
+    image: certImages[i],
+    name: cert[lang],
+  }));
 
   // seamless infinite scroll: 3배 복제로 끊김 없이 연결
   const duplicatedCerts = [...certifications, ...certifications, ...certifications];
@@ -40,11 +47,8 @@ const CertificationsSection = () => {
   return (
     <Section>
       <SectionHeader
-        title={t('인증 및 등록현황', 'Certifications & Registrations')}
-        subtitle={t(
-          '공인된 자격과 체계적인 품질관리로 신뢰를 드립니다.',
-          'Certified qualifications and systematic quality management you can trust.'
-        )}
+        title={t('home.certifications')}
+        subtitle={t('home.certificationsSubtitle')}
       />
       <div className={styles.sliderContainer}>
         <div className={styles.slider}>
@@ -54,7 +58,7 @@ const CertificationsSection = () => {
               type="button"
               className={styles.item}
               onClick={() => setPopupCert(cert)}
-              aria-label={t('이미지 크게 보기', 'View image')}
+              aria-label={t('common.viewImage')}
             >
               <div className={styles.imageWrap}>
                 <img src={cert.image} alt={cert.name} className={styles.certImage} />

@@ -19,19 +19,20 @@ const Header = () => {
   const prefix = language === 'en' ? '/en' : '';
 
   const navigation = [
-    { name: t('회사소개', 'About'), href: `${prefix}/about` },
+    { name: t('nav.about'), href: `${prefix}/about` },
     {
-      name: t('사업영역', 'Services'),
+      name: t('nav.services'),
       href: `${prefix}/services`,
       children: [
-        { name: t('대기환경', 'Air Quality'), href: `${prefix}/services/air` },
-        { name: t('수질환경', 'Water Quality'), href: `${prefix}/services/water` },
-        { name: t('악취환경', 'Odor Control'), href: `${prefix}/services/odor` },
+        { name: t('nav.airQuality'), href: `${prefix}/services/air` },
+        { name: t('nav.waterQuality'), href: `${prefix}/services/water` },
+        { name: t('nav.odorControl'), href: `${prefix}/services/odor` },
       ],
     },
-    { name: t('사업실적', 'Portfolio'), href: `${prefix}/portfolio` },
-    { name: t('분석실', 'Laboratory'), href: `${prefix}/laboratory` },
-    { name: t('견적문의', 'Contact'), href: `${prefix}/contact` },
+    { name: t('nav.portfolio'), href: `${prefix}/portfolio` },
+    { name: t('nav.laboratory'), href: `${prefix}/laboratory` },
+    { name: t('nav.news'), href: `${prefix}/news` },
+    { name: t('nav.contact'), href: `${prefix}/contact` },
   ];
 
   return (
@@ -138,7 +139,7 @@ const Header = () => {
                 className={styles.mobileQuote}
                 onClick={() => setMobileMenuOpen(false)}
               >
-                <Button className="w-full">{t('견적 문의', 'Get Quote')}</Button>
+                <Button className="w-full">{t('nav.getQuote')}</Button>
               </Link>
             </div>
           </div>

@@ -64,6 +64,10 @@
   @apply flex items-center gap-2;
 }
 
+.contactLink {
+  @apply text-primary-foreground/80 hover:text-primary-foreground transition-colors underline-offset-2 hover:underline;
+}
+
 .businessList {
   @apply space-y-2 text-sm text-primary-foreground/80;
 }

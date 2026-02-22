@@ -10,7 +10,7 @@ const ServicesSection = () => {
   const services = [
     {
       icon: Wind,
-      title: t('대기환경', 'Air Quality'),
+      title: t('nav.airQuality'),
       description: t(
         '굴뚝배출가스, 대기오염물질, 미세먼지 등 대기환경 측정 및 분석 서비스',
         'Stack emissions, air pollutants, particulate matter measurement and analysis'
@@ -19,7 +19,7 @@ const ServicesSection = () => {
     },
     {
       icon: Droplets,
-      title: t('수질환경', 'Water Quality'),
+      title: t('nav.waterQuality'),
       description: t(
         '폐수, 오수, 지하수 등 수질환경 측정 및 오수처리시설 설계·시공',
         'Wastewater, sewage, groundwater measurement and treatment facility design'
@@ -28,7 +28,7 @@ const ServicesSection = () => {
     },
     {
       icon: Trash2,
-      title: t('악취환경', 'Odor Control'),
+      title: t('nav.odorControl'),
       description: t(
         '사업장 악취 측정, 분석 및 저감 컨설팅 서비스',
         'Industrial odor measurement, analysis, and reduction consulting'
@@ -41,7 +41,7 @@ const ServicesSection = () => {
     <section className={styles.section}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className={styles.sectionTop}>
-          <h2 className={styles.sectionTitle}>{t('사업영역', 'Our Services')}</h2>
+          <h2 className={styles.sectionTitle}>{t('home.ourServices')}</h2>
           <p className={styles.sectionDesc}>
           {t(
             '대기·수질·악취 환경측정부터 시설 설계, 시공, 관리까지 원스톱 솔루션을 제공합니다.',
@@ -49,7 +49,7 @@ const ServicesSection = () => {
           )}
           </p>
           <Link to={`${prefix}/services/air`} className={styles.moreLink}>
-            {t('더 보기', 'More')}
+            {t('common.more')}
             <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
@@ -62,7 +62,7 @@ const ServicesSection = () => {
               <h3 className={styles.title}>{service.title}</h3>
               <p className={styles.description}>{service.description}</p>
               <span className={styles.cta}>
-                <span>{t('자세히 보기', 'Learn More')}</span>
+                <span>{t('common.learnMore')}</span>
                 <ArrowRight className={styles.ctaIcon} />
               </span>
             </Link>

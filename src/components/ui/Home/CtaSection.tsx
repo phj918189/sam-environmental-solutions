@@ -13,26 +13,23 @@ const CtaSection = () => {
     <Section variant="muted">
       <div className={styles.wrapper}>
         <h2 className={styles.title}>
-          {t('환경 측정 · 분석 · 설계', 'Environmental Measurement · Analysis · Design')}
+          {t('home.ctaTitle')}
           <br />
-          <span className="text-accent">{t('지금 상담하세요', 'Consult Now')}</span>
+          <span className="text-accent">{t('home.ctaHighlight')}</span>
         </h2>
         <p className={styles.subtitle}>
-          {t(
-            '30년 이상의 경험을 바탕으로 귀사의 환경 문제를 함께 해결해 드립니다.\n무료 상담 및 견적을 요청하세요.',
-            'With over 30 years of experience, we help solve your environmental challenges.\nRequest a free consultation and quote.'
-          )}
+          {t('home.ctaDesc')}
         </p>
         <div className={styles.actions}>
           <Link to={`${prefix}/contact`}>
             <Button size="lg" className="gap-2 bg-accent text-accent-foreground hover:bg-accent/90">
               <Phone className="h-5 w-5" />
-              {t('견적 문의하기', 'Request Quote')}
+              {t('home.requestQuote')}
             </Button>
           </Link>
           <Link to={`${prefix}/portfolio`}>
             <Button size="lg" variant="outline" className="gap-2 group">
-              {t('사업실적 보기', 'View Portfolio')}
+              {t('home.viewPortfolio')}
               <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
             </Button>
           </Link>

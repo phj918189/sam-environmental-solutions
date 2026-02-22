@@ -1,83 +1,38 @@
-import { Microscope, FlaskConical, Gauge, Shield, CheckCircle } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import PageHero from '@/components/common/PageHero';
 import { Section, SectionHeader } from '@/components/ui/section';
 import { Card, CardContent } from '@/components/ui/card';
+import { equipmentCategories, qualityFeatures } from '@/data/laboratory';
 import styles from '@/styles/pages/LaboratoryPage.module.css';
 
 const LaboratoryPage = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
+  const lang = language as 'ko' | 'en';
 
-  const equipment = [
-    {
-      category: t('대기분석 장비', 'Air Analysis Equipment'),
-      icon: Gauge,
-      items: [
-        t('굴뚝배출가스측정기', 'Stack Gas Analyzer'),
-        t('미세먼지측정기 (PM10, PM2.5)', 'Particulate Monitor (PM10, PM2.5)'),
-        t('자동연속측정장치', 'Continuous Emission Monitoring System'),
-        t('(장비 목록 추후 업데이트)', '(Equipment list to be updated)'),
-      ],
-    },
-    {
-      category: t('수질분석 장비', 'Water Analysis Equipment'),
-      icon: FlaskConical,
-      items: [
-        t('분광광도계', 'Spectrophotometer'),
-        t('TOC 분석기', 'TOC Analyzer'),
-        t('BOD/COD 측정기', 'BOD/COD Meter'),
-        t('(장비 목록 추후 업데이트)', '(Equipment list to be updated)'),
-      ],
-    },
-    {
-      category: t('악취분석 장비', 'Odor Analysis Equipment'),
-      icon: Microscope,
-      items: [
-        t('관능시험 장비', 'Sensory Test Equipment'),
-        t('악취물질 분석기 (GC-MS)', 'GC-MS Analyzer'),
-        t('현장측정 장비', 'Field Measurement Equipment'),
-        t('(장비 목록 추후 업데이트)', '(Equipment list to be updated)'),
-      ],
-    },
-  ];
+  const equipment = equipmentCategories.map((cat) => ({
+    category: cat.category[lang],
+    icon: cat.icon,
+    items: cat.items.map((item) => item[lang]),
+  }));
 
-  const qualityFeatures = [
-    {
-      icon: Shield,
-      title: t('품질관리시스템', 'Quality Management'),
-      description: t(
-        '체계적인 품질관리 프로세스로 정확하고 신뢰성 있는 분석 결과를 보장합니다.',
-        'Systematic quality management process ensures accurate and reliable analysis results.'
-      ),
-    },
-    {
-      icon: CheckCircle,
-      title: t('정도관리', 'Quality Assurance'),
-      description: t(
-        '정기적인 정도관리를 통해 분석 데이터의 정확도와 재현성을 검증합니다.',
-        'Regular quality assurance verifies accuracy and reproducibility of analysis data.'
-      ),
-    },
-  ];
+  const features = qualityFeatures.map((f) => ({
+    icon: f.icon,
+    title: f.title[lang],
+    description: f.description[lang],
+  }));
 
   return (
     <>
       <PageHero
-        title={t('분석실 소개', 'Laboratory')}
-        subtitle={t(
-          '최신 분석장비와 전문 인력으로 정확한 환경측정 서비스를 제공합니다.',
-          'Providing accurate environmental measurement services with state-of-the-art equipment and expert staff.'
-        )}
+        title={t('laboratory.title')}
+        subtitle={t('laboratory.subtitle')}
       />
 
       {/* Equipment Section */}
       <Section>
         <SectionHeader
-          title={t('보유장비 현황', 'Equipment Overview')}
-          subtitle={t(
-            '대기, 수질, 악취 분야별 전문 분석장비를 보유하고 있습니다.',
-            'We have specialized analysis equipment for air, water, and odor fields.'
-          )}
+          title={t('laboratory.equipmentOverview')}
+          subtitle={t('laboratory.equipmentSubtitle')}
         />
         <div className="grid gap-8 md:grid-cols-3">
           {equipment.map((category) => (
@@ -104,14 +59,14 @@ const LaboratoryPage = () => {
       {/* Quality Section */}
       <Section className="bg-secondary">
         <SectionHeader
-          title={t('품질관리', 'Quality Control')}
+          title={t('laboratory.qualityControl')}
           subtitle={t(
             '정확한 분석 결과를 위한 체계적인 품질관리 시스템을 운영합니다.',
             'We operate a systematic quality management system for accurate analysis results.'
           )}
         />
         <div className="grid gap-8 md:grid-cols-2 max-w-4xl mx-auto">
-          {qualityFeatures.map((feature) => (
+          {features.map((feature) => (
             <Card key={feature.title}>
               <CardContent className="p-6 flex gap-4">
                 <div className="w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center shrink-0">
@@ -130,18 +85,15 @@ const LaboratoryPage = () => {
       {/* Placeholder for images */}
       <Section>
         <SectionHeader
-          title={t('분석실 시설', 'Facilities')}
-          subtitle={t(
-            '분석실 사진 및 시설 현황은 추후 업데이트 예정입니다.',
-            'Laboratory photos and facility status will be updated.'
-          )}
+          title={t('laboratory.facilities')}
+          subtitle={t('laboratory.facilitiesSubtitle')}
         />
         <div className={styles.facilityGrid}>
           <div className={`${styles.tile} aspect-[16/9] sm:col-span-2 lg:col-span-7`}>
             <div className={styles.placeholder}>
               <div className={styles.placeholderLabel}>
-                <p className={styles.tileTitle}>{t('분석실 전경', 'Laboratory Overview')}</p>
-                <p className={styles.tileHint}>{t('이미지 추후 업데이트', 'Image to be updated')}</p>
+                <p className={styles.tileTitle}>{t('laboratory.overview')}</p>
+                <p className={styles.tileHint}>{t('laboratory.imageComing')}</p>
               </div>
             </div>
           </div>
@@ -149,8 +101,8 @@ const LaboratoryPage = () => {
           <div className={`${styles.tile} aspect-[4/3] lg:col-span-5`}>
             <div className={styles.placeholder}>
               <div className={styles.placeholderLabel}>
-                <p className={styles.tileTitle}>{t('수질 분석실', 'Water Analysis Lab')}</p>
-                <p className={styles.tileHint}>{t('이미지 추후 업데이트', 'Image to be updated')}</p>
+                <p className={styles.tileTitle}>{t('laboratory.waterLab')}</p>
+                <p className={styles.tileHint}>{t('laboratory.imageComing')}</p>
               </div>
             </div>
           </div>
@@ -158,8 +110,8 @@ const LaboratoryPage = () => {
           <div className={`${styles.tile} aspect-[4/3] lg:col-span-4`}>
             <div className={styles.placeholder}>
               <div className={styles.placeholderLabel}>
-                <p className={styles.tileTitle}>{t('대기 분석실', 'Air Analysis Lab')}</p>
-                <p className={styles.tileHint}>{t('이미지 추후 업데이트', 'Image to be updated')}</p>
+                <p className={styles.tileTitle}>{t('laboratory.airLab')}</p>
+                <p className={styles.tileHint}>{t('laboratory.imageComing')}</p>
               </div>
             </div>
           </div>
@@ -167,8 +119,8 @@ const LaboratoryPage = () => {
           <div className={`${styles.tile} aspect-square lg:col-span-4`}>
             <div className={styles.placeholder}>
               <div className={styles.placeholderLabel}>
-                <p className={styles.tileTitle}>{t('악취 분석실', 'Odor Analysis Lab')}</p>
-                <p className={styles.tileHint}>{t('이미지 추후 업데이트', 'Image to be updated')}</p>
+                <p className={styles.tileTitle}>{t('laboratory.odorLab')}</p>
+                <p className={styles.tileHint}>{t('laboratory.imageComing')}</p>
               </div>
             </div>
           </div>
@@ -176,8 +128,8 @@ const LaboratoryPage = () => {
           <div className={`${styles.tile} aspect-[4/3] lg:col-span-4`}>
             <div className={styles.placeholder}>
               <div className={styles.placeholderLabel}>
-                <p className={styles.tileTitle}>{t('시료 전처리', 'Sample Preparation')}</p>
-                <p className={styles.tileHint}>{t('이미지 추후 업데이트', 'Image to be updated')}</p>
+                <p className={styles.tileTitle}>{t('laboratory.samplePrep')}</p>
+                <p className={styles.tileHint}>{t('laboratory.imageComing')}</p>
               </div>
             </div>
           </div>

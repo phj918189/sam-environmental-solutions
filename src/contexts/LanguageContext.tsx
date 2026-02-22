@@ -1,12 +1,13 @@
-import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import React, { createContext, useContext, useState, useEffect, useMemo, ReactNode } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { createT, type TFunction } from '@/locales';
 
 type Language = 'ko' | 'en';
 
 interface LanguageContextType {
   language: Language;
   setLanguage: (lang: Language) => void;
-  t: (ko: string, en: string) => string;
+  t: TFunction;
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
@@ -33,7 +34,7 @@ export const LanguageProvider = ({ children }: { children: ReactNode }) => {
     setLanguageState(lang);
   };
 
-  const t = (ko: string, en: string) => (language === 'ko' ? ko : en);
+  const t = useMemo(() => createT(language), [language]);
 
   return (
     <LanguageContext.Provider value={{ language, setLanguage, t }}>
