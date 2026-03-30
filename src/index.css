@@ -144,10 +144,17 @@
 
   html {
     scroll-behavior: smooth;
+    /* 스크롤바 너비 변화로 인한 가로 레이아웃 이동 방지 */
+    scrollbar-gutter: stable;
+    overflow-x: hidden;
   }
 
   body {
     @apply bg-background text-foreground font-sans antialiased;
+    /* 가로 오버플로 완전 차단 (sticky 포지셔닝은 유지) */
+    overflow-x: clip;
+    /* iOS Safari 뷰포트 안정화 */
+    min-height: 100dvh;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -166,5 +173,35 @@
 
   .gradient-accent {
     background: linear-gradient(135deg, hsl(var(--accent)), hsl(160 50% 50%));
+  }
+
+  /* ===== Scroll Reveal System ===== */
+  .reveal {
+    opacity: 0;
+    transition:
+      opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    transition-delay: var(--reveal-delay, 0ms);
+    will-change: opacity, transform;
+  }
+
+  .reveal.in-view {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* 방향별 초기 위치 */
+  .reveal-up    { transform: translateY(36px); }
+  .reveal-left  { transform: translateX(-44px); }
+  .reveal-right { transform: translateX(44px); }
+  .reveal-scale { transform: scale(0.90) translateY(16px); }
+
+  /* 모션 최소화: 스크롤 애니메이션 없이 바로 보이게 (교차 관찰 지연 시에도 빈 화면 방지) */
+  @media (prefers-reduced-motion: reduce) {
+    .reveal {
+      opacity: 1;
+      transform: none !important;
+      transition: none;
+    }
   }
 }

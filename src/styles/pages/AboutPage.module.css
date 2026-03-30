@@ -4,13 +4,24 @@
 }
 
 .tabsList {
-  @apply w-full flex flex-wrap items-center justify-center gap-2 bg-muted/60 p-2 rounded-xl border border-border;
+  @apply w-full flex flex-wrap items-center justify-center gap-2 p-2 rounded-xl mb-8 h-auto;
+  /* background: linear-gradient(160deg, hsl(215 55% 13%) 0%, hsl(210 60% 18%) 100%);
+  border-color: hsl(210 45% 28%); */
 }
 
 .tabsTrigger {
   @apply px-4 py-2 text-sm md:text-base font-bold rounded-lg;
-  @apply hover:bg-background/70 hover:text-foreground;
-  @apply data-[state=active]:bg-accent data-[state=active]:text-accent-foreground data-[state=active]:shadow-md;
+  color: hsl(210 25% 68%);
+  transition: background 200ms, color 200ms;
+}
+.tabsTrigger:hover {
+  background: hsl(210 50% 22%);
+  color: hsl(0 0% 95%);
+}
+.tabsTrigger[data-state='active'] {
+  background: hsl(var(--accent));
+  color: hsl(0 0% 100%);
+  box-shadow: 0 2px 8px hsl(160 60% 40% / 0.4);
 }
 
 .tabsContent {
@@ -50,11 +61,11 @@
 }
 
 .iconPanel {
-  @apply bg-accent/5 rounded-2xl p-8 flex flex-col items-center justify-center min-h-[300px] text-center gap-6;
+  @apply flex items-center justify-center overflow-hidden rounded-2xl;
 }
 
-.iconPanelText {
-  @apply space-y-2 max-w-sm;
+.ceoPhoto {
+  @apply w-full h-auto max-h-[480px] object-cover rounded-2xl;
 }
 
 .valuesGrid {
@@ -83,19 +94,24 @@
 }
 
 .historyBadge {
-  @apply absolute left-0 w-8 h-8 bg-primary rounded-full flex items-center justify-center;
+  @apply absolute left-0 w-8 h-8 rounded-full flex items-center justify-center;
+  background: hsl(var(--accent));
 }
 
 .historyBadgeText {
-  @apply text-xs font-bold text-primary-foreground;
+  @apply text-xs font-bold;
+  color: hsl(0 0% 100%);
 }
 
 .historyCard {
-  @apply bg-card p-4 rounded-lg border;
+  @apply p-4 rounded-lg border;
+  background: hsl(215 50% 16% / 0.06);
+  border-color: hsl(var(--border));
 }
 
 .historyYear {
-  @apply font-bold text-accent;
+  @apply font-bold;
+  color: hsl(var(--accent));
 }
 
 .teamGrid {

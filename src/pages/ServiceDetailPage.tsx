@@ -19,16 +19,14 @@ import styles from '@/styles/pages/ServiceDetailPage.module.css';
 
 const ServiceDetailPage = () => {
   const { serviceType } = useParams<{ serviceType: string }>();
-  const { language, t } = useLanguage();
+  const { lang, t } = useLanguage();
 
   if (!isValidServiceType(serviceType)) {
     return <NotFound />;
   }
 
   const service = serviceData[serviceType];
-
   const ServiceIcon = service.icon;
-  const lang = language as 'ko' | 'en';
   const processSteps = processStepsData.map((step) => ({
     icon: step.icon,
     title: step.title[lang],
@@ -41,8 +39,8 @@ const ServiceDetailPage = () => {
       <PageHero
         title={service.title[lang]}
         subtitle={service.subtitle[lang]}
-        icon={<ServiceIcon className={`h-8 w-8 ${service.color}`} />}
-        iconContainerClassName={service.bgColor}
+        // icon={<ServiceIcon className={`h-8 w-8 ${service.color}`} />}
+        // iconContainerClassName={service.bgColor}
       />
 
       {/* Who It's For */}
@@ -60,7 +58,7 @@ const ServiceDetailPage = () => {
       </Section>
 
       {/* Scope & Deliverables */}
-      <Section variant="muted">
+      <Section variant="dark">
         <div className={styles.scopeGrid}>
           <Card>
             <CardHeader>
@@ -107,7 +105,7 @@ const ServiceDetailPage = () => {
       </Section>
 
       {/* FAQ */}
-      <Section variant="muted">
+      <Section variant="dark">
         <SectionHeader
           title={t('serviceDetail.faq')}
         />

@@ -4,10 +4,12 @@
 
 .title {
   @apply text-3xl md:text-4xl font-bold mb-6 leading-tight;
+  line-height: 1.5;
 }
 
 .subtitle {
   @apply text-lg text-muted-foreground mb-8 whitespace-pre-line;
+  color: #000;
 }
 
 .actions {

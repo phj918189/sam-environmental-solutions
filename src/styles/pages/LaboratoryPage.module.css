@@ -2,6 +2,144 @@
   @apply grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-12;
 }
 
+/* ── 카테고리 탭 ── */
+.categoryTabs {
+  @apply flex flex-wrap justify-center gap-3 mb-10;
+}
+
+.categoryTab {
+  @apply flex items-center gap-2 px-5 py-2.5 rounded-full border border-border;
+  @apply text-sm font-medium text-muted-foreground bg-card;
+  @apply transition-all duration-200 cursor-pointer;
+}
+.categoryTab:hover {
+  @apply border-accent/60 text-foreground;
+}
+.categoryTabActive {
+  @apply bg-primary text-primary-foreground border-primary;
+  @apply shadow-md;
+}
+.categoryTabIcon {
+  @apply h-4 w-4 shrink-0;
+}
+.categoryTabCount {
+  @apply ml-1 inline-flex items-center justify-center rounded-full px-1.5 py-0.5;
+  @apply text-xs font-semibold;
+  background: hsl(0 0% 100% / 0.25);
+  min-width: 1.25rem;
+}
+.categoryTabActive .categoryTabCount {
+  background: hsl(0 0% 100% / 0.25);
+}
+
+/* ── 개별 장비 카드 그리드 ── */
+.equipmentItemGrid {
+  display: none;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+.equipmentItemGridActive {
+  display: grid;
+}
+
+@media (min-width: 640px) {
+  .equipmentItemGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (min-width: 1024px) {
+  .equipmentItemGrid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.equipmentItemCard {
+  @apply flex flex-col overflow-hidden rounded-xl border border-border bg-card;
+  @apply transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 hover:border-accent/40;
+}
+
+.equipmentItemPhotoWrap {
+  @apply relative overflow-hidden;
+  aspect-ratio: 4 / 3;
+}
+
+.equipmentItemPhoto {
+  @apply h-full w-full object-cover;
+  transition: transform 400ms ease;
+}
+.equipmentItemCard:hover .equipmentItemPhoto {
+  transform: scale(1.18);
+}
+
+.equipmentItemBadge {
+  @apply absolute top-2 left-2 z-10;
+  @apply rounded-md px-2 py-0.5 text-xs font-bold text-white;
+  background: hsl(var(--primary) / 0.9);
+  backdrop-filter: blur(4px);
+}
+
+.equipmentItemInfo {
+  @apply flex flex-col gap-1.5 p-3;
+}
+
+.equipmentItemType {
+  @apply text-sm font-semibold text-foreground leading-snug break-keep;
+}
+
+.equipmentItemModel {
+  @apply text-xs text-accent font-medium;
+}
+
+.equipmentItemAnalysisWrap {
+  @apply flex flex-wrap items-start gap-1 mt-1;
+}
+
+.equipmentItemAnalysisLabel {
+  @apply shrink-0 rounded px-1.5 py-0.5 text-[10px] font-semibold;
+  @apply bg-muted text-muted-foreground;
+}
+
+.equipmentItemAnalysis {
+  @apply text-xs text-muted-foreground leading-snug break-keep;
+}
+
+/* Masonry layout - CSS columns */
+.overviewGrid {
+  column-count: 1;
+  column-gap: 1rem;
+}
+
+@media (min-width: 640px) {
+  .overviewGrid {
+    column-count: 2;
+  }
+}
+
+@media (min-width: 1024px) {
+  .overviewGrid {
+    column-count: 3;
+    column-gap: 1.25rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .overviewGrid {
+    column-count: 4;
+  }
+}
+
+.overviewGrid .tile {
+  break-inside: avoid;
+  margin-bottom: 1rem;
+  page-break-inside: avoid;
+}
+
+.overviewGrid .tile img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
 .tile {
   @apply relative overflow-hidden rounded-xl bg-muted border border-border;
   @apply transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 hover:border-accent/40;
@@ -23,5 +161,33 @@
 
 .tileHint {
   @apply text-xs text-white/80;
+}
+
+/* 분석실 전경 이미지 팝업 (라이트박스) */
+.overviewPopup {
+  @apply relative flex items-center justify-center min-h-[60vh] w-full;
+}
+.overviewPopupClose {
+  @apply absolute right-4 top-4 z-20 flex h-10 w-10 items-center justify-center rounded-full;
+  @apply bg-black/50 text-white transition-colors hover:bg-black/70;
+}
+.overviewPopupImage {
+  @apply max-h-[85vh] max-w-full object-contain;
+}
+.overviewPopupNav,
+.overviewPopupNavRight {
+  @apply absolute top-1/2 -translate-y-1/2 z-10 flex h-14 w-14 items-center justify-center rounded-full;
+  @apply bg-black/50 text-white transition-colors hover:bg-black/70;
+}
+.overviewPopupNav {
+  @apply left-4;
+}
+.overviewPopupNavRight {
+  @apply right-4;
+}
+
+/* tile을 button으로 사용 시 reset */
+.overviewGrid button.tile {
+  @apply cursor-pointer text-left border-0 p-0;
 }
 

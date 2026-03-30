@@ -9,7 +9,20 @@
 
 .scopeGrid {
   display: grid;
-  @apply gap-8 md:grid-cols-2;
+  @apply gap-6 md:grid-cols-2;
+}
+
+/* dark 섹션 내부의 Scope Card들 — 반투명 글라스 카드 */
+.scopeGrid :global(.card),
+.scopeGrid :global([class*='card']) {
+  background: hsl(0 0% 100% / 0.06);
+  border-color: hsl(0 0% 100% / 0.12);
+  color: hsl(0 0% 93%);
+  backdrop-filter: blur(8px);
+}
+.scopeGrid :global(.card-title),
+.scopeGrid :global([class*='card-title']) {
+  color: hsl(0 0% 96%);
 }
 
 .scopeList {
@@ -18,22 +31,40 @@
 
 .scopeItem {
   @apply flex items-start gap-3;
+  color: hsl(210 20% 80%);
 }
 
 .scopeIndexWrap {
-  @apply w-6 h-6 bg-primary/10 rounded-full flex items-center justify-center shrink-0;
+  @apply w-6 h-6 rounded-full flex items-center justify-center shrink-0;
+  background: hsl(160 60% 40% / 0.25);
+  border: 1px solid hsl(160 60% 45% / 0.5);
 }
 
 .scopeIndex {
-  @apply text-xs font-bold text-primary;
+  @apply text-xs font-bold;
+  color: hsl(160 65% 60%);
 }
 
 .deliverableItem {
   @apply flex items-start gap-3;
+  color: hsl(210 20% 80%);
 }
 
+/* dark 섹션 내부의 FAQ Accordion */
 .faqWrap {
   @apply max-w-3xl mx-auto;
+}
+.faqWrap :global([data-radix-accordion-item]) {
+  border-color: hsl(210 45% 32%);
+}
+.faqWrap :global([data-radix-accordion-trigger]) {
+  color: hsl(0 0% 92%);
+}
+.faqWrap :global([data-radix-accordion-trigger]):hover {
+  color: hsl(0 0% 100%);
+}
+.faqWrap :global([data-radix-accordion-content]) {
+  color: hsl(210 25% 68%);
 }
 
 .ctaWrap {

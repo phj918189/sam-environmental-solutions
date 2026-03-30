@@ -1,10 +1,11 @@
-import { useRef, useEffect, useState, useCallback } from 'react';
+import { useRef, useEffect, useState, useCallback, type CSSProperties } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { ChartContainer } from '@/components/ui/chart';
 import { PieChart, Pie, Cell, Tooltip } from 'recharts';
 import { chartData, chartConfig } from '@/data/home';
+import { useScrollReveal } from '@/hooks/use-scroll-reveal';
 import styles from '@/styles/pages/Home/DataSection.module.css';
 
 const CustomTooltip = ({ active, payload }: { active?: boolean; payload?: Array<{ name: string; value: number; payload: { name: string } }> }) => {
@@ -62,36 +63,49 @@ const CountUpStat = ({ target, suffix, label, duration = 1800 }: { target: numbe
 };
 
 const DataSection = () => {
-  const { language, t } = useLanguage();
-  const prefix = language === 'en' ? '/en' : '';
+  const { prefix, t } = useLanguage();
+  const { ref: headerRef, inView } = useScrollReveal<HTMLDivElement>();
 
   return (
     <section className={styles.section}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className={styles.sectionTop}>
-          <h2 className={styles.sectionTitle}>{t('home.research')}</h2>
-          <p className={styles.sectionDesc}>
-          {t('home.researchDescLine1')}
-          <br />
-          {t('home.researchDescLine2')}
+        <div className={styles.sectionTop} ref={headerRef}>
+          <h2 className={`${styles.sectionTitle} reveal reveal-up ${inView ? 'in-view' : ''}`}>
+            {t('home.research')}
+          </h2>
+          <p
+            className={`${styles.sectionDesc} reveal reveal-up ${inView ? 'in-view' : ''}`}
+            style={{ '--reveal-delay': '120ms' } as CSSProperties}
+          >
+            {t('home.researchDescLine1')}
+            <br />
+            {t('home.researchDescLine2')}
           </p>
-          <Link to={`${prefix}/about`} className={styles.moreLink}>
+          <Link
+            to={`${prefix}/about`}
+            className={`${styles.moreLink} reveal reveal-up ${inView ? 'in-view' : ''}`}
+            style={{ '--reveal-delay': '200ms' } as CSSProperties}
+          >
             {t('common.more')}
             <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
+
         <div className={styles.grid}>
-          <div className={styles.dataCard}>
+          <div
+            className={`${styles.dataCard} reveal reveal-left ${inView ? 'in-view' : ''}`}
+            style={{ '--reveal-delay': '160ms' } as CSSProperties}
+          >
             <div className={styles.dataLabel}>{t('home.serviceDistribution')}</div>
             <div className={styles.chartWrap}>
-              <ChartContainer config={chartConfig} className="h-[260px] w-full">
+              <ChartContainer config={chartConfig} className="h-[220px] w-full max-w-full">
                 <PieChart>
                   <Pie
                     data={chartData}
                     cx="50%"
                     cy="50%"
-                    innerRadius={72}
-                    outerRadius={100}
+                    innerRadius={55}
+                    outerRadius={80}
                     paddingAngle={4}
                     dataKey="value"
                     stroke="none"
@@ -115,7 +129,11 @@ const DataSection = () => {
             </div>
             <p className={styles.dataNote}>{t('home.basedOnRecords')}</p>
           </div>
-          <div className={styles.statsCard}>
+
+          <div
+            className={`${styles.statsCard} reveal reveal-right ${inView ? 'in-view' : ''}`}
+            style={{ '--reveal-delay': '300ms' } as CSSProperties}
+          >
             <div className={styles.statsHeader}>
               <h3 className={styles.statsTitle}>{t('home.trustIndicators')}</h3>
               <p className={styles.statsSubtitle}>

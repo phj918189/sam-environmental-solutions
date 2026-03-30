@@ -1,13 +1,12 @@
 import { Link } from 'react-router-dom';
 import { Phone, Mail, MapPin } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
-import logo from '@/assets/logo.png';
+import logo from '@/assets/logo_2.svg';
 import { CONTACT } from '@/data/contact';
 import styles from '@/styles/components/Footer.module.css';
 
 const Footer = () => {
-  const { language, t } = useLanguage();
-  const prefix = language === 'en' ? '/en' : '';
+  const { t, prefix } = useLanguage();
 
   return (
     <footer className={styles.footer}>

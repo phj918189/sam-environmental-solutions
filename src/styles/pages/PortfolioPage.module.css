@@ -7,14 +7,24 @@
 }
 
 .tabsList {
-  @apply grid w-full grid-cols-3 gap-2 bg-muted/60 p-2 rounded-xl border border-border mb-8 h-auto;
+  @apply grid w-full grid-cols-3 gap-2 p-2 rounded-xl mb-8 h-auto;
+  /* background: linear-gradient(160deg, hsl(215 55% 13%) 0%, hsl(210 60% 18%) 100%); */
+  /* border-color: hsl(210 45% 28%); */
 }
 
 .tabTrigger {
   @apply gap-2 py-3 text-sm md:text-base font-bold rounded-lg;
-  @apply hover:bg-background/70 hover:text-foreground;
-  @apply data-[state=active]:bg-accent data-[state=active]:text-accent-foreground data-[state=active]:shadow-md;
-  @apply data-[state=active]:ring-1 data-[state=active]:ring-accent/40;
+  color: hsl(210 25% 68%);
+  transition: background 200ms, color 200ms;
+}
+.tabTrigger:hover {
+  background: hsl(210 50% 22%);
+  color: hsl(0 0% 95%);
+}
+.tabTrigger[data-state='active'] {
+  background: hsl(var(--accent));
+  color: hsl(0 0% 100%);
+  box-shadow: 0 2px 8px hsl(160 60% 40% / 0.4);
 }
 
 .statsGrid {
@@ -24,14 +34,25 @@
 
 .statItem {
   @apply flex flex-col items-center;
+  padding: 1.25rem;
+  border-radius: 0.75rem;
+  background: hsl(210 50% 18% / 0.6);
+  border: 1px solid hsl(210 45% 35%);
+  transition: border-color 200ms, box-shadow 200ms;
+}
+.statItem:hover {
+  border-color: hsl(160 60% 45%);
+  box-shadow: 0 4px 16px hsl(160 60% 40% / 0.2);
 }
 
 .statValue {
-  @apply text-3xl md:text-4xl font-bold text-primary mb-1;
+  @apply text-3xl md:text-4xl font-bold mb-1;
+  color: hsl(160 65% 60%);
 }
 
 .statLabel {
-  @apply text-muted-foreground;
+  color: hsl(210 25% 65%);
+  font-size: 0.9rem;
 }
 
 .tableWrap {

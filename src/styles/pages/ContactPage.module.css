@@ -1,6 +1,22 @@
 .infoGrid {
   display: grid;
-  @apply gap-6 md:grid-cols-2 lg:grid-cols-4 mb-16;
+  @apply gap-4 md:grid-cols-2 lg:grid-cols-4;
+}
+
+/* 다크 배경용 인포 카드 */
+.infoCard {
+  @apply text-center;
+  padding: clamp(1rem, 3vw, 1.5rem);
+  border-radius: 0.875rem;
+  border: 1px solid hsl(210 45% 32%);
+  background: hsl(210 50% 18% / 0.55);
+  backdrop-filter: blur(8px);
+  transition: border-color 250ms, box-shadow 250ms, background 250ms;
+}
+.infoCard:hover {
+  border-color: hsl(160 60% 45%);
+  background: hsl(210 50% 22% / 0.7);
+  box-shadow: 0 8px 24px hsl(210 80% 10% / 0.4);
 }
 
 .infoCardContent {
@@ -8,23 +24,29 @@
 }
 
 .infoIconWrap {
-  @apply w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center mx-auto mb-4;
+  @apply w-12 h-12 rounded-lg flex items-center justify-center mx-auto mb-4;
+  background: hsl(160 60% 40% / 0.2);
+  border: 1px solid hsl(160 60% 45% / 0.4);
 }
 
 .infoTitle {
   @apply font-semibold mb-1;
+  color: hsl(0 0% 92%);
 }
 
 .infoValue {
-  @apply text-foreground font-medium;
+  @apply font-medium;
+  color: hsl(0 0% 88%);
 }
 
 .infoLink {
-  @apply text-foreground font-medium text-accent hover:underline block;
+  @apply font-medium hover:underline block;
+  color: hsl(160 65% 60%);
 }
 
 .infoDesc {
-  @apply text-sm text-muted-foreground;
+  @apply text-sm mt-1;
+  color: hsl(210 25% 62%);
 }
 
 .contentGrid {
@@ -65,19 +87,36 @@
 .mapWrapper {
   display: flex;
   flex-direction: column;
-  min-height: 0;
+  gap: 0.75rem;
 }
 
 .mapTitle {
-  @apply font-semibold mb-4 flex-shrink-0;
+  @apply font-semibold flex-shrink-0;
 }
 
 .mapBox {
-  flex: 1;
-  /* min-height: 300px; */
   position: relative;
   overflow: hidden;
-  @apply rounded-lg bg-muted;
+  border-radius: 0.5rem;
+  background: hsl(var(--muted));
+  /* 모바일: aspect-ratio로 항상 높이 확보 */
+  aspect-ratio: 4 / 3;
+  min-height: 260px;
+  width: 100%;
+}
+
+/* 데스크톱: 그리드 행 높이를 채우도록 확장 */
+@media (min-width: 1024px) {
+  .mapWrapper {
+    flex: 1;
+    min-height: 0;
+  }
+  .mapBox {
+    aspect-ratio: unset;
+    flex: 1;
+    min-height: 400px;
+    height: 100%;
+  }
 }
 
 .mapIframe {
@@ -86,6 +125,7 @@
   width: 100%;
   height: 100%;
   border: none;
+  display: block;
 }
 
 .mapText {
@@ -93,7 +133,7 @@
 }
 
 .mapLink {
-  @apply mt-3 flex-shrink-0 text-accent hover:underline focus:outline-none focus:ring-2 focus:ring-accent/50 rounded;
+  @apply flex-shrink-0 text-sm text-accent hover:underline focus:outline-none focus:ring-2 focus:ring-accent/50 rounded inline-flex items-center gap-1.5;
 }
 
 .mapTextSmall {

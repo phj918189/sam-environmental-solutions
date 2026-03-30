@@ -31,7 +31,7 @@ export const CONTACT: ContactInfo = {
   addressKo: '대전광역시 서구 가수원로 39 2층',
   addressEn: '39 Gasuwon-ro, Seo-gu, Daejeon, South Korea',
   phone: '042-533-6270', // TODO: 실제 전화번호로 교체
-  email: 'phj918189@gmail.com', // TODO: 실제 문의 이메일로 교체
+  email: 'syeng92@daum.net', // TODO: 실제 문의 이메일로 교체
   privacyEmail: 'privacy@samyang-env.co.kr',
   businessHoursKo: '월-금 09:00 - 18:00',
   businessHoursEn: 'Mon-Fri 09:00 - 18:00',

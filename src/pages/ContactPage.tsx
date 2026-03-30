@@ -24,8 +24,7 @@ import styles from '@/styles/pages/ContactPage.module.css';
 const WEB3FORMS_ENDPOINT = 'https://api.web3forms.com/submit';
 
 const ContactPage = () => {
-  const { language, t } = useLanguage();
-  const prefix = language === 'en' ? '/en' : '';
+  const { language, prefix, t } = useLanguage();
   const { toast } = useToast();
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
@@ -187,29 +186,30 @@ const ContactPage = () => {
         subtitle={t('contact.subtitleShort')}
       />
 
-      {/* Contact Info Cards */}
-      <Section>
+      {/* Contact Info Cards — dark */}
+      <Section variant="dark">
         <div className={styles.infoGrid}>
           {contactInfo.map((info) => (
-            <Card key={info.title}>
-              <CardContent className={styles.infoCardContent}>
-                <div className={styles.infoIconWrap}>
-                  <info.icon className="h-6 w-6 text-accent" />
-                </div>
-                <h3 className={styles.infoTitle}>{info.title}</h3>
-                {info.href ? (
-                  <a href={info.href} className={styles.infoLink}>
-                    {info.value}
-                  </a>
-                ) : (
-                  <p className={styles.infoValue}>{info.value}</p>
-                )}
-                <p className={styles.infoDesc}>{info.description}</p>
-              </CardContent>
-            </Card>
+            <div key={info.title} className={styles.infoCard}>
+              <div className={styles.infoIconWrap}>
+                <info.icon className="h-6 w-6" style={{ color: 'hsl(160 65% 60%)' }} />
+              </div>
+              <h3 className={styles.infoTitle}>{info.title}</h3>
+              {info.href ? (
+                <a href={info.href} className={styles.infoLink}>
+                  {info.value}
+                </a>
+              ) : (
+                <p className={styles.infoValue}>{info.value}</p>
+              )}
+              <p className={styles.infoDesc}>{info.description}</p>
+            </div>
           ))}
         </div>
+      </Section>
 
+      {/* Form + Map */}
+      <Section>
         <div className={styles.contentGrid}>
           {/* Contact Form */}
           <Card>

@@ -9,9 +9,7 @@ import styles from '@/styles/pages/NewsDetailPage.module.css';
 
 const NewsDetailPage = () => {
   const { id } = useParams<{ id: string }>();
-  const { language, t } = useLanguage();
-  const prefix = language === 'en' ? '/en' : '';
-  const lang = language as 'ko' | 'en';
+  const { lang, prefix, t } = useLanguage();
 
   const article = newsDetails[id as keyof typeof newsDetails];
 

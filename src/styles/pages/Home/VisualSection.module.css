@@ -1,5 +1,6 @@
 .section {
-  @apply relative min-h-[85vh] overflow-hidden;
+  @apply relative overflow-hidden;
+  min-height: clamp(100svh, 85vh, 100svh);
   background-image: url('../../../assets/hero-bg.jpg');
   background-size: cover;
   background-position: center;
@@ -22,9 +23,30 @@
 }
 
 .content {
-  @apply relative z-10 flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-12 px-4 lg:px-12 py-12 lg:py-16 max-w-7xl mx-auto min-h-[85vh];
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: clamp(1.5rem, 5vw, 3rem);
+  padding: clamp(1.5rem, 5vw, 4rem) clamp(1rem, 4vw, 3rem);
+  max-width: 80rem;
+  margin: 0 auto;
+  min-height: clamp(100svh, 85vh, 100svh);
   color: hsl(0 0% 98%);
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+  /* 모바일에서 오버플로 방지 */
+  width: 100%;
+  box-sizing: border-box;
+}
+
+@media (min-width: 1024px) {
+  .content {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
 }
 
 .leftCol {
@@ -88,18 +110,23 @@
 .cardsGrid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 1rem;
-  /* max-width: 420px; */
+  gap: clamp(0.5rem, 2vw, 1rem);
+  width: 100%;
+  /* 데스크톱에서 최대 폭 제한 */
+  max-width: 36rem;
 }
 
 .card {
-  @apply p-6 rounded-xl;
+  /* 고정 폭 제거 → grid 1fr로 자동 조정 */
+  padding: clamp(0.875rem, 3vw, 1.5rem);
+  border-radius: 0.75rem;
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(0.5rem);
   border: 1px solid rgba(255, 255, 255, 0.12);
   transition: transform 220ms ease, background 220ms ease, border-color 220ms ease, color 220ms ease;
-  width: 15.625rem;
-  height: 11rem;
+  min-width: 0;
+  /* 최소 높이만 비율로 유지 */
+  min-height: clamp(7rem, 22vw, 11rem);
 }
 
 .card:hover {
@@ -136,7 +163,8 @@
 }
 
 .cardTitle {
-  @apply text-xl font-semibold;
+  font-size: clamp(0.9rem, 3vw, 1.25rem);
+  font-weight: 600;
   color: hsl(0 0% 98%);
 }
 

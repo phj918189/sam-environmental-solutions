@@ -9,8 +9,7 @@ import { operationItems, constructionItems, restAreaItems } from '@/data/portfol
 import styles from '@/styles/pages/PortfolioPage.module.css';
 
 const PortfolioPage = () => {
-  const { language, t } = useLanguage();
-  const lang = language as 'ko' | 'en';
+  const { lang, t } = useLanguage();
 
   return (
     <>
@@ -21,7 +20,7 @@ const PortfolioPage = () => {
       />
 
       {/* Overview Stats */}
-      <Section variant="muted">
+      <Section variant="dark">
         <div className={styles.statsGrid}>
           <div className={styles.statItem}>
             <div className={styles.statValue}>60+</div>
@@ -43,7 +42,7 @@ const PortfolioPage = () => {
       </Section>
 
       {/* Tabbed Content */}
-      <Section>
+      <Section variant="muted">
         <Tabs defaultValue="operation" className="w-full">
           <TabsList className={styles.tabsList}>
             <TabsTrigger value="operation" className={styles.tabTrigger}>

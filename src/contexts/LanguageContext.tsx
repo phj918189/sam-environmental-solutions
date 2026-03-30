@@ -6,6 +6,8 @@ type Language = 'ko' | 'en';
 
 interface LanguageContextType {
   language: Language;
+  lang: Language;
+  prefix: string;
   setLanguage: (lang: Language) => void;
   t: TFunction;
 }
@@ -35,9 +37,10 @@ export const LanguageProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const t = useMemo(() => createT(language), [language]);
+  const prefix = language === 'en' ? '/en' : '';
 
   return (
-    <LanguageContext.Provider value={{ language, setLanguage, t }}>
+    <LanguageContext.Provider value={{ language, lang: language, prefix, setLanguage, t }}>
       {children}
     </LanguageContext.Provider>
   );

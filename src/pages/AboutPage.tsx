@@ -1,5 +1,6 @@
-import { Target, Eye, Heart, Users, Leaf } from 'lucide-react';
+import { Target, Eye, Heart, Users } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
+import ceoPhoto from '@/assets/news/img_8824.JPG';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Section } from '@/components/ui/section';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -10,8 +11,7 @@ import styles from '@/styles/pages/AboutPage.module.css';
 const valueIcons = { accuracy: Target, integrity: Heart, expertise: Eye } as const;
 
 const AboutPage = () => {
-  const { language, t } = useLanguage();
-  const lang = language as 'ko' | 'en';
+  const { lang, t } = useLanguage();
 
   const values = valuesData.map((v) => ({
     icon: valueIcons[v.key as keyof typeof valueIcons],
@@ -99,20 +99,11 @@ const AboutPage = () => {
               </div>
 
               <div className={styles.iconPanel}>
-                <div className="w-32 h-32 rounded-full bg-accent/10 flex items-center justify-center">
-                  <Leaf className="w-16 h-16 text-accent" />
-                </div>
-                <div className={styles.iconPanelText}>
-                  <p className="font-semibold">
-                    {t('about.tagline')}
-                  </p>
-                  <p className="text-sm text-muted-foreground break-keep leading-relaxed">
-                    {t(
-                      '현장에서 바로 적용되는 측정·분석·개선 솔루션을 제공합니다.',
-                      'We deliver field-ready measurement, analysis, and improvement solutions.'
-                    )}
-                  </p>
-                </div>
+                <img
+                  src={ceoPhoto}
+                  alt={t('about.ceoName')}
+                  className={styles.ceoPhoto}
+                />
               </div>
             </div>
           </TabsContent>

@@ -9,9 +9,7 @@ import styles from '@/styles/pages/PortfolioDetailPage.module.css';
 
 const PortfolioDetailPage = () => {
   const { id } = useParams<{ id: string }>();
-  const { language, t } = useLanguage();
-  const prefix = language === 'en' ? '/en' : '';
-  const lang = language as 'ko' | 'en';
+  const { lang, prefix, t } = useLanguage();
 
   const project = portfolioDetails[id as keyof typeof portfolioDetails];
 

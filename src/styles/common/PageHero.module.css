@@ -1,8 +1,29 @@
 .section {
-  @apply bg-primary text-primary-foreground py-20;
+  @apply text-primary-foreground relative overflow-hidden;
+  padding: clamp(3rem, 8vw, 5rem) 0;
+  background-image: url('../../assets/tab-bg-1.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* 이미지 위에 어두운 오버레이 (가독성 확보) */
+.section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    hsl(215 60% 16% / 0.82) 0%,
+    hsl(210 65% 20% / 0.75) 60%,
+    hsl(175 40% 18% / 0.78) 100%
+  );
+  z-index: 0;
 }
 
 .container {
+  position: relative;
+  z-index: 1;
   width: 100%;
   max-width: 1280px;
   margin-left: auto;
@@ -19,9 +40,18 @@
 }
 
 .title {
-  @apply text-4xl md:text-5xl font-bold mb-4;
+  @apply font-bold mb-4;
+  font-size: clamp(1.75rem, 5vw, 3rem);
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  text-align: center;
 }
 
 .subtitle {
-  @apply text-xl text-primary-foreground/90 max-w-2xl mx-auto;
+  /* @apply max-w-2xl mx-auto; */
+  font-size: clamp(0.9rem, 2.5vw, 1.25rem);
+  color: rgba(255, 255, 255, 0.88);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+  word-break: keep-all;
+  line-height: 1.6;
+  text-align: center;
 }

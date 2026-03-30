@@ -1,5 +1,4 @@
 import { Toaster } from "@/components/ui/toaster";
-import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { LanguageProvider } from "@/contexts/LanguageContext";
@@ -16,6 +15,7 @@ import NewsDetailPage from "@/pages/NewsDetailPage";
 import PrivacyPage from "@/pages/PrivacyPage";
 import TermsPage from "@/pages/TermsPage";
 import NotFound from "@/pages/NotFound";
+
 
 // Wrapper component that provides language context within BrowserRouter
 const AppRoutes = () => {
@@ -59,7 +59,6 @@ const AppRoutes = () => {
 const App = () => (
   <TooltipProvider>
     <Toaster />
-    <Sonner />
     <BrowserRouter>
       <AppRoutes />
     </BrowserRouter>

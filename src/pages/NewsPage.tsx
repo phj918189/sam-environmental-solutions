@@ -9,9 +9,7 @@ import { newsItems } from '@/data/news';
 import styles from '@/styles/pages/NewsPage.module.css';
 
 const NewsPage = () => {
-  const { language, t } = useLanguage();
-  const prefix = language === 'en' ? '/en' : '';
-  const lang = language as 'ko' | 'en';
+  const { lang, prefix, t } = useLanguage();
 
   return (
     <>

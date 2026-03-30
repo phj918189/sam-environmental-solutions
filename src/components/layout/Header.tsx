@@ -15,8 +15,7 @@ import styles from '@/styles/components/Header.module.css';
 
 const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const { language, setLanguage, t } = useLanguage();
-  const prefix = language === 'en' ? '/en' : '';
+  const { language, prefix, setLanguage, t } = useLanguage();
 
   const navigation = [
     { name: t('nav.about'), href: `${prefix}/about` },
@@ -31,7 +30,7 @@ const Header = () => {
     },
     { name: t('nav.portfolio'), href: `${prefix}/portfolio` },
     { name: t('nav.laboratory'), href: `${prefix}/laboratory` },
-    { name: t('nav.news'), href: `${prefix}/news` },
+    // { name: t('nav.news'), href: `${prefix}/news` }, // 소식 탭 — 임시 비활성화 (추후 재사용 가능)
     { name: t('nav.contact'), href: `${prefix}/contact` },
   ];
 

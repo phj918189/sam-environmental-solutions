@@ -1,17 +1,21 @@
 import { Link } from 'react-router-dom';
-import { Phone, ArrowRight } from 'lucide-react';
+import { Phone } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Button } from '@/components/ui/button';
 import { Section } from '@/components/ui/section';
+import { useScrollReveal } from '@/hooks/use-scroll-reveal';
 import styles from '@/styles/pages/Home/CtaSection.module.css';
 
 const CtaSection = () => {
-  const { language, t } = useLanguage();
-  const prefix = language === 'en' ? '/en' : '';
+  const { prefix, t } = useLanguage();
+  const { ref, inView } = useScrollReveal<HTMLDivElement>();
 
   return (
     <Section variant="muted">
-      <div className={styles.wrapper}>
+      <div
+        ref={ref}
+        className={`${styles.wrapper} reveal reveal-up ${inView ? 'in-view' : ''}`}
+      >
         <h2 className={styles.title}>
           {t('home.ctaTitle')}
           <br />
@@ -25,12 +29,6 @@ const CtaSection = () => {
             <Button size="lg" className="gap-2 bg-accent text-accent-foreground hover:bg-accent/90">
               <Phone className="h-5 w-5" />
               {t('home.requestQuote')}
-            </Button>
-          </Link>
-          <Link to={`${prefix}/portfolio`}>
-            <Button size="lg" variant="outline" className="gap-2 group">
-              {t('home.viewPortfolio')}
-              <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
             </Button>
           </Link>
         </div>
