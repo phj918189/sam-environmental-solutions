@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { ArrowUp } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import styles from '@/styles/components/ScrollToTopButton.module.css';
+import styles from '@/styles/common/ScrollToTopButton.module.css';
 
 const SCROLL_THRESHOLD = 300;
 

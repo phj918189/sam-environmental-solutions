@@ -11,7 +11,7 @@ export type ServiceType = (typeof VALID_SERVICE_TYPES)[number];
 export function isValidServiceType(value: string | undefined): value is ServiceType {
   return !!value && VALID_SERVICE_TYPES.includes(value as ServiceType);
 }
-import { Wind, Droplets, Trash2 } from 'lucide-react';
+import { Wind, Droplets, Factory } from 'lucide-react';
 
 export interface ServiceDataItem {
   icon: LucideIcon;
@@ -112,7 +112,7 @@ export const serviceData: Record<string, ServiceDataItem> = {
     }
   },
   odor: {
-    icon: Trash2,
+    icon: Factory,
     color: 'text-accent',
     bgColor: 'bg-accent/10',
     title: { ko: '악취환경 서비스', en: 'Odor Control Services' },

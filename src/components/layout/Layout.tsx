@@ -5,7 +5,7 @@ import DocumentHead from '@/components/common/DocumentHead';
 import ScrollToTop from '@/components/common/ScrollToTop';
 import ScrollToTopButton from '@/components/common/ScrollToTopButton';
 import ChatWidget from '@/components/common/ChatWidget';
-import styles from '@/styles/components/Layout.module.css';
+import styles from '@/styles/common/Layout.module.css';
 
 interface LayoutProps {
   children: ReactNode;

@@ -174,7 +174,8 @@ export const en = {
 
   about: {
     title: 'About Us',
-    subtitle: 'Samyang Environmental Research Institute - Committed to environmental sustainability.',
+    subtitle:
+      'Accurate measurement and analysis, and field-driven environmental solutions for sustainable business and communities.',
     greeting: 'Greeting',
     missionVision: 'Mission & Vision',
     coreValues: 'Core Values',
@@ -186,10 +187,28 @@ export const en = {
     tagline: 'Accurate data, practical improvements',
     mission: 'Mission',
     vision: 'Vision',
-    valuesDesc: 'Values that define how we work.',
-    historyDesc: 'Our 30-year journey.',
-    historyNote: '* Detailed history will be updated.',
-    orgDesc: 'Experienced professionals at your service.',
+    valuesDesc: 'Three principles that earn trust in the field.',
+    historyDesc:
+      'How we expanded our capabilities since establishment. (Verify years against internal records and registration certificates.)',
+    historyNote:
+      '* Always cross-check specific dates with certificates, corporate registry changes, and the certifications shown on this website. Promotional estimates can create legal risk if inaccurate.',
+    orgDesc:
+      'Leadership in management and technology, with teams for analysis, measurement, construction, and operations working together. (You may add an org chart when ready for public disclosure.)',
+    greetingP1: "Hello. I am Lee Eui-hwan, CEO of Samyang Environmental Research Institute.",
+    greetingP2:
+      'Since our founding in 1992, we began with sewage treatment design and construction and water-quality management, and today we support the full journey of air, water, and odor measurement and analysis, as well as facility design, construction, and operation. We care not only about meeting regulatory numbers, but also about making sure data supports real operational and improvement decisions.',
+    greetingP3:
+      'We will continue to listen to your goals and site conditions first, and take consistent responsibility from measurement through to improvement. Inquiries and visits are always welcome.',
+    companyOverviewText:
+      'Samyang Environmental Research Institute was founded in 1992 in water and facility-related services and has grown into an integrated environmental firm covering air, water, and odor measurement and management, plus facility design, construction, and operation. We serve a wide range of clients from small businesses to public and research institutions, with long-term relationships and repeat engagements.',
+    businessAreasText:
+      'We support air, water, and odor measurement and analysis, environmental management services, design and construction of sewage and wastewater facilities, and operations including rest areas—all in one place. Our laboratory follows accredited procedures and quality management to deliver reproducible results.',
+    missionLead:
+      'We help clients meet environmental obligations and run sustainably, with accurate data and straightforward communication.',
+    missionStatement:
+      'We perform measurement and analysis aligned with national and local requirements, and translate results into practical improvement paths for your site. Transparency and accountability come first in every step.',
+    visionStatement:
+      'We aim to strengthen a trusted brand where measurement, analysis, facilities, and operations connect seamlessly—across the region and beyond—so clean environments and stable industrial activity can advance together.',
   },
 
   news: {

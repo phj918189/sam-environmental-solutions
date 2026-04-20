@@ -1,28 +1,90 @@
 import { type CSSProperties } from 'react';
-import { Link } from 'react-router-dom';
-import { ArrowRight } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { equipmentCategories } from '@/data/laboratory';
+import { equipmentCategories, type EquipmentItem, type EquipmentCategory } from '@/data/laboratory';
 import { useScrollReveal } from '@/hooks/use-scroll-reveal';
+import { usePrefersReducedMotion } from '@/hooks/use-prefers-reduced-motion';
+import EquipmentDetailButton from '@/components/common/buttons/EquipmentDetailButton';
 import styles from '@/styles/pages/Home/EquipmentSection.module.css';
 
-const featuredItems = equipmentCategories
-  .flatMap((cat) =>
-    cat.items
-      .filter((item) => item.featured)
-      .map((item) => ({ ...item, categoryLabel: cat.category }))
+
+
+function getCategory(key: string): EquipmentCategory | undefined {
+  return equipmentCategories.find((c) => c.key === key);
+}
+
+type MarqueeDirection = 'rtl' | 'ltr';
+
+function MarqueeRow({
+  items,
+  category,
+  direction,
+  lang,
+}: {
+  items: EquipmentItem[];
+  category: EquipmentCategory;
+  direction: MarqueeDirection;
+  lang: 'ko' | 'en';
+}) {
+  if (items.length === 0) return null;
+
+  const doubled = [...items, ...items];
+  /* 길수록 느림 — 장비 수에 비례, 상한으로 무한 대기 방지 */
+  const durationSec = Math.max(70, Math.min(200, items.length * 14));
+
+  return (
+    <div
+      className={styles.marqueeViewport}
+      role="presentation"
+      aria-hidden="true"
+    >
+      <div
+        className={`${styles.marqueeTrack} ${direction === 'ltr' ? styles.marqueeLtr : styles.marqueeRtl}`}
+        style={{ animationDuration: `${durationSec}s` } as CSSProperties}
+      >
+        {doubled.map((item, i) => (
+          <article key={`${item.id}-${i}`} className={styles.marqueeCard}>
+            <div className={styles.marqueePhotoWrap}>
+              <img
+                src={item.image}
+                alt=""
+                className={styles.marqueePhoto}
+                loading="lazy"
+                decoding="async"
+              />
+              <span className={styles.marqueeBadge}>{item.id}</span>
+              <span className={styles.marqueeCatBadge}>{category.category[lang]}</span>
+            </div>
+            <div className={styles.marqueeInfo}>
+              <p className={styles.marqueeType}>{item.type[lang]}</p>
+              {item.model !== '-' && <p className={styles.marqueeModel}>{item.model}</p>}
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
   );
+}
 
 const EquipmentSection = () => {
   const { lang, prefix } = useLanguage();
   const { ref: headerRef, inView } = useScrollReveal<HTMLDivElement>();
+  const reduceMotion = usePrefersReducedMotion();
+
+  const air = getCategory('air');
+  const water = getCategory('water');
+  const bio = getCategory('bio');
 
   return (
-    <section className={styles.section}>
+    <section className={styles.section} aria-labelledby="equipment-section-title">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className={styles.sectionTop}>
           <div className={styles.sectionTopContent} ref={headerRef}>
+            <span
+              className={`${styles.kicker} reveal reveal-up ${inView ? 'in-view' : ''}`}>
+              LAB EQUIPMENT
+            </span>
             <h2
+              id="equipment-section-title"
               className={`${styles.sectionTitle} reveal reveal-up ${inView ? 'in-view' : ''}`}
             >
               {lang === 'ko' ? '보유 장비 현황' : 'Laboratory Equipment'}
@@ -32,46 +94,47 @@ const EquipmentSection = () => {
               style={{ '--reveal-delay': '100ms' } as CSSProperties}
             >
               {lang === 'ko'
-                ? '대기·수질·생태독성 분야의 최신 정밀 분석장비를 보유하고 있습니다.'
-                : 'We operate state-of-the-art analytical instruments across air, water, and ecotoxicology fields.'}
+                ? '대기·수질·생태특성 분야 보유 장비를 모두 확인하실 수 있습니다.'
+                : 'All analytical instruments across air, water, and ecotoxicology labs.'}
             </p>
-            <Link
+           
+            <EquipmentDetailButton
               to={`${prefix}/laboratory`}
-              className={`${styles.moreLink} reveal reveal-up ${inView ? 'in-view' : ''}`}
+              className={`reveal reveal-up ${inView ? 'in-view' : ''}`}
               style={{ '--reveal-delay': '180ms' } as CSSProperties}
             >
-              {lang === 'ko' ? '더 보기' : 'More Equipment'}
-              <ArrowRight className="h-4 w-4" />
-            </Link>
+              {lang === 'ko' ? '분석실 상세 보기' : 'View laboratory details'}
+            </EquipmentDetailButton>
+         
           </div>
         </div>
 
-        <div className={styles.equipmentGrid}>
-          {featuredItems.map((item, index) => (
-            <article
-              key={item.id}
-              className={`${styles.equipmentCard} reveal reveal-scale ${inView ? 'in-view' : ''}`}
-              style={{ '--reveal-delay': `${160 + index * 60}ms` } as CSSProperties}
-            >
-              <div className={styles.photoWrap}>
-                <img
-                  src={item.image}
-                  alt={`${item.id} ${item.type[lang]}`}
-                  className={styles.photo}
-                  loading="lazy"
-                />
-                <span className={styles.badge}>{item.id}</span>
-                <span className={styles.categoryBadge}>{item.categoryLabel[lang]}</span>
-              </div>
-              <div className={styles.info}>
-                <p className={styles.type}>{item.type[lang]}</p>
-                {item.model !== '-' && (
-                  <p className={styles.model}>{item.model}</p>
-                )}
-                <p className={styles.analysis}>{item.analysis[lang]}</p>
-              </div>
-            </article>
-          ))}
+        <div className={`${styles.marqueeStack} reveal reveal-up ${inView ? 'in-view' : ''}`} style={{ '--reveal-delay': '160ms' } as CSSProperties}>
+          {air && (
+            <MarqueeRow
+              items={air.items}
+              category={air}
+              direction="rtl"
+              lang={lang}
+            />
+          )}
+         
+          {bio && (
+            <MarqueeRow
+              items={bio.items}
+              category={bio}
+              direction="ltr"
+              lang={lang}
+            />
+          )}
+           {water && (
+            <MarqueeRow
+              items={water.items}
+              category={water}
+              direction="rtl"
+              lang={lang}
+            />
+          )}
         </div>
       </div>
     </section>

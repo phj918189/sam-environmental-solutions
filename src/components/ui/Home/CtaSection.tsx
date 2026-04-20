@@ -1,9 +1,7 @@
-import { Link } from 'react-router-dom';
-import { Phone } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { Button } from '@/components/ui/button';
-import { Section } from '@/components/ui/section';
 import { useScrollReveal } from '@/hooks/use-scroll-reveal';
+import CTAButton from '@/components/common/buttons/CTAButton';
+import { Section } from '@/components/ui/section';
 import styles from '@/styles/pages/Home/CtaSection.module.css';
 
 const CtaSection = () => {
@@ -16,21 +14,22 @@ const CtaSection = () => {
         ref={ref}
         className={`${styles.wrapper} reveal reveal-up ${inView ? 'in-view' : ''}`}
       >
+        <span className={styles.kicker}>CONTACT US</span>
+
         <h2 className={styles.title}>
           {t('home.ctaTitle')}
           <br />
-          <span className="text-accent">{t('home.ctaHighlight')}</span>
+          <span className={styles.highlight}>{t('home.ctaHighlight')}</span>
         </h2>
+
         <p className={styles.subtitle}>
           {t('home.ctaDesc')}
         </p>
+
         <div className={styles.actions}>
-          <Link to={`${prefix}/contact`}>
-            <Button size="lg" className="gap-2 bg-accent text-accent-foreground hover:bg-accent/90">
-              <Phone className="h-5 w-5" />
-              {t('home.requestQuote')}
-            </Button>
-          </Link>
+          <CTAButton to={`${prefix}/contact`} variant="primary">
+            {t('home.requestQuote')}
+          </CTAButton>
         </div>
       </div>
     </Section>

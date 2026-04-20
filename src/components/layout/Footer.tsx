@@ -3,7 +3,7 @@ import { Phone, Mail, MapPin } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import logo from '@/assets/logo_2.svg';
 import { CONTACT } from '@/data/contact';
-import styles from '@/styles/components/Footer.module.css';
+import styles from '@/styles/common/Footer.module.css';
 
 const Footer = () => {
   const { t, prefix } = useLanguage();

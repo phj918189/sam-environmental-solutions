@@ -7,42 +7,58 @@
 }
 
 .tabsList {
-  @apply grid w-full grid-cols-3 gap-2 p-2 rounded-xl mb-8 h-auto;
-  /* background: linear-gradient(160deg, hsl(215 55% 13%) 0%, hsl(210 60% 18%) 100%); */
-  /* border-color: hsl(210 45% 28%); */
+  @apply grid w-full grid-cols-3 gap-2 p-3 rounded-2xl mb-8 h-auto;
+  background: linear-gradient(180deg, hsl(195 35% 98%) 0%, hsl(0 0% 100%) 100%);
+  border: 1px solid hsl(194 24% 88%);
+  box-shadow: 0 12px 30px rgba(14, 42, 60, 0.06);
 }
 
 .tabTrigger {
-  @apply gap-2 py-3 text-sm md:text-base font-bold rounded-lg;
-  color: hsl(210 25% 68%);
-  transition: background 200ms, color 200ms;
+  @apply gap-2 py-3 text-sm md:text-base font-bold rounded-xl;
+  color: hsl(210 25% 46%);
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid transparent;
+  transition: background 200ms, color 200ms, border-color 200ms, box-shadow 200ms;
 }
+
 .tabTrigger:hover {
-  background: hsl(210 50% 22%);
-  color: hsl(0 0% 95%);
+  background: hsl(195 35% 96%);
+  color: hsl(205 58% 18%);
+  border-color: hsl(194 24% 88%);
 }
+
 .tabTrigger[data-state='active'] {
   background: hsl(var(--accent));
   color: hsl(0 0% 100%);
-  box-shadow: 0 2px 8px hsl(160 60% 40% / 0.4);
+  box-shadow: 0 10px 18px hsl(160 60% 40% / 0.25);
 }
 
 .statsGrid {
   display: grid;
   @apply gap-6 md:grid-cols-4 text-center;
 }
-
 .statItem {
   @apply flex flex-col items-center;
-  padding: 1.25rem;
-  border-radius: 0.75rem;
-  background: hsl(210 50% 18% / 0.6);
-  border: 1px solid hsl(210 45% 35%);
-  transition: border-color 200ms, box-shadow 200ms;
+  padding: 1.4rem 1.2rem;
+  border-radius: 1rem;
+  background: linear-gradient(
+    180deg,
+    hsl(210 50% 18% / 0.72) 0%,
+    hsl(210 46% 14% / 0.9) 100%
+  );
+  border: 1px solid hsl(210 45% 32%);
+  box-shadow:
+    0 16px 30px rgba(0, 0, 0, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.03);
+  transition: border-color 200ms, box-shadow 200ms, transform 200ms;
 }
+
 .statItem:hover {
+  transform: translateY(-2px);
   border-color: hsl(160 60% 45%);
-  box-shadow: 0 4px 16px hsl(160 60% 40% / 0.2);
+  box-shadow:
+    0 18px 36px rgba(0, 0, 0, 0.22),
+    0 0 0 1px hsl(160 60% 45% / 0.18);
 }
 
 .statValue {
@@ -68,11 +84,11 @@
 }
 
 .table th {
-  @apply px-4 py-3 text-left font-semibold text-foreground;
+  @apply px-4 py-3 text-center font-semibold text-foreground;
 }
 
 .table td {
-  @apply px-4 py-3 border-t;
+  @apply px-4 py-3 border-t text-center;
 }
 
 .table tbody tr:hover {
@@ -88,17 +104,25 @@
   @apply gap-4 md:grid-cols-3 lg:grid-cols-4;
 }
 
-.restAreaCard {
-  @apply hover:shadow-md transition-shadow;
-}
-
 .grid {
   display: grid;
   @apply gap-6 md:grid-cols-2 lg:grid-cols-3;
 }
 
-.card {
-  @apply h-full hover:shadow-lg transition-shadow cursor-pointer;
+.card,
+.restAreaCard {
+  @apply rounded-2xl border;
+  background: linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(195 35% 97%) 100%);
+  border-color: hsl(194 24% 88%);
+  box-shadow: 0 12px 28px rgba(14, 42, 60, 0.05);
+  transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
+}
+
+.card:hover,
+.restAreaCard:hover {
+  transform: translateY(-3px);
+  border-color: hsl(191 52% 72%);
+  box-shadow: 0 16px 36px rgba(14, 42, 60, 0.1);
 }
 
 .cardTitle {

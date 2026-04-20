@@ -1,6 +1,6 @@
 import { useState, type CSSProperties } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { Award, ExternalLink } from 'lucide-react';
+import { Award, ExternalLink, ArrowRight } from 'lucide-react';
 import {
   Dialog,
   DialogContent,
@@ -22,6 +22,7 @@ interface CertCard {
   authority: { ko: string; en: string };
   items: { ko: string; en: string }[];
   image: string;
+  badge: { ko: string; en: string };
 }
 
 const certCards: CertCard[] = [
@@ -32,6 +33,7 @@ const certCards: CertCard[] = [
       { ko: '환경부 등록 공인 측정기관', en: 'Ministry of Environment Certified' },
     ],
     image: airAgency,
+    badge: { ko: '측정대행업', en: 'Measurement Agency' },
   },
   {
     authority: { ko: '수질 측정대행업', en: 'Water Measurement Agency' },
@@ -40,6 +42,7 @@ const certCards: CertCard[] = [
       { ko: '환경부 등록 공인 측정기관', en: 'Ministry of Environment Certified' },
     ],
     image: waterAgency,
+    badge: { ko: '측정대행업', en: 'Measurement Agency' },
   },
   {
     authority: { ko: '악취 측정대행업', en: 'Odor Measurement Agency' },
@@ -48,6 +51,7 @@ const certCards: CertCard[] = [
       { ko: '환경부 등록 공인 측정기관', en: 'Ministry of Environment Certified' },
     ],
     image: odorAgency,
+    badge: { ko: '측정대행업', en: 'Measurement Agency' },
   },
   {
     authority: { ko: '대기환경 관리 대행기관', en: 'Air Environment Management' },
@@ -56,6 +60,7 @@ const certCards: CertCard[] = [
       { ko: '정부 지정 환경 관리기관', en: 'Government-Designated Management Agency' },
     ],
     image: airEnvironment,
+    badge: { ko: '지정기관', en: 'Designation' },
   },
   {
     authority: { ko: '수질환경 관리 대행기관', en: 'Water Environment Management' },
@@ -64,6 +69,7 @@ const certCards: CertCard[] = [
       { ko: '정부 지정 환경 관리기관', en: 'Government-Designated Management Agency' },
     ],
     image: waterEnvironment,
+    badge: { ko: '지정기관', en: 'Designation' },
   },
   {
     authority: { ko: '개인하수처리시설 설계·시공업', en: 'Sewage Facility Construction' },
@@ -72,6 +78,7 @@ const certCards: CertCard[] = [
       { ko: '국토교통부 등록', en: 'Ministry of Land, Infrastructure & Transport' },
     ],
     image: sewageRegistration,
+    badge: { ko: '등록증', en: 'Registration' },
   },
   {
     authority: { ko: '건설업', en: 'Construction' },
@@ -80,6 +87,7 @@ const certCards: CertCard[] = [
       { ko: '국토교통부 등록', en: 'Ministry of Land, Infrastructure & Transport' },
     ],
     image: constructionRegistration,
+    badge: { ko: '등록증', en: 'Registration' },
   },
 ];
 
@@ -93,10 +101,9 @@ const CertificationsSection = () => {
   return (
     <section className={styles.section}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        {/* 섹션 헤더 */}
         <div className={styles.header} ref={headerRef}>
           <p className={`${styles.headerEyebrow} reveal reveal-up ${inView ? 'in-view' : ''}`}>
-            {lang === 'ko' ? '공신력 있는 기관의 인정' : 'Recognized by Authorities'}
+            CERTIFICATIONS
           </p>
           <h2
             className={`${styles.headerTitle} reveal reveal-up ${inView ? 'in-view' : ''}`}
@@ -112,7 +119,6 @@ const CertificationsSection = () => {
           </p>
         </div>
 
-        {/* 카드 그리드 */}
         <div className={styles.grid}>
           {certCards.map((card, index) => (
             <button
@@ -123,12 +129,16 @@ const CertificationsSection = () => {
               onClick={() => setPopup({ image: card.image, title: card.authority[lang] })}
             >
               <div className={styles.cardTop}>
-                <div className={styles.iconWrap}>
-                  <Award className={styles.icon} />
-                </div>
+                <span className={styles.cardTypeBadge}>{card.badge[lang]}</span>
                 <ExternalLink className={styles.cardHint} />
               </div>
+
+              <div className={styles.iconWrap}>
+                <Award className={styles.icon} />
+              </div>
+
               <h3 className={styles.cardTitle}>{card.authority[lang]}</h3>
+
               <ul className={styles.cardList}>
                 {card.items.map((item) => (
                   <li key={item.ko} className={styles.cardItem}>
@@ -137,12 +147,18 @@ const CertificationsSection = () => {
                   </li>
                 ))}
               </ul>
+
+              <div className={styles.cardFooter}>
+                <span className={styles.cardFooterText}>
+                  {lang === 'ko' ? '증서 보기' : 'View Certificate'}
+                </span>
+                <ArrowRight className={styles.cardFooterArrow} />
+              </div>
             </button>
           ))}
         </div>
       </div>
 
-      {/* 이미지 팝업 */}
       <Dialog open={!!popup} onOpenChange={(open) => !open && setPopup(null)}>
         <DialogContent className="w-[88vw] max-w-md p-3 sm:p-5">
           <DialogHeader>

@@ -11,7 +11,7 @@ import {
 } from '@/components/ui/dropdown-menu';
 // import logo from '@/assets/logo.png';
 import logo from '@/assets/logo_2.svg';
-import styles from '@/styles/components/Header.module.css';
+import styles from '@/styles/common/Header.module.css';
 
 const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);

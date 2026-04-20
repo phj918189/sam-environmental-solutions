@@ -1,5 +1,11 @@
 .heroSection {
-  @apply bg-primary text-primary-foreground py-16;
+  padding: clamp(3rem, 7vw, 6rem) 0;
+  background: linear-gradient(
+    160deg,
+    hsl(215 60% 16%) 0%,
+    hsl(210 70% 22%) 100%
+  );
+  color: hsl(0 0% 100%);
 }
 
 .heroContainer {
@@ -7,23 +13,26 @@
   max-width: 1280px;
   margin-left: auto;
   margin-right: auto;
-  @apply px-4;
-}
-
-.backButton {
-  @apply text-primary-foreground/80 hover:text-primary-foreground mb-6 gap-2;
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 
 .heroBadge {
-  @apply gap-1 mb-4;
+  @apply inline-flex items-center gap-1 mb-4 rounded-full px-3 py-1.5;
+  background: hsl(160 60% 45% / 0.16);
+  border: 1px solid hsl(160 60% 50% / 0.22);
+  color: hsl(160 70% 66%);
 }
 
 .heroTitle {
-  @apply text-3xl md:text-4xl font-bold mb-4;
+  @apply text-3xl md:text-5xl font-bold mb-5;
+  line-height: 1.2;
+  letter-spacing: -0.03em;
 }
 
 .heroMeta {
-  @apply flex flex-wrap gap-6 text-primary-foreground/80;
+  @apply flex flex-wrap gap-6;
+  color: hsl(210 25% 82%);
 }
 
 .heroMetaItem {
@@ -31,15 +40,25 @@
 }
 
 .contentWrap {
-  @apply max-w-4xl mx-auto space-y-12;
+  @apply max-w-5xl mx-auto space-y-10;
+}
+
+.sectionBlock {
+  @apply rounded-2xl border p-6;
+  background: linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(195 35% 97%) 100%);
+  border-color: hsl(194 24% 88%);
+  box-shadow: 0 14px 30px rgba(14, 42, 60, 0.05);
 }
 
 .sectionTitle {
   @apply text-2xl font-bold mb-4;
+  color: hsl(205 58% 18%);
 }
 
 .challengeBox {
-  @apply bg-muted p-6 rounded-lg;
+  @apply p-6 rounded-xl;
+  background: hsl(195 35% 97%);
+  border: 1px solid hsl(194 24% 88%);
 }
 
 .list {
@@ -48,6 +67,10 @@
 
 .listItem {
   @apply flex items-start gap-3;
+  padding: 0.9rem 1rem;
+  border-radius: 0.9rem;
+  background: hsl(195 35% 97%);
+  border: 1px solid hsl(194 24% 88%);
 }
 
 .listIndexWrap {
@@ -64,7 +87,9 @@
 }
 
 .resultItem {
-  @apply flex items-start gap-3 p-4 bg-accent/50 rounded-lg;
+  @apply flex items-start gap-3 p-4 rounded-xl;
+  background: linear-gradient(180deg, hsl(160 52% 96%) 0%, hsl(0 0% 100%) 100%);
+  border: 1px solid hsl(160 28% 84%);
 }
 
 .mediaGrid {
@@ -73,15 +98,18 @@
 }
 
 .mediaBox {
-  @apply aspect-video bg-muted rounded-lg flex items-center justify-center;
+  @apply aspect-video rounded-xl flex items-center justify-center;
+  background: linear-gradient(180deg, hsl(195 35% 97%) 0%, hsl(0 0% 100%) 100%);
+  border: 1px dashed hsl(194 24% 82%);
 }
 
 .mediaText {
-  @apply text-center text-muted-foreground;
+  @apply text-center;
+  color: hsl(210 18% 48%);
 }
 
 .mediaLabel {
-  @apply text-sm;
+  @apply text-sm font-medium;
 }
 
 .ctaWrap {

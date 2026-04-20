@@ -26,3 +26,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Local archives (GitHub 100MB limit)
+src.zip

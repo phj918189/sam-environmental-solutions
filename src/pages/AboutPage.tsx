@@ -25,6 +25,7 @@ const AboutPage = () => {
   }));
 
   const team = teamData.map((m) => ({
+    id: m.id,
     role: m.role[lang],
     name: m.name[lang],
     description: m.description[lang],
@@ -65,12 +66,11 @@ const AboutPage = () => {
                 <h2 className={styles.sectionTitle}>{t('about.greeting')}</h2>
                 <div className="space-y-6">
                   <div className={styles.infoBox}>
-                    <p className={styles.readableText}>
-                      {t(
-                        '안녕하십니까. 삼양건설환경연구소 대표 이의환입니다.\n저희는 1992년 설립 이후 대기·수질·악취 환경측정과 시설 설계·시공·운영까지, 현장에서 바로 적용되는 데이터와 솔루션을 제공해 왔습니다.\n고객의 목표를 먼저 이해하고, 측정–분석–개선까지 한 번에 책임지겠습니다.',
-                        "Hello, I'm Lee Eui-hwan, CEO of Samyang Environmental Research Institute.\nSince 1992, we have delivered field-proven data and solutions across air, water, and odor measurement as well as facility design, construction, and operation.\nWe start from your goals and take responsibility from measurement to improvement."
-                      )}
-                    </p>
+                    <div className={`space-y-4 ${styles.readableText}`}>
+                      <p>{t('about.greetingP1')}</p>
+                      <p>{t('about.greetingP2')}</p>
+                      <p>{t('about.greetingP3')}</p>
+                    </div>
                     <p className={styles.signature}>
                       {t('about.ceoName')}
                     </p>
@@ -79,20 +79,14 @@ const AboutPage = () => {
                   <div className={styles.infoBox}>
                     <h3 className={styles.infoTitle}>{t('about.companyOverview')}</h3>
                     <p className={styles.readableText}>
-                      {t(
-                        '삼양건설환경연구소는 환경 중시와 지속 가능한 발전을 목표로 1992년 오수처리시설 설계와 시공, 수질환경관리 대행을 시작으로 설립되어 현재 환경측정 및 분석 등 환경 통합 전문기업으로 성장하였습니다.',
-                        'Samyang Environmental Research Institute was established in 1992, starting with sewage treatment facility design, construction, and water quality management. We have since grown into an integrated environmental company specializing in environmental measurement and analysis.'
-                      )}
+                      {t('about.companyOverviewText')}
                     </p>
                   </div>
 
                   <div className={styles.infoBox}>
                     <h3 className={styles.infoTitle}>{t('about.businessAreas')}</h3>
                     <p className={styles.readableText}>
-                      {t(
-                        '대기, 수질, 악취 환경 측정부터 시설 설계, 시공, 관리까지 원스톱 솔루션을 제공합니다.',
-                        'We provide one-stop solutions from air, water, and odor measurement to facility design, construction, and management.'
-                      )}
+                      {t('about.businessAreasText')}
                     </p>
                   </div>
                 </div>
@@ -113,10 +107,7 @@ const AboutPage = () => {
             <div className={styles.tabsHeader}>
               <h2 className={styles.sectionTitle}>{t('about.missionVision')}</h2>
               <p className={styles.sectionSubtitle}>
-                {t(
-                  '우리는 정확한 환경 측정과 분석으로 고객과 지역사회의 지속 가능한 발전에 기여합니다.',
-                  'We contribute to sustainable development through accurate environmental measurement and analysis.'
-                )}
+                {t('about.missionLead')}
               </p>
             </div>
             <div className="grid gap-8 md:grid-cols-2 max-w-4xl mx-auto">
@@ -129,10 +120,7 @@ const AboutPage = () => {
                 </CardHeader>
                 <CardContent>
                   <p className={styles.readableText}>
-                    {t(
-                      '정확한 환경 측정과 분석을 통해 기업과 지역사회의 지속 가능한 발전에 기여합니다.',
-                      'Contributing to sustainable development of businesses and communities through accurate environmental measurement and analysis.'
-                    )}
+                    {t('about.missionStatement')}
                   </p>
                 </CardContent>
               </Card>
@@ -145,10 +133,7 @@ const AboutPage = () => {
                 </CardHeader>
                 <CardContent>
                   <p className={styles.readableText}>
-                    {t(
-                      '대한민국 환경 서비스 분야의 선도 기업이 되어 깨끗한 미래를 만들어갑니다.',
-                      'Becoming a leading environmental services company in Korea, creating a cleaner future.'
-                    )}
+                    {t('about.visionStatement')}
                   </p>
                 </CardContent>
               </Card>
@@ -165,7 +150,7 @@ const AboutPage = () => {
             </div>
             <div className={styles.valuesGrid}>
               {values.map((value) => (
-                <Card key={value.title} className={styles.valueCard}>
+                <Card key={value.title} className={styles.teamCard}>
                   <CardHeader>
                     <div className={styles.valueIconWrap}>
                       <value.icon className="h-8 w-8 text-accent" />
@@ -192,7 +177,7 @@ const AboutPage = () => {
               <div className="relative">
                 <div className={styles.historyLine} />
                 {history.map((item, index) => (
-                  <div key={`${item.year}-${index}`} className={styles.historyItem}>
+                  <div key={`${String(item.year)}-${index}`} className={styles.historyItem}>
                     <div className={styles.historyBadge}>
                       <span className={styles.historyBadgeText}>{index + 1}</span>
                     </div>
@@ -219,7 +204,7 @@ const AboutPage = () => {
             </div>
             <div className={styles.teamGrid}>
               {team.map((member) => (
-                <Card key={member.role}>
+                <Card key={member.id}>
                   <CardContent className="pt-6 text-center">
                     <div className={styles.teamAvatar}>
                       <Users className="h-10 w-10 text-muted-foreground" />

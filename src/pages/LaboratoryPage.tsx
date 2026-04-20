@@ -2,9 +2,9 @@ import { useState, useCallback, useEffect } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import PageHero from '@/components/common/PageHero';
 import { Section, SectionHeader } from '@/components/ui/section';
-import { Card, CardContent } from '@/components/ui/card';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
 import { ChevronLeft, ChevronRight, X } from 'lucide-react';
+import CTAButton from '@/components/common/buttons/CTAButton';
 import { equipmentCategories, qualityFeatures } from '@/data/laboratory';
 import styles from '@/styles/pages/LaboratoryPage.module.css';
 
@@ -17,9 +17,10 @@ import img8640 from '@/assets/lab_room/IMG_8640.JPG';
 import img8641 from '@/assets/lab_room/IMG_8641.JPG';
 
 const overviewImages = [img8635, img8636, img8637, img8638, img8639, img8640, img8641];
+const LAB_CATEGORY_TABS_ID = 'laboratory-category-tabs';
 
 const LaboratoryPage = () => {
-  const { t, lang } = useLanguage();
+  const { t, lang, prefix } = useLanguage();
 
   const [activeCategoryKey, setActiveCategoryKey] = useState(equipmentCategories[0].key);
   const [overviewPopupIndex, setOverviewPopupIndex] = useState<number | null>(null);
@@ -67,14 +68,24 @@ const LaboratoryPage = () => {
         />
 
         {/* 카테고리 탭 */}
-        <div className={styles.categoryTabs}>
+        <div
+          className={styles.categoryTabs}
+          role="tablist"
+          id={LAB_CATEGORY_TABS_ID}
+          aria-label={t('laboratory.equipmentOverview')}
+        >
           {equipmentCategories.map((cat) => {
             const Icon = cat.icon;
+            const isActive = activeCategoryKey === cat.key;
             return (
               <button
                 key={cat.key}
                 type="button"
-                className={`${styles.categoryTab} ${activeCategoryKey === cat.key ? styles.categoryTabActive : ''}`}
+                role="tab"
+                id={`lab-tab-${cat.key}`}
+                aria-selected={isActive}
+                aria-controls={`lab-panel-${cat.key}`}
+                className={`${styles.categoryTab} ${isActive ? styles.categoryTabActive : ''}`}
                 onClick={() => setActiveCategoryKey(cat.key)}
               >
                 <Icon className={styles.categoryTabIcon} />
@@ -89,6 +100,10 @@ const LaboratoryPage = () => {
         {equipmentCategories.map((cat) => (
           <div
             key={cat.key}
+            role="tabpanel"
+            id={`lab-panel-${cat.key}`}
+            aria-labelledby={`lab-tab-${cat.key}`}
+            hidden={activeCategoryKey !== cat.key}
             className={`${styles.equipmentItemGrid} ${activeCategoryKey === cat.key ? styles.equipmentItemGridActive : ''}`}
           >
             {cat.items.map((item) => (
@@ -99,6 +114,7 @@ const LaboratoryPage = () => {
                     alt={`${item.id} ${item.type[lang]}`}
                     className={styles.equipmentItemPhoto}
                     loading="lazy"
+                    decoding="async"
                   />
                   <span className={styles.equipmentItemBadge}>{item.id}</span>
                 </div>
@@ -124,10 +140,7 @@ const LaboratoryPage = () => {
       <Section variant="dark">
         <SectionHeader
           title={t('laboratory.qualityControl')}
-          subtitle={t(
-            '정확한 분석 결과를 위한 체계적인 품질관리 시스템을 운영합니다.',
-            'We operate a systematic quality management system for accurate analysis results.'
-          )}
+          subtitle={t('laboratory.qualitySubtitle')}
         />
         <div className="grid gap-6 md:grid-cols-2 max-w-4xl mx-auto">
           {features.map((feature) => (
@@ -163,10 +176,20 @@ const LaboratoryPage = () => {
               onClick={() => setOverviewPopupIndex(i)}
               aria-label={`${t('laboratory.overview')} ${i + 1}`}
             >
-              <img src={img} alt={`${t('laboratory.overview')} ${i + 1}`} />
+              <img
+                src={img}
+                alt={`${t('laboratory.overview')} ${i + 1}`}
+                loading="lazy"
+                decoding="async"
+              />
             </button>
           ))}
         </div>
+        {/* <div className={styles.ctaRow}>
+          <CTAButton to={`${prefix}/contact`}>
+            {t('home.requestQuote')}
+          </CTAButton>
+        </div> */}
       </Section>
 
       <Dialog

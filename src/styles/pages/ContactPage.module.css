@@ -11,9 +11,11 @@
   border: 1px solid hsl(210 45% 32%);
   background: hsl(210 50% 18% / 0.55);
   backdrop-filter: blur(8px);
-  transition: border-color 250ms, box-shadow 250ms, background 250ms;
+  transition: border-color 250ms, box-shadow 250ms, background 250ms, transform 250ms;
 }
+
 .infoCard:hover {
+  transform: translateY(-2px);
   border-color: hsl(160 60% 45%);
   background: hsl(210 50% 22% / 0.7);
   box-shadow: 0 8px 24px hsl(210 80% 10% / 0.4);
@@ -51,8 +53,15 @@
 
 .contentGrid {
   display: grid;
-  @apply gap-12 lg:grid-cols-2;
+  @apply gap-8 lg:grid-cols-2;
   align-items: stretch;
+}
+
+.formCard {
+  border-radius: 1.25rem;
+  border: 1px solid hsl(194 24% 88%);
+  background: linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(195 35% 97%) 100%);
+  box-shadow: 0 16px 32px rgba(14, 42, 60, 0.06);
 }
 
 .form {
@@ -82,35 +91,56 @@
 
 .submitButton {
   @apply w-full gap-2;
+  min-height: 50px;
+  font-weight: 700;
+  box-shadow: 0 10px 24px rgba(14, 165, 198, 0.18);
+}
+
+.mapPanel {
+  border-radius: 1.25rem;
+  border: 1px solid hsl(194 24% 88%);
+  background: linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(195 35% 97%) 100%);
+  box-shadow: 0 16px 32px rgba(14, 42, 60, 0.06);
+  padding: 1.25rem;
 }
 
 .mapWrapper {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
+  height: 100%;
 }
 
 .mapTitle {
   @apply font-semibold flex-shrink-0;
+  color: hsl(205 58% 18%);
+  font-size: 1.05rem;
+}
+
+.mapDesc {
+  font-size: 0.92rem;
+  line-height: 1.7;
+  color: hsl(210 18% 42%);
+  margin-bottom: 0.25rem;
 }
 
 .mapBox {
   position: relative;
   overflow: hidden;
-  border-radius: 0.5rem;
+  border-radius: 0.75rem;
   background: hsl(var(--muted));
-  /* 모바일: aspect-ratio로 항상 높이 확보 */
   aspect-ratio: 4 / 3;
   min-height: 260px;
   width: 100%;
+  border: 1px solid hsl(194 24% 88%);
 }
 
-/* 데스크톱: 그리드 행 높이를 채우도록 확장 */
 @media (min-width: 1024px) {
   .mapWrapper {
     flex: 1;
     min-height: 0;
   }
+
   .mapBox {
     aspect-ratio: unset;
     flex: 1;
@@ -133,7 +163,9 @@
 }
 
 .mapLink {
-  @apply flex-shrink-0 text-sm text-accent hover:underline focus:outline-none focus:ring-2 focus:ring-accent/50 rounded inline-flex items-center gap-1.5;
+  @apply flex-shrink-0 text-sm hover:underline focus:outline-none focus:ring-2 focus:ring-accent/50 rounded inline-flex items-center gap-1.5;
+  color: hsl(var(--accent));
+  font-weight: 600;
 }
 
 .mapTextSmall {
@@ -146,6 +178,11 @@
 
 .successWrap {
   @apply max-w-lg mx-auto text-center;
+  padding: 2rem;
+  border-radius: 1.5rem;
+  background: linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(195 35% 97%) 100%);
+  border: 1px solid hsl(194 24% 88%);
+  box-shadow: 0 16px 32px rgba(14, 42, 60, 0.06);
 }
 
 .successIconWrap {
@@ -154,8 +191,10 @@
 
 .successTitle {
   @apply text-2xl font-bold mb-4;
+  color: hsl(205 58% 18%);
 }
 
 .successDesc {
-  @apply text-muted-foreground mb-8;
+  @apply mb-8;
+  color: hsl(210 18% 42%);
 }

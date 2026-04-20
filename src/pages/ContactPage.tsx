@@ -48,6 +48,7 @@ const ContactPage = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
     if (!formData.privacy) {
       toast({
         title: t('contact.agreePrivacy'),
@@ -108,10 +109,7 @@ const ContactPage = () => {
     } catch (err) {
       toast({
         title: t('contact.submitFail'),
-        description:
-          err instanceof Error
-            ? err.message
-            : t('contact.tryAgain'),
+        description: err instanceof Error ? err.message : t('contact.tryAgain'),
         variant: 'destructive',
       });
     } finally {
@@ -157,18 +155,14 @@ const ContactPage = () => {
   if (submitted) {
     return (
       <>
-        <PageHero title={t('contact.title')} />
+        <PageHero title={t('contact.title')} subtitle={t('contact.subtitleShort')} />
         <Section>
           <div className={styles.successWrap}>
             <div className={styles.successIconWrap}>
               <CheckCircle className="h-10 w-10 text-accent" />
             </div>
-            <h2 className={styles.successTitle}>
-              {t('contact.submitSuccessFull')}
-            </h2>
-            <p className={styles.successDesc}>
-              {t('contact.successThankYou')}
-            </p>
+            <h2 className={styles.successTitle}>{t('contact.submitSuccessFull')}</h2>
+            <p className={styles.successDesc}>{t('contact.successThankYou')}</p>
             <Link to={prefix || '/'}>
               <Button>{t('common.backToHome')}</Button>
             </Link>
@@ -180,13 +174,11 @@ const ContactPage = () => {
 
   return (
     <>
-      {/* Hero */}
       <PageHero
         title={t('contact.contactUs')}
         subtitle={t('contact.subtitleShort')}
       />
 
-      {/* Contact Info Cards — dark */}
       <Section variant="dark">
         <div className={styles.infoGrid}>
           {contactInfo.map((info) => (
@@ -208,14 +200,13 @@ const ContactPage = () => {
         </div>
       </Section>
 
-      {/* Form + Map */}
       <Section>
         <div className={styles.contentGrid}>
-          {/* Contact Form */}
-          <Card>
+          <Card className={styles.formCard}>
             <CardHeader>
               <CardTitle>{t('contact.formTitle')}</CardTitle>
             </CardHeader>
+
             <CardContent>
               <form onSubmit={handleSubmit} className={styles.form}>
                 <div className={styles.fieldGrid}>
@@ -229,6 +220,7 @@ const ContactPage = () => {
                       placeholder={t('contact.namePlaceholder')}
                     />
                   </div>
+
                   <div className={styles.fieldStack}>
                     <Label htmlFor="company">{t('contact.company')}</Label>
                     <Input
@@ -252,6 +244,7 @@ const ContactPage = () => {
                       placeholder="010-0000-0000"
                     />
                   </div>
+
                   <div className={styles.fieldStack}>
                     <Label htmlFor="email">{t('contact.email')} *</Label>
                     <Input
@@ -323,36 +316,38 @@ const ContactPage = () => {
                   ) : (
                     <Send className="h-4 w-4" />
                   )}
-                  {submitting
-                    ? t('common.sending')
-                    : t('contact.submit')}
+                  {submitting ? t('common.sending') : t('contact.submit')}
                 </Button>
               </form>
             </CardContent>
           </Card>
 
-          {/* Map / Location */}
-          <div className={styles.mapWrapper}>
-            <h3 className={styles.mapTitle}>{t('contact.location')}</h3>
-            <div className={styles.mapBox}>
-              <iframe
-                title={t('contact.location')}
-                src={CONTACT_MAP_EMBED_URL}
-                className={styles.mapIframe}
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-              />
+          <div className={styles.mapPanel}>
+            <div className={styles.mapWrapper}>
+              <h3 className={styles.mapTitle}>{t('contact.location')}</h3>
+              <p className={styles.mapDesc}>{t('contact.mapLocation')}</p>
+
+              <div className={styles.mapBox}>
+                <iframe
+                  title={t('contact.location')}
+                  src={CONTACT_MAP_EMBED_URL}
+                  className={styles.mapIframe}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                />
+              </div>
+
+              <a
+                href={CONTACT_MAP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.mapLink}
+              >
+                <MapPin className="h-4 w-4" />
+                {t(CONTACT.addressKo, CONTACT.addressEn)} — {t('contact.viewOnMap')}
+              </a>
             </div>
-            <a
-              href={CONTACT_MAP_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.mapLink}
-            >
-              <MapPin className="h-4 w-4" />
-              {t(CONTACT.addressKo, CONTACT.addressEn)} — {t('contact.viewOnMap')}
-            </a>
           </div>
         </div>
       </Section>

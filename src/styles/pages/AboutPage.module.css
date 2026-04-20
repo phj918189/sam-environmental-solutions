@@ -2,26 +2,31 @@
   display: grid;
   @apply gap-12 md:grid-cols-2 items-center;
 }
-
 .tabsList {
-  @apply w-full flex flex-wrap items-center justify-center gap-2 p-2 rounded-xl mb-8 h-auto;
-  /* background: linear-gradient(160deg, hsl(215 55% 13%) 0%, hsl(210 60% 18%) 100%);
-  border-color: hsl(210 45% 28%); */
+  @apply w-full flex flex-wrap items-center justify-center gap-2 p-3 rounded-2xl mb-8 h-auto;
+  background: linear-gradient(180deg, hsl(195 35% 98%) 0%, hsl(0 0% 100%) 100%);
+  border: 1px solid hsl(194 24% 88%);
+  box-shadow: 0 12px 30px rgba(14, 42, 60, 0.06);
 }
 
 .tabsTrigger {
-  @apply px-4 py-2 text-sm md:text-base font-bold rounded-lg;
-  color: hsl(210 25% 68%);
-  transition: background 200ms, color 200ms;
+  @apply px-4 py-2 text-sm md:text-base font-bold rounded-xl;
+  color: hsl(210 25% 46%);
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid transparent;
+  transition: background 200ms, color 200ms, border-color 200ms, box-shadow 200ms;
 }
+
 .tabsTrigger:hover {
-  background: hsl(210 50% 22%);
-  color: hsl(0 0% 95%);
+  background: hsl(195 35% 96%);
+  color: hsl(205 58% 18%);
+  border-color: hsl(194 24% 88%);
 }
+
 .tabsTrigger[data-state='active'] {
   background: hsl(var(--accent));
   color: hsl(0 0% 100%);
-  box-shadow: 0 2px 8px hsl(160 60% 40% / 0.4);
+  box-shadow: 0 10px 18px hsl(160 60% 40% / 0.25);
 }
 
 .tabsContent {
@@ -31,19 +36,22 @@
 .tabsHeader {
   @apply mb-8;
 }
+.sectionTitle {
+  @apply text-3xl font-bold mb-6;
+  letter-spacing: -0.02em;
+  color: hsl(205 58% 18%);
+}
 
 .sectionSubtitle {
   @apply text-muted-foreground leading-relaxed break-keep;
-  text-align: justify;
-  text-justify: inter-word;
-}
-
-.sectionTitle {
-  @apply text-3xl font-bold mb-6;
+  color: hsl(210 18% 42%);
 }
 
 .infoBox {
-  @apply p-6 bg-muted rounded-lg;
+  @apply p-6 rounded-2xl;
+  background: linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(195 35% 97%) 100%);
+  border: 1px solid hsl(194 24% 88%);
+  box-shadow: 0 16px 34px rgba(14, 42, 60, 0.06);
 }
 
 .infoTitle {
@@ -52,8 +60,7 @@
 
 .readableText {
   @apply text-muted-foreground leading-relaxed break-keep whitespace-pre-line;
-  text-align: justify;
-  text-justify: inter-word;
+  color: hsl(210 18% 42%);
 }
 
 .signature {
@@ -61,11 +68,15 @@
 }
 
 .iconPanel {
-  @apply flex items-center justify-center overflow-hidden rounded-2xl;
+  @apply flex items-center justify-center overflow-hidden rounded-[1.5rem];
+  background: linear-gradient(180deg, hsl(195 35% 97%) 0%, hsl(0 0% 100%) 100%);
+  border: 1px solid hsl(194 24% 88%);
+  box-shadow: 0 18px 40px rgba(14, 42, 60, 0.08);
+  padding: 0.75rem;
 }
 
 .ceoPhoto {
-  @apply w-full h-auto max-h-[480px] object-cover rounded-2xl;
+  @apply w-full h-auto max-h-[480px] object-cover rounded-[1.1rem];
 }
 
 .valuesGrid {
@@ -73,9 +84,9 @@
   @apply gap-8 md:grid-cols-3;
 }
 
-.valueCard {
+/* .valueCard {
   @apply text-center;
-}
+} */
 
 .valueIconWrap {
   @apply w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center mx-auto mb-4;
@@ -104,9 +115,10 @@
 }
 
 .historyCard {
-  @apply p-4 rounded-lg border;
-  background: hsl(215 50% 16% / 0.06);
-  border-color: hsl(var(--border));
+  @apply p-5 rounded-xl border;
+  background: linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(195 35% 97%) 100%);
+  border-color: hsl(194 24% 88%);
+  box-shadow: 0 10px 24px rgba(14, 42, 60, 0.05);
 }
 
 .historyYear {
@@ -129,6 +141,13 @@
 
 .teamDesc {
   @apply text-sm text-muted-foreground mt-2;
+}
+
+.teamCard {
+  @apply rounded-2xl border;
+  background: linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(195 35% 97%) 100%);
+  border-color: hsl(194 24% 88%);
+  box-shadow: 0 12px 28px rgba(14, 42, 60, 0.05);
 }
 
 .equipmentGrid {
@@ -158,4 +177,12 @@
 
 .ctaSubtitle {
   @apply text-primary-foreground/90 mb-8 max-w-2xl mx-auto;
+}
+
+.valueCard,
+.equipmentCard {
+  @apply rounded-2xl border;
+  background: linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(195 35% 97%) 100%);
+  border-color: hsl(194 24% 88%);
+  box-shadow: 0 12px 28px rgba(14, 42, 60, 0.05);
 }

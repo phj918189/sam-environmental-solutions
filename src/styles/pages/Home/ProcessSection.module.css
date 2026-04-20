@@ -1,14 +1,13 @@
-/* ══════════════════════════════════════════════════════
-   업무 프로세스
-   모바일: 3(위) + 2 가운데정렬(아래)
-   데스크탑(md+): 5열 가로 1행
-   ══════════════════════════════════════════════════════ */
-
 .section {
   position: relative;
   overflow: hidden;
-  padding: clamp(2.5rem, 7vw, 7rem) 0;
-  background: linear-gradient(150deg, hsl(215 55% 13%) 0%, hsl(210 65% 18%) 60%, hsl(205 60% 14%) 100%);
+  padding: clamp(3rem, 8vw, 7rem) 0;
+  background: linear-gradient(
+    150deg,
+    hsl(215 55% 13%) 0%,
+    hsl(210 65% 18%) 60%,
+    hsl(205 60% 14%) 100%
+  );
 }
 
 .bgGrid {
@@ -21,208 +20,268 @@
   pointer-events: none;
 }
 
-/* ── 헤더 ── */
-.header {
-  text-align: center;
-  margin-bottom: clamp(1.5rem, 5vw, 4rem);
+.bgGlow {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 20% 20%, hsl(180 60% 50% / 0.08), transparent 30%),
+    radial-gradient(circle at 80% 30%, hsl(160 70% 45% / 0.08), transparent 26%);
+  pointer-events: none;
 }
 
-.eyebrow {
-  display: inline-block;
-  font-size: clamp(0.6rem, 1.8vw, 0.75rem);
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
-  color: hsl(160 60% 55%);
-  margin-bottom: 0.5rem;
+.header {
+  text-align: center;
+  margin-bottom: clamp(2rem, 5vw, 4rem);
+}
+
+.kicker {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.85rem;
+  padding: 0.45rem 0.8rem;
+  border-radius: 999px;
+  background: hsl(160 60% 45% / 0.12);
+  border: 1px solid hsl(160 60% 50% / 0.22);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  color: hsl(160 70% 64%);
 }
 
 .title {
-  font-size: clamp(1.5rem, 4vw, 2.5rem);
-  font-weight: 700;
+  font-size: clamp(1.6rem, 4vw, 2.75rem);
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.03em;
   color: hsl(0 0% 98%);
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.75rem;
 }
 
 .desc {
-  font-size: clamp(1rem, 2.2vw, 1.2rem);
-  line-height: 1.6;
+  font-size: clamp(1rem, 2.2vw, 1.15rem);
+  line-height: 1.75;
   word-break: keep-all;
-  max-width: min(90vw, 36rem);
+  max-width: min(90vw, 42rem);
   margin: 0 auto;
-  color: hsl(210 25% 65%);
+  color: hsl(210 20% 78%);
 }
 
-/* ══════════════════════════════════════
-   다이어그램 컨테이너
-   ══════════════════════════════════════ */
+.processWrap {
+  position: relative;
+}
 
-/* 모바일 기본: 6열 그리드 → 3+2 레이아웃 */
+.connectorLine {
+  display: none;
+  height: 2px;
+  opacity: 0.9;
+}
+
 .diagram {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
-  gap: clamp(0.4rem, 1.5vw, 0.6rem);
+  gap: clamp(0.6rem, 1.6vw, 0.9rem);
   align-items: stretch;
+  position: relative;
 }
 
-/* 첫 3개 카드: 각 2칸 span → 6열 1행에 꽉 참 */
 .card:nth-child(-n+3) {
   grid-column: span 2;
 }
 
-/* 4번째 카드: 2열에서 시작, 2칸 span → 중앙 정렬 */
 .card:nth-child(4) {
   grid-column: 2 / span 2;
 }
 
-/* 5번째 카드: 4열에서 시작, 2칸 span → 중앙 정렬 */
 .card:nth-child(5) {
   grid-column: 4 / span 2;
 }
 
-/* 데스크탑(md+): 5열 1행 */
 @media (min-width: 768px) {
-  .diagram {
-    grid-template-columns: repeat(5, 1fr);
-    gap: clamp(0.4rem, 1.5vw, 1.2rem);
+  .processWrap {
+    padding-top: 1rem;
   }
 
-  /* 모바일 nth-child 오버라이드 → 모두 span 1 */
+  .connectorLine {
+    display: block;
+    position: absolute;
+    left: 6%;
+    right: 6%;
+    top: 6rem;
+    height: 2px;
+    background: linear-gradient(
+      90deg,
+      hsl(160 55% 40% / 0.1) 0%,
+      hsl(160 60% 52% / 0.6) 20%,
+      hsl(190 65% 56% / 0.65) 50%,
+      hsl(160 60% 52% / 0.6) 80%,
+      hsl(160 55% 40% / 0.1) 100%
+    );
+    z-index: 0;
+  }
+
+  .diagram {
+    grid-template-columns: repeat(5, 1fr);
+    gap: clamp(0.9rem, 2vw, 1.4rem);
+  }
+
   .card:nth-child(n) {
     grid-column: span 1;
   }
 }
 
-/* ══════════════════════════════════════
-   스텝 카드
-   ══════════════════════════════════════ */
 .card {
   position: relative;
+  z-index: 1;
   overflow: hidden;
   min-width: 0;
-  border-radius: clamp(0.5rem, 1.5vw, 1rem);
-  border: 1px solid hsl(210 45% 30%);
-  background: hsl(210 55% 16% / 0.65);
+  border-radius: clamp(0.9rem, 1.8vw, 1.25rem);
+  border: 1px solid hsl(210 45% 28%);
+  background: linear-gradient(
+    180deg,
+    hsl(210 55% 18% / 0.82) 0%,
+    hsl(210 48% 14% / 0.9) 100%
+  );
   backdrop-filter: blur(10px);
-  transition: transform 280ms ease, border-color 280ms ease, box-shadow 280ms ease;
+  box-shadow:
+    0 20px 40px -24px hsl(210 90% 5% / 0.9),
+    inset 0 1px 0 hsl(0 0% 100% / 0.03);
+  transition:
+    transform 280ms ease,
+    border-color 280ms ease,
+    box-shadow 280ms ease,
+    background 280ms ease;
 }
 
 .card:hover {
-  transform: translateY(-4px);
-  border-color: hsl(160 60% 50%);
+  transform: translateY(-6px);
+  border-color: hsl(160 60% 52% / 0.7);
+  background: linear-gradient(
+    180deg,
+    hsl(210 55% 20% / 0.92) 0%,
+    hsl(210 48% 15% / 0.98) 100%
+  );
   box-shadow:
-    0 0 0 1px hsl(160 60% 45% / 0.4),
-    0 16px 32px -8px hsl(210 80% 8% / 0.7),
-    0 0 20px -4px hsl(160 55% 40% / 0.2);
+    0 24px 46px -20px hsl(210 90% 5% / 0.95),
+    0 0 0 1px hsl(160 60% 45% / 0.22);
 }
 
-/* 상단 아이콘 영역 */
 .iconArea {
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: hsl(215 60% 11%);
-  /* 모바일에서 패딩 자동 축소 */
-  padding: clamp(0.75rem, 4vw, 2.25rem) clamp(0.5rem, 3vw, 1.5rem);
-  aspect-ratio: 16 / 10;
-  border-bottom: 1px solid hsl(210 45% 25%);
+  padding: clamp(1rem, 4vw, 2rem) clamp(0.9rem, 3vw, 1.6rem);
+  aspect-ratio: 16 / 9;
+  background:
+    linear-gradient(180deg, hsl(215 60% 12%) 0%, hsl(214 58% 10%) 100%);
+  border-bottom: 1px solid hsl(210 45% 22%);
   overflow: hidden;
 }
 
 .iconGlow {
   position: absolute;
   inset: 0;
-  background: radial-gradient(
-    circle at 50% 60%,
-    hsl(160 55% 40% / 0.15) 0%,
-    transparent 70%
-  );
+  background:
+    radial-gradient(
+      circle at 50% 60%,
+      hsl(160 55% 42% / 0.2) 0%,
+      transparent 68%
+    );
   pointer-events: none;
 }
 
-/* 아이콘 원 — 모바일에서 자동 축소 */
 .iconCircle {
   position: relative;
-  z-index: 10;
+  z-index: 1;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  width: clamp(2rem, 9vw, 4.5rem);
-  height: clamp(2rem, 9vw, 4.5rem);
-  background: hsl(160 55% 35% / 0.15);
-  border: 1.5px solid hsl(160 55% 45% / 0.5);
-  box-shadow: 0 0 0 clamp(3px, 1.5vw, 6px) hsl(160 55% 40% / 0.07);
+  width: clamp(2.5rem, 8vw, 4.8rem);
+  height: clamp(2.5rem, 8vw, 4.8rem);
+  background: hsl(160 55% 35% / 0.14);
+  border: 1.5px solid hsl(160 55% 50% / 0.45);
+  box-shadow:
+    0 0 0 clamp(4px, 1.4vw, 8px) hsl(160 55% 40% / 0.06),
+    inset 0 1px 0 hsl(0 0% 100% / 0.06);
   flex-shrink: 0;
 }
 
 .stepIcon {
-  width: clamp(0.875rem, 3.8vw, 1.75rem);
-  height: clamp(0.875rem, 3.8vw, 1.75rem);
-  color: hsl(160 65% 60%);
-  filter: drop-shadow(0 0 6px hsl(160 60% 50% / 0.7));
+  width: clamp(1rem, 3.4vw, 1.75rem);
+  height: clamp(1rem, 3.4vw, 1.75rem);
+  color: hsl(160 68% 62%);
+  filter: drop-shadow(0 0 8px hsl(160 60% 50% / 0.35));
 }
 
 .stepNumBadge {
   position: absolute;
-  top: clamp(0.3rem, 1.5vw, 0.75rem);
-  right: clamp(0.3rem, 1.5vw, 0.875rem);
-  font-size: clamp(0.45rem, 1.3vw, 0.7rem);
-  font-weight: 700;
-  font-family: ui-monospace, monospace;
-  letter-spacing: 0.06em;
-  color: hsl(160 60% 55%);
-  opacity: 0.8;
-  border: 1px solid hsl(160 60% 55%);
-  border-radius: 50%;
-  padding: 0.25rem 0.25rem;
+  top: 0.75rem;
+  right: 0.85rem;
+  min-width: 2rem;
+  min-height: 2rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.15rem 0.35rem;
+  font-size: 0.72rem;
+  font-weight: 800;
+  font-family: 'Space Mono', ui-monospace, monospace;
+  letter-spacing: 0.08em;
+  color: hsl(160 70% 64%);
+  background: hsl(160 50% 18% / 0.35);
+  border: 1px solid hsl(160 60% 50% / 0.35);
+  border-radius: 999px;
+  backdrop-filter: blur(8px);
 }
 
-/* 하단 텍스트 */
 .cardBody {
-  padding: clamp(0.5rem, 2.5vw, 1.25rem);
+  /* padding: clamp(0.95rem, 2.2vw, 1.35rem); */
+  padding: 1rem 1rem 1.05rem;
 }
 
 .stepTitle {
-  /* font-size: clamp(0.7rem, 2vw, 1rem); */
-  font-size: clamp(1rem, 2.5vw, 1.2rem);
-  color: hsl(0 0% 95%);
+  font-size: clamp(1rem, 2.2vw, 1.18rem);
+  color: hsl(0 0% 96%);
+  font-weight: 700;
   word-break: keep-all;
-  margin-bottom: clamp(0.2rem, 0.8vw, 0.5rem);
+  margin-bottom: 0.45rem;
 }
 
 .stepDesc {
-  font-size: clamp(0.85rem, 2vw, 1rem);
-  color: hsl(210 20% 58%);
-  line-height: 1.5;
+  font-size: clamp(0.88rem, 1.9vw, 0.98rem);
+  color: hsl(210 20% 68%);
+  line-height: 1.65;
   word-break: keep-all;
 }
 
+@media (max-width: 767px) {
+  .card {
+    border-radius: 0.95rem;
+  }
 
-/* ── CTA ── */
-.ctaRow {
-  display: flex;
-  justify-content: center;
-  margin-top: clamp(2rem, 6vw, 3.5rem);
+  .stepNumBadge {
+    top: 0.55rem;
+    right: 0.6rem;
+    min-width: 1.8rem;
+    min-height: 1.8rem;
+    font-size: 0.66rem;
+  }
+  .ctaRow {
+    margin-top: 1.25rem;
+  }
+  
+  .ctaRow :global(a),
+  .ctaRow button {
+    width: 50%;
+    justify-content: center;
+    min-height: 48px;
+    border-radius: 0.9rem;
+  }
+
+  .cardBody {
+    padding: 0.9rem 0.9rem 1rem;
+  }
 }
 
-.ctaLink {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-weight: 600;
-  border-radius: 9999px;
-  padding: clamp(0.6rem, 2vw, 0.75rem) clamp(1.25rem, 4vw, 1.75rem);
-  font-size: clamp(0.75rem, 2.2vw, 0.9rem);
-  background: hsl(var(--accent));
-  color: hsl(0 0% 100%);
-  box-shadow: 0 4px 18px -4px hsl(160 60% 40% / 0.55);
-  transition: transform 220ms ease, box-shadow 220ms ease, background 220ms ease;
-}
-
-.ctaLink:hover {
-  background: hsl(160 65% 35%);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 28px -4px hsl(160 60% 40% / 0.65);
-}

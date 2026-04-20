@@ -1,0 +1,10 @@
+.row {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .button {
+    width: min(320px, 100%);
+  }
+
+  

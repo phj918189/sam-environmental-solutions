@@ -60,9 +60,11 @@ const ServiceDetailPage = () => {
       {/* Scope & Deliverables */}
       <Section variant="dark">
         <div className={styles.scopeGrid}>
-          <Card>
+          <Card className={styles.darkCard}>
             <CardHeader>
-              <CardTitle>{t('serviceDetail.scope')}</CardTitle>
+              <CardTitle className={styles.darkCardTitle}>
+                {t('serviceDetail.scope')}
+              </CardTitle>
             </CardHeader>
             <CardContent>
               <ul className={styles.scopeList}>
@@ -77,9 +79,12 @@ const ServiceDetailPage = () => {
               </ul>
             </CardContent>
           </Card>
-          <Card>
+          <Card className={styles.darkCard}>
             <CardHeader>
-              <CardTitle>{t('serviceDetail.deliverables')}</CardTitle>
+              <CardTitle className={styles.darkCardTitle}>
+                <FileText className={styles.titleIcon} />
+                {t('serviceDetail.deliverables')}
+              </CardTitle>
             </CardHeader>
             <CardContent>
               <ul className={styles.scopeList}>
@@ -98,28 +103,62 @@ const ServiceDetailPage = () => {
       {/* Process */}
       <Section>
         <SectionHeader
+          title={t('serviceDetail.whoNeeds')}
+          // subtitle={t('serviceDetail.[lang]')}
+          // eyebrow="SERVICE OVERVIEW"
+        />
+        <div className={styles.contentGrid}>
+          <Card className={styles.infoCard}>
+            <CardHeader>
+              <CardTitle className={styles.infoCardTitle}>
+                {t('serviceDetail.whoNeeds')}
+                </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <IconList 
+              items={service.audience[lang]} 
+              icon={CheckCircle} 
+              iconClassName="text-primary" />
+            </CardContent>
+          </Card>
+
+          <Card className={styles.infoCard}>
+            <CardHeader>
+              <CardTitle className={styles.infoCardTitle}>
+                {t('serviceDetail.useCases')}
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <IconList items={service.useCases[lang]} icon={ArrowRight} iconClassName="text-accent" />
+            </CardContent>
+          </Card>
+
+        </div>
+      </Section>
+      {/* <Section>
+        <SectionHeader
           title={t('serviceDetail.process')}
           subtitle={t('serviceDetail.processDesc')}
         />
         <ProcessSteps steps={processSteps} />
-      </Section>
+      </Section> */}
 
       {/* FAQ */}
       <Section variant="dark">
-        <SectionHeader
-          title={t('serviceDetail.faq')}
-        />
-        <div className={styles.faqWrap}>
-          <Accordion type="single" collapsible className="w-full">
-            {service.faq[lang].map((item, i) => (
-              <AccordionItem key={i} value={`item-${i}`}>
-                <AccordionTrigger className="text-left">{item.q}</AccordionTrigger>
-                <AccordionContent>{item.a}</AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
-        </div>
-      </Section>
+  <SectionHeader title={t('serviceDetail.faq')} />
+  <div className={styles.faqWrap}>
+    <div className={styles.faqPanel}>
+      <Accordion type="single" collapsible className="w-full">
+        {service.faq[lang].map((item, i) => (
+          <AccordionItem key={i} value={`item-${i}`}>
+            <AccordionTrigger className={styles.faqTrigger}>{item.q}</AccordionTrigger>
+            <AccordionContent className={styles.faqContent}>{item.a}</AccordionContent>
+          </AccordionItem>
+        ))}
+      </Accordion>
+    </div>
+  </div>
+</Section>
     </>
   );
 };

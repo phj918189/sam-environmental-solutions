@@ -12,6 +12,9 @@
   @apply text-sm font-medium text-muted-foreground bg-card;
   @apply transition-all duration-200 cursor-pointer;
 }
+.categoryTab:focus-visible {
+  @apply outline-none ring-2 ring-primary/60 ring-offset-2 ring-offset-background;
+}
 .categoryTab:hover {
   @apply border-accent/60 text-foreground;
 }
@@ -189,5 +192,14 @@
 /* tile을 button으로 사용 시 reset */
 .overviewGrid button.tile {
   @apply cursor-pointer text-left border-0 p-0;
+}
+
+.ctaRow {
+  @apply mt-10 flex justify-center;
+}
+
+.ctaRow :global(a),
+.ctaRow :global(button) {
+  width: min(320px, 100%);
 }
 

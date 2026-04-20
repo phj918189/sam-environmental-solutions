@@ -1,0 +1,221 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
+
+/* 행 래퍼 — 필요한 페이지에서 MoreLinkButton을 감쌀 때 사용 */
+.moreLinkRow {
+  display: flex;
+  justify-content: center;
+  margin-top: clamp(2rem, 6vw, 3.5rem);
+}
+
+/* 섹션 헤더 직하단 등 — Row 기본 여백 없이 */
+.moreLinkRowTight {
+  margin-top: 0;
+}
+
+.ctaRow {
+  margin-top: 1.25rem;
+}
+
+.ctaRow :global(a),
+.ctaRow button {
+  width: 50%;
+  justify-content: center;
+  min-height: 48px;
+  border-radius: 0.9rem;
+}
+
+/* 슬라이드 패널 + 스트라이프 호버 (Router Link 또는 동일 마크업의 <a>) */
+/* 업무 프로세스 섹션 `.section` 배경과 동일 (밝은 섹션 버튼 호버용) */
+:root {
+  --more-link-process-bg: linear-gradient(
+    150deg,
+    hsl(215 55% 13%) 0%,
+    hsl(210 65% 18%) 60%,
+    hsl(205 60% 14%) 100%
+  );
+}
+
+.moreLink {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  isolation: isolate;
+  overflow: hidden;
+  min-height: 50px;
+  min-width: min(100%, 200px);
+  padding: 0 clamp(1.25rem, 4vw, 1.75rem);
+  font-family: 'Space Mono', 'Noto Sans KR', ui-monospace, monospace;
+  font-size: clamp(0.7rem, 2.1vw, 0.875rem);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  color: hsl(0 0% 98%);
+  background: transparent;
+  border: 1px solid hsl(210 38% 32%);
+  outline: none;
+  cursor: pointer;
+  transition: color 0.01s 0.23s ease-out, border-color 0.25s ease;
+  box-shadow: 0 0 0 1px hsl(160 45% 40% / 0.12);
+}
+
+/* 다른 섹션 배경 위: 기본은 어두운 글자 + 옅은 틴트, 호버 시 프로세스 섹션과 동일 그라데이션 */
+.hoverProcessBg {
+  color: hsl(215 48% 20%);
+  border-color: hsl(210 32% 42%);
+  background: hsl(215 55% 13% / 0.1);
+  transition:
+    color 0.01s 0.23s ease-out,
+    border-color 0.25s ease,
+    background 0.35s ease;
+}
+
+.hoverProcessBg .moreLinkText {
+  color: inherit;
+}
+
+.hoverProcessBg:hover {
+  background: var(--more-link-process-bg);
+  color: hsl(0 0% 98%);
+}
+
+/* .hoverProcessBg::before {
+  background: hsl(215 55% 13%);
+} */
+
+.moreLink:hover {
+  border-color: hsl(160 50% 42% / 0.55);
+}
+
+.moreLink:focus-visible {
+  outline: 2px solid hsl(160 60% 50%);
+  outline-offset: 3px;
+}
+
+.moreLink::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 0;
+  width: 55%;
+  height: 100%;
+  /* background: hsl(215 58% 13%); */
+  transition: left 0.3s ease-in, width 0.3s ease-in;
+}
+
+.moreLink:hover::before {
+  left: 100%;
+  width: 25%;
+}
+
+.moreLink::after {
+  content: '';
+  position: absolute;
+  left: -5%;
+  top: 5%;
+  z-index: 0;
+  width: 5%;
+  height: 90%;
+  background: hsl(0 0% 100%);
+  transition: left 0.4s 0.02s ease-in, width 0.4s 0.02s ease-in;
+}
+
+.moreLink:hover::after {
+  left: 100%;
+  width: 70%;
+}
+
+.moreLinkText {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  line-height: 1.25;
+  word-break: keep-all;
+  transition: color 0.01s 0.23s ease-out;
+  
+}
+
+.moreLink:hover .moreLinkText {
+  color: #fff;
+}
+
+.moreLinkIcon {
+  position: absolute;
+  top: 50%;
+  right: clamp(0.5rem, 2vw, 0.1rem);
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  pointer-events: none;
+  color: hsl(215 55% 8%);
+  opacity: 0;
+  transform: translate(2.75rem, -50%);
+  transition:
+    transform 0.15s 0.25s ease,
+    color 0.5s 0.05s ease,
+    opacity 0.15s 0.25s ease;
+}
+
+.moreLink:hover .moreLinkIcon {
+  /* opacity: 1; */
+  color: hsl(0 0% 100%);
+  transform: translate(0, -50%);
+}
+
+/* .moreLinkArrow {
+  width: 1.35rem;
+  height: 1.35rem;
+} */
+
+@media (prefers-reduced-motion: reduce) {
+  .moreLink,
+  .moreLink::before,
+  .moreLink::after,
+  .moreLinkText,
+  .moreLinkIcon {
+    transition: none;
+  }
+
+  .moreLink {
+    background: hsl(var(--accent));
+    border-color: transparent;
+    color: hsl(0 0% 100%);
+  }
+
+  .moreLink.hoverProcessBg {
+    color: hsl(215 48% 20%);
+    background: hsl(215 55% 13% / 0.1);
+    border: 1px solid hsl(210 32% 42%);
+    box-shadow: 0 0 0 1px hsl(160 45% 40% / 0.12);
+  }
+
+  .moreLink.hoverProcessBg:hover {
+    background: var(--more-link-process-bg);
+    border-color: hsl(160 50% 42% / 0.55);
+  }
+
+  .moreLink::before,
+  .moreLink::after {
+    display: none;
+  }
+
+  .moreLink:hover .moreLinkText {
+    color: hsl(0 0% 100%);
+  }
+
+  .moreLinkIcon {
+    position: static;
+    opacity: 1;
+    transform: none;
+    margin-left: 0.5rem;
+    color: hsl(0 0% 100%);
+  }
+
+  .moreLink:hover .moreLinkIcon {
+    transform: none;
+  }
+}
