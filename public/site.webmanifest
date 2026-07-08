@@ -1,0 +1,17 @@
+{
+  "name": "삼양건설환경연구소",
+  "short_name": "삼양환경",
+  "description": "대전 소재 대기환경, 수질환경, 악취환경 측정·분석 전문기관",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#1e3a5f",
+  "lang": "ko",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "48x48",
+      "type": "image/x-icon"
+    }
+  ]
+}

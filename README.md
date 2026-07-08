@@ -4,7 +4,7 @@
 
 환경 솔루션 기업의 공식 웹사이트를 기획·개발한 프로젝트입니다.  
 대기, 수질, 악취, 분석 서비스 등 실제 사업영역을 중심으로 정보 구조를 재구성하여, 기업의 전문성과 신뢰도를 효과적으로 전달할 수 있도록 설계했습니다.  
-또한 React + TypeScript 기반의 재사용 가능한 컴포넌트 구조와 반응형 UI를 적용해, 단순 소개 페이지를 넘어 실무형 B2B 웹사이트이자 포트폴리오 프로젝트로 완성했습니다.
+React + TypeScript 기반의 재사용 가능한 컴포넌트 구조와 반응형 UI를 적용해, 단순 소개 페이지를 넘어 실무형 B2B 웹사이트이자 포트폴리오 프로젝트로 완성했습니다.
 
 ## 기술 스택
 
@@ -17,37 +17,58 @@
 | i18n | `LanguageContext`, `src/locales/ko.ts` · `en.ts` |
 | SEO | `react-helmet-async`, `src/config/seo.ts`, `index.html` 기본 메타 |
 | 차트 | Recharts(홈 데이터 섹션) |
-| 폼 | Contact는 **Web3Forms** + 제어 컴포넌트(`useState`). RHF/Zod는 의존성만 포함 |
+| 폼 | Contact는 **Web3Forms** + 제어 컴포넌트(`useState`) |
+| 배포 | Vercel (SPA rewrite + 선택적 Serverless AI) |
 
 ## 프로젝트 구조
 
 ```
-├── api/                    # (선택) Vercel Serverless — AI 챗 RAG
+├── api/                         # (선택) Vercel Serverless — AI 챗 RAG
 │   ├── chat.ts
-│   └── data/               # rag-content.md, embeddings.json
+│   └── data/                    # rag-content.md, embeddings.json
 ├── public/
-│   ├── logo_2.svg          # OG/Twitter 카드용(절대 URL)
+│   ├── logo_2.svg               # OG/Twitter 카드용 (prebuild 시 assets에서 복사)
+│   ├── og-image.png             # (권장) SNS 공유용 1200×630 PNG — 직접 추가
+│   ├── favicon.ico              # (권장) 파비콘 — 직접 추가
 │   ├── robots.txt
-│   └── sitemap.xml
+│   ├── sitemap.xml              # prebuild 시 자동 생성
+│   └── site.webmanifest         # PWA manifest
 ├── scripts/
-│   ├── replace-site-url.js
+│   ├── copy-public-assets.js    # src/assets → public 정적 자산 복사
+│   ├── generate-sitemap.js      # 라우트·데이터 기반 sitemap.xml 생성
+│   ├── replace-site-url.js      # VITE_SITE_URL → index.html, sitemap, robots
 │   └── generate-rag-embeddings.js
 └── src/
     ├── components/
-    │   ├── common/         # DocumentHead, PageHero, ChatWidget 등
-    │   ├── layout/
-    │   └── ui/             # shadcn + ui/Home/* 홈 섹션
+    │   ├── common/              # DocumentHead, PageHero, ChatWidget 등
+    │   ├── layout/              # Layout, Header, Footer
+    │   └── ui/                  # shadcn + ui/Home/* 홈 섹션
     ├── config/
-    │   ├── site.ts         # SITE_URL (VITE_SITE_URL)
-    │   └── seo.ts          # 경로별 이중언어 메타, canonical, hreflang
+    │   ├── site.ts              # SITE_URL (VITE_SITE_URL)
+    │   └── seo.ts               # 경로별 이중언어 메타, canonical, hreflang, JSON-LD
     ├── contexts/
-    ├── data/
-    ├── hooks/              # use-scroll-reveal, use-toast 등
+    ├── data/                    # 이중언어 정적 콘텐츠 (about, services, news 등)
+    ├── hooks/
     ├── locales/
-    ├── pages/
+    ├── pages/                   # 라우트 단위 페이지 컴포넌트
     ├── styles/
     └── assets/
 ```
+
+## 페이지 구조
+
+| 경로 | 설명 |
+|------|------|
+| `/`, `/en` | 홈 |
+| `/about` | 회사소개 |
+| `/services/{air,water,odor}` | 서비스 상세 |
+| `/portfolio`, `/portfolio/1~3` | 사업실적 목록·상세 |
+| `/laboratory` | 분석실 |
+| `/contact` | 문의 |
+| `/news`, `/news/1~5` | 소식 (헤더 네비는 현재 비활성화) |
+| `/privacy`, `/terms` | 개인정보처리방침, 이용약관 |
+
+한국어는 `/` 접두, 영어는 `/en` 접두로 동일 페이지를 제공합니다.
 
 ## 시작하기
 
@@ -64,17 +85,27 @@ npm run dev
 
 | 변수 | 설명 |
 |------|------|
-| `VITE_SITE_URL` | 프로덕션 도메인(예: `https://samyangenv.com`). `site.ts`·빌드 시 URL 치환·SEO canonical에 사용 |
+| `VITE_SITE_URL` | 프로덕션 도메인(예: `https://samyangenv.com`). SEO canonical·sitemap·OG URL에 사용 |
 | `VITE_WEB3FORMS_ACCESS_KEY` | [Web3Forms](https://web3forms.com) Contact 폼 전송용 |
 | `VITE_ENABLE_AI_CHAT` | `true` 또는 `1`이면 `ChatWidget` 표시 |
 | `OPENAI_API_KEY` | 로컬/CI에서 `npm run generate-rag` 또는 Vercel API용(클라이언트 비노출) |
 
 ### 도메인 변경
 
-1. `.env`에 `VITE_SITE_URL` 설정  
-2. `npm run replace-site-url` 실행(또는 `npm run build` 시 `prebuild`로 자동 실행)
+1. `.env`에 `VITE_SITE_URL=https://내도메인.com` 설정  
+2. `npm run build` 실행 (또는 개별 스크립트 실행)
 
-대상: `index.html`, `public/sitemap.xml`, `public/robots.txt`
+`prebuild` 파이프라인:
+
+```
+copy-public-assets → generate-sitemap → replace-site-url
+```
+
+| 스크립트 | 대상 |
+|----------|------|
+| `copy-public-assets` | `src/assets/logo_2.svg` → `public/logo_2.svg` |
+| `generate-sitemap` | `public/sitemap.xml` (한/영 전체 URL + hreflang + 뉴스 lastmod) |
+| `replace-site-url` | `index.html`, `public/sitemap.xml`, `public/robots.txt` |
 
 배포: [docs/DEPLOYMENT.md](./docs/DEPLOYMENT.md)
 
@@ -83,32 +114,101 @@ npm run dev
 1. [web3forms.com](https://web3forms.com)에서 Access Key 발급  
 2. `.env`에 `VITE_WEB3FORMS_ACCESS_KEY` 추가 후 개발 서버 재시작  
 
-## SEO(요약)
+## SEO
 
-- **초기 HTML**: `index.html` — 기본 title/description, Organization·LocalBusiness JSON-LD  
-- **라우트 이동 후**: `DocumentHead` — 경로별 title·description, **canonical**, **hreflang(ko/en/x-default)**, Open Graph·Twitter, **WebPage** JSON-LD  
-- **메타 소스**: `src/config/seo.ts`(정적 경로 이중언어 + 뉴스/포트폴리오 상세는 `data` 연동)  
-- **정적**: `public/sitemap.xml`, `public/robots.txt`  
-- SNS 미리보기 이미지: `{SITE_URL}/logo_2.svg` → `public/logo_2.svg` 필요  
+### 아키텍처
 
-운영 후 **Google Search Console** 등에서 색인·sitemap 제출을 권장합니다.
+| 계층 | 파일 | 역할 |
+|------|------|------|
+| 초기 HTML | `index.html` | 기본 title/description, Organization·LocalBusiness·WebSite JSON-LD, OG/Twitter |
+| 라우트 이동 후 | `DocumentHead` | 경로별 title·description·canonical·hreflang·OG/Twitter·JSON-LD |
+| 메타 소스 | `src/config/seo.ts` | 정적 경로 이중언어 + 뉴스/포트폴리오 상세는 `data` 연동 |
+| 정적 파일 | `public/sitemap.xml`, `public/robots.txt`, `public/site.webmanifest` | 크롤러·PWA |
 
-## AI 챗봇 · RAG
+### 라우트별 메타 (`DocumentHead` + `seo.ts`)
 
-기본 비활성. 사용 시 [docs/AI_SETUP.md](./docs/AI_SETUP.md) 참고.
+- **title / description** — 한/영 경로별 최적화
+- **canonical** — 현재 URL 절대 경로
+- **hreflang** — `ko`, `en`, `x-default`(한국어 기본)
+- **robots** — 유효 경로 `index, follow` / 404·잘못된 param `noindex, follow`
+- **Open Graph / Twitter Card** — type, url, title, description, image
+- **article:published_time** — 뉴스 상세
+
+### 구조화 데이터 (JSON-LD)
+
+| 타입 | 위치 | 적용 |
+|------|------|------|
+| Organization | `index.html` | 전역 |
+| LocalBusiness | `index.html` | 전역 (주소, 전화, 서비스 지역) |
+| WebSite | `index.html` | 전역 |
+| WebPage | `DocumentHead` | 모든 페이지 |
+| Article | `DocumentHead` | `/news/:id` |
+| BreadcrumbList | `DocumentHead` | 하위 페이지 (about, services, news 상세 등) |
+
+### sitemap.xml (자동 생성)
+
+`npm run generate-sitemap` 또는 `npm run build` 시 생성됩니다.
+
+포함 URL:
+
+- 한/영 정적 페이지 전체 (`/`, `/about`, `/services/*`, `/portfolio`, `/laboratory`, `/contact`, `/news`, `/privacy`, `/terms` 및 `/en/*`)
+- 포트폴리오 상세 `/portfolio/1~3`, `/en/portfolio/1~3`
+- 뉴스 상세 `/news/1~5`, `/en/news/1~5` (lastmod 포함)
+- 각 URL에 `hreflang` + `x-default` alternates
+
+### SNS 공유 이미지
+
+- 기본: `{SITE_URL}/logo_2.svg` (`prebuild` 시 `public/`에 복사)
+- **권장**: `public/og-image.png` (1200×630px) 추가 — Facebook·카카오톡 등은 SVG 미지원
+- PNG 추가 후 `src/config/seo.ts`의 `OG_IMAGE_URL`을 `/og-image.png`로 변경
+
+### SPA 한계 (알아두기)
+
+이 프로젝트는 **Vite SPA**이므로, JavaScript를 실행하지 않는 크롤러는 `index.html`의 홈 메타만 볼 수 있습니다.  
+클라이언트 내비게이션 후 `react-helmet-async`가 메타를 갱신합니다. Googlebot은 JS 렌더링을 지원하지만, 검색 노출을 극대화하려면 장기적으로 **Next.js SSG/SSR** 마이그레이션을 검토하세요.
+
+### 배포 후 체크리스트
+
+1. [Google Search Console](https://search.google.com/search-console) — 도메인 등록, sitemap 제출: `https://samyangenv.com/sitemap.xml`
+2. [네이버 서치어드바이저](https://searchadvisor.naver.com/) — 동일하게 sitemap 등록
+3. SNS 공유 디버거로 OG 미리보기 확인
+   - [Facebook Sharing Debugger](https://developers.facebook.com/tools/debug/)
+   - [Twitter Card Validator](https://cards-dev.twitter.com/validator)
+4. `public/favicon.ico`, `public/og-image.png` 추가 여부 확인
 
 ## npm 스크립트
 
 | 명령 | 설명 |
 |------|------|
 | `npm run dev` | 개발 서버 |
-| `npm run build` | 프로덕션 빌드(`prebuild`: URL 치환) |
+| `npm run build` | 프로덕션 빌드 (`prebuild`: 자산 복사 → sitemap 생성 → URL 치환) |
 | `npm run preview` | 빌드 미리보기 |
+| `npm run copy-public-assets` | `src/assets` → `public` 정적 자산 복사 |
+| `npm run generate-sitemap` | `public/sitemap.xml` 생성 |
 | `npm run replace-site-url` | 사이트 URL 치환만 실행 |
 | `npm run generate-rag` | RAG 임베딩 생성 |
 | `npm run lint` | ESLint |
 | `npm run test` | Vitest |
 
+## AI 챗봇 · RAG
+
+기본 비활성. 사용 시 [docs/AI_SETUP.md](./docs/AI_SETUP.md) 참고.
+
+## 개선 여지 (TODO)
+
+| 항목 | 설명 |
+|------|------|
+| `public/og-image.png` | SNS 공유용 1200×630 PNG 추가 |
+| `public/favicon.ico` | 파비콘 추가 |
+| 연락처 데이터 | `src/data/contact.ts` 실제 번호·이메일 확인 |
+| 포트폴리오 상세 | `○○` 플레이스홀더 → 실제 고객명 교체 |
+| 소식 탭 | Header 네비 비활성 상태 — 재활성화 또는 noindex 정책 결정 |
+| SSR/SSG | 검색 노출 극대화 시 Next.js App Router 마이그레이션 검토 |
+| 코드 스플리팅 | `React.lazy`로 라우트별 번들 분리 |
+| 미사용 의존성 | `react-hook-form`, `zod`, `next-themes` 정리 검토 |
+
 ## 문서
 
 - [PRD.md](./PRD.md) — 제품·구현 스냅샷
+- [docs/DEPLOYMENT.md](./docs/DEPLOYMENT.md) — 배포 가이드
+- [docs/AI_SETUP.md](./docs/AI_SETUP.md) — AI 챗봇 설정

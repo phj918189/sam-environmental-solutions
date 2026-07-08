@@ -18,11 +18,14 @@
     <meta property="og:site_name" content="삼양건설환경연구소" />
     <meta property="og:locale" content="ko_KR" />
     <meta property="og:locale:alternate" content="en_US" />
+    <meta property="og:image" content="https://samyangenv.com/logo_2.svg" />
+    <meta property="og:image:alt" content="삼양건설환경연구소 로고" />
     
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="삼양건설환경연구소 | 삼양환경 대기환경 수질환경 전문 대전" />
     <meta name="twitter:description" content="삼양건설환경연구소 - 대전 대기환경, 수질환경, 악취환경 측정·분석 전문기관." />
+    <meta name="twitter:image" content="https://samyangenv.com/logo_2.svg" />
     
     <!-- Canonical -->
     <link rel="canonical" href="https://samyangenv.com/" />
@@ -33,10 +36,11 @@
     <!-- Theme Color -->
     <meta name="theme-color" content="#1e3a5f" />
     
-    <!-- Favicon -->
+    <!-- Favicon & PWA -->
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="manifest" href="/site.webmanifest" />
     
-    <!-- JSON-LD Structured Data (Organization + LocalBusiness) -->
+    <!-- JSON-LD Structured Data (Organization + LocalBusiness + WebSite) -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -81,6 +85,15 @@
             "geoMidpoint": { "@type": "GeoCoordinates", "latitude": 36.3504, "longitude": 127.3845 },
             "geoRadius": "50000"
           }
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://samyangenv.com/#website",
+          "url": "https://samyangenv.com",
+          "name": "삼양건설환경연구소",
+          "alternateName": ["Samyang Environmental Research Institute", "삼양환경"],
+          "publisher": { "@id": "https://samyangenv.com/#organization" },
+          "inLanguage": ["ko-KR", "en-US"]
         }
       ]
     }

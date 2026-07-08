@@ -1,13 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  <!-- 한국어 -->
   <url>
     <loc>https://samyangenv.com/</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="ko" href="https://samyangenv.com/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://samyangenv.com/en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://samyangenv.com/"/>
+  </url>
+  <url>
+    <loc>https://samyangenv.com/en</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://samyangenv.com/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://samyangenv.com/en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://samyangenv.com/"/>
   </url>
   <url>
     <loc>https://samyangenv.com/about</loc>
@@ -15,106 +23,296 @@
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="ko" href="https://samyangenv.com/about"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://samyangenv.com/en/about"/>
-  </url>
-  <url>
-    <loc>https://samyangenv.com/services/air</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://samyangenv.com/services/water</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://samyangenv.com/services/odor</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://samyangenv.com/portfolio</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://samyangenv.com/portfolio/1</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://samyangenv.com/portfolio/2</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://samyangenv.com/portfolio/3</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://samyangenv.com/laboratory</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://samyangenv.com/contact</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://samyangenv.com/news</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://samyangenv.com/privacy</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://samyangenv.com/terms</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <!-- English -->
-  <url>
-    <loc>https://samyangenv.com/en</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://samyangenv.com/about"/>
   </url>
   <url>
     <loc>https://samyangenv.com/en/about</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://samyangenv.com/about"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://samyangenv.com/en/about"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://samyangenv.com/about"/>
+  </url>
+  <url>
+    <loc>https://samyangenv.com/services/air</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://samyangenv.com/services/air"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://samyangenv.com/en/services/air"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://samyangenv.com/services/air"/>
   </url>
   <url>
     <loc>https://samyangenv.com/en/services/air</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://samyangenv.com/services/air"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://samyangenv.com/en/services/air"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://samyangenv.com/services/air"/>
+  </url>
+  <url>
+    <loc>https://samyangenv.com/services/water</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://samyangenv.com/services/water"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://samyangenv.com/en/services/water"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://samyangenv.com/services/water"/>
   </url>
   <url>
     <loc>https://samyangenv.com/en/services/water</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://samyangenv.com/services/water"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://samyangenv.com/en/services/water"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://samyangenv.com/services/water"/>
+  </url>
+  <url>
+    <loc>https://samyangenv.com/services/odor</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://samyangenv.com/services/odor"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://samyangenv.com/en/services/odor"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://samyangenv.com/services/odor"/>
   </url>
   <url>
     <loc>https://samyangenv.com/en/services/odor</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://samyangenv.com/services/odor"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://samyangenv.com/en/services/odor"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://samyangenv.com/services/odor"/>
+  </url>
+  <url>
+    <loc>https://samyangenv.com/portfolio</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://samyangenv.com/portfolio"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://samyangenv.com/en/portfolio"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://samyangenv.com/portfolio"/>
   </url>
   <url>
     <loc>https://samyangenv.com/en/portfolio</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://samyangenv.com/portfolio"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://samyangenv.com/en/portfolio"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://samyangenv.com/portfolio"/>
+  </url>
+  <url>
+    <loc>https://samyangenv.com/laboratory</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://samyangenv.com/laboratory"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://samyangenv.com/en/laboratory"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://samyangenv.com/laboratory"/>
+  </url>
+  <url>
+    <loc>https://samyangenv.com/en/laboratory</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://samyangenv.com/laboratory"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://samyangenv.com/en/laboratory"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://samyangenv.com/laboratory"/>
+  </url>
+  <url>
+    <loc>https://samyangenv.com/contact</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://samyangenv.com/contact"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://samyangenv.com/en/contact"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://samyangenv.com/contact"/>
   </url>
   <url>
     <loc>https://samyangenv.com/en/contact</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://samyangenv.com/contact"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://samyangenv.com/en/contact"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://samyangenv.com/contact"/>
+  </url>
+  <url>
+    <loc>https://samyangenv.com/news</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://samyangenv.com/news"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://samyangenv.com/en/news"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://samyangenv.com/news"/>
   </url>
   <url>
     <loc>https://samyangenv.com/en/news</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://samyangenv.com/news"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://samyangenv.com/en/news"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://samyangenv.com/news"/>
+  </url>
+  <url>
+    <loc>https://samyangenv.com/privacy</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://samyangenv.com/privacy"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://samyangenv.com/en/privacy"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://samyangenv.com/privacy"/>
+  </url>
+  <url>
+    <loc>https://samyangenv.com/en/privacy</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://samyangenv.com/privacy"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://samyangenv.com/en/privacy"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://samyangenv.com/privacy"/>
+  </url>
+  <url>
+    <loc>https://samyangenv.com/terms</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://samyangenv.com/terms"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://samyangenv.com/en/terms"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://samyangenv.com/terms"/>
+  </url>
+  <url>
+    <loc>https://samyangenv.com/en/terms</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://samyangenv.com/terms"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://samyangenv.com/en/terms"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://samyangenv.com/terms"/>
+  </url>
+  <url>
+    <loc>https://samyangenv.com/portfolio/1</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://samyangenv.com/portfolio/1"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://samyangenv.com/en/portfolio/1"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://samyangenv.com/portfolio/1"/>
+  </url>
+  <url>
+    <loc>https://samyangenv.com/en/portfolio/1</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://samyangenv.com/portfolio/1"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://samyangenv.com/en/portfolio/1"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://samyangenv.com/portfolio/1"/>
+  </url>
+  <url>
+    <loc>https://samyangenv.com/portfolio/2</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://samyangenv.com/portfolio/2"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://samyangenv.com/en/portfolio/2"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://samyangenv.com/portfolio/2"/>
+  </url>
+  <url>
+    <loc>https://samyangenv.com/en/portfolio/2</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://samyangenv.com/portfolio/2"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://samyangenv.com/en/portfolio/2"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://samyangenv.com/portfolio/2"/>
+  </url>
+  <url>
+    <loc>https://samyangenv.com/portfolio/3</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://samyangenv.com/portfolio/3"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://samyangenv.com/en/portfolio/3"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://samyangenv.com/portfolio/3"/>
+  </url>
+  <url>
+    <loc>https://samyangenv.com/en/portfolio/3</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://samyangenv.com/portfolio/3"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://samyangenv.com/en/portfolio/3"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://samyangenv.com/portfolio/3"/>
+  </url>
+  <url>
+    <loc>https://samyangenv.com/news/1</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <lastmod>2024-01-02</lastmod>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://samyangenv.com/news/1"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://samyangenv.com/en/news/1"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://samyangenv.com/news/1"/>
+  </url>
+  <url>
+    <loc>https://samyangenv.com/en/news/1</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <lastmod>2024-01-02</lastmod>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://samyangenv.com/news/1"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://samyangenv.com/en/news/1"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://samyangenv.com/news/1"/>
+  </url>
+  <url>
+    <loc>https://samyangenv.com/news/2</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <lastmod>2023-12-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://samyangenv.com/news/2"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://samyangenv.com/en/news/2"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://samyangenv.com/news/2"/>
+  </url>
+  <url>
+    <loc>https://samyangenv.com/en/news/2</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <lastmod>2023-12-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://samyangenv.com/news/2"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://samyangenv.com/en/news/2"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://samyangenv.com/news/2"/>
+  </url>
+  <url>
+    <loc>https://samyangenv.com/news/3</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <lastmod>2023-11-20</lastmod>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://samyangenv.com/news/3"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://samyangenv.com/en/news/3"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://samyangenv.com/news/3"/>
+  </url>
+  <url>
+    <loc>https://samyangenv.com/en/news/3</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <lastmod>2023-11-20</lastmod>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://samyangenv.com/news/3"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://samyangenv.com/en/news/3"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://samyangenv.com/news/3"/>
+  </url>
+  <url>
+    <loc>https://samyangenv.com/news/4</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <lastmod>2023-10-10</lastmod>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://samyangenv.com/news/4"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://samyangenv.com/en/news/4"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://samyangenv.com/news/4"/>
+  </url>
+  <url>
+    <loc>https://samyangenv.com/en/news/4</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <lastmod>2023-10-10</lastmod>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://samyangenv.com/news/4"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://samyangenv.com/en/news/4"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://samyangenv.com/news/4"/>
+  </url>
+  <url>
+    <loc>https://samyangenv.com/news/5</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <lastmod>2023-09-05</lastmod>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://samyangenv.com/news/5"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://samyangenv.com/en/news/5"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://samyangenv.com/news/5"/>
+  </url>
+  <url>
+    <loc>https://samyangenv.com/en/news/5</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <lastmod>2023-09-05</lastmod>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://samyangenv.com/news/5"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://samyangenv.com/en/news/5"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://samyangenv.com/news/5"/>
   </url>
 </urlset>

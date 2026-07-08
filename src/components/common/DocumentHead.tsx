@@ -1,5 +1,5 @@
 /**
- * 라우트별 title, description, canonical, hreflang, OG/Twitter, WebPage JSON-LD
+ * 라우트별 title, description, canonical, hreflang, OG/Twitter, JSON-LD
  * (react-helmet-async — SPA 클라이언트 내비게이션 시 검색·SNS 메타 동기화)
  */
 import { Helmet } from 'react-helmet-async';
@@ -7,14 +7,15 @@ import { useLocation } from 'react-router-dom';
 import {
   resolveSeo,
   OG_IMAGE_URL,
-  webPageJsonLd,
+  OG_IMAGE_ALT,
+  structuredDataGraph,
   ogTypeForPath,
 } from '@/config/seo';
 
 const DocumentHead = () => {
   const { pathname } = useLocation();
   const seo = resolveSeo(pathname);
-  const jsonLd = webPageJsonLd(seo);
+  const jsonLdGraph = structuredDataGraph(seo);
   const ogType = ogTypeForPath(seo.pathKey);
 
   return (
@@ -26,7 +27,7 @@ const DocumentHead = () => {
     >
       <title>{seo.title}</title>
       <meta name="description" content={seo.description} />
-      <meta name="robots" content="index, follow" />
+      <meta name="robots" content={seo.robots} />
 
       <link rel="canonical" href={seo.canonicalUrl} />
       <link rel="alternate" hrefLang="ko" href={seo.hreflang.ko} />
@@ -41,13 +42,23 @@ const DocumentHead = () => {
       <meta property="og:locale" content={seo.ogLocale} />
       <meta property="og:locale:alternate" content={seo.ogLocaleAlternate} />
       <meta property="og:image" content={OG_IMAGE_URL} />
+      <meta property="og:image:alt" content={OG_IMAGE_ALT} />
+
+      {seo.articlePublishedTime && (
+        <meta property="article:published_time" content={seo.articlePublishedTime} />
+      )}
 
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={seo.title} />
       <meta name="twitter:description" content={seo.description} />
       <meta name="twitter:image" content={OG_IMAGE_URL} />
+      <meta name="twitter:image:alt" content={OG_IMAGE_ALT} />
 
-      <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
+      {jsonLdGraph.map((node, index) => (
+        <script key={index} type="application/ld+json">
+          {JSON.stringify(node)}
+        </script>
+      ))}
     </Helmet>
   );
 };

@@ -1,6 +1,7 @@
 import { SITE_URL } from '@/config/site';
 import { newsItems, newsDetails } from '@/data/news';
 import { portfolioDetails } from '@/data/portfolio';
+import { isValidServiceType } from '@/data/services';
 
 const BRAND_KO = '삼양건설환경연구소';
 const BRAND_EN = 'Samyang Environmental Research Institute';
@@ -169,20 +170,58 @@ export interface ResolvedSeo {
   hreflang: { ko: string; en: string };
   ogLocale: string;
   ogLocaleAlternate: string;
+  robots: string;
+  isKnown: boolean;
+  articlePublishedTime?: string;
 }
+
+/** 크롤러·사이트맵용 유효 경로 판별 */
+export function isKnownPath(pathKey: string): boolean {
+  if (PAGE_SEO[pathKey]) return true;
+
+  const serviceMatch = pathKey.match(/^\/services\/([^/]+)$/);
+  if (serviceMatch) return isValidServiceType(serviceMatch[1]);
+
+  const newsMatch = pathKey.match(/^\/news\/([^/]+)$/);
+  if (newsMatch) {
+    const id = newsMatch[1];
+    return id in newsDetails || newsItems.some((n) => n.id === id);
+  }
+
+  const portfolioMatch = pathKey.match(/^\/portfolio\/([^/]+)$/);
+  if (portfolioMatch) return portfolioMatch[1] in portfolioDetails;
+
+  return false;
+}
+
+const NOT_FOUND_SEO: BilingualSeo = {
+  title: {
+    ko: `페이지를 찾을 수 없습니다 | ${BRAND_KO}`,
+    en: `Page Not Found | ${BRAND_EN}`,
+  },
+  description: {
+    ko: '요청하신 페이지가 존재하지 않습니다. 삼양건설환경연구소 홈으로 이동해 주세요.',
+    en: 'The page you requested does not exist. Return to Samyang Environmental homepage.',
+  },
+};
 
 export function resolveSeo(pathname: string): ResolvedSeo {
   const pathKey = normalizePathKey(pathname);
   const lang: Lang = isEnglishPath(pathname) ? 'en' : 'ko';
   const canonicalUrl = absoluteUrl(canonicalPathname(pathname));
   const hreflang = hreflangUrls(pathKey);
+  const known = isKnownPath(pathKey);
 
-  let bilingual: BilingualSeo = PAGE_SEO[pathKey] ?? FALLBACK;
+  let bilingual: BilingualSeo = known ? (PAGE_SEO[pathKey] ?? FALLBACK) : NOT_FOUND_SEO;
+  let articlePublishedTime: string | undefined;
 
   const newsMatch = pathKey.match(/^\/news\/([^/]+)$/);
   if (newsMatch) {
     const n = newsSeo(newsMatch[1]);
     if (n) bilingual = n;
+    const detail = newsDetails[newsMatch[1] as keyof typeof newsDetails];
+    const item = newsItems.find((x) => x.id === newsMatch[1]);
+    articlePublishedTime = detail?.date ?? item?.date;
   }
 
   const portfolioMatch = pathKey.match(/^\/portfolio\/([^/]+)$/);
@@ -200,6 +239,9 @@ export function resolveSeo(pathname: string): ResolvedSeo {
     hreflang,
     ogLocale: lang === 'en' ? 'en_US' : 'ko_KR',
     ogLocaleAlternate: lang === 'en' ? 'ko_KR' : 'en_US',
+    robots: known ? 'index, follow' : 'noindex, follow',
+    isKnown: known,
+    articlePublishedTime,
   };
 }
 
@@ -208,6 +250,9 @@ function canonicalPathname(pathname: string): string {
 }
 
 export const OG_IMAGE_URL = `${SITE_URL.replace(/\/$/, '')}/logo_2.svg`;
+export const OG_IMAGE_ALT = '삼양건설환경연구소 로고';
+
+const ORG_ID = `${SITE_URL.replace(/\/$/, '')}/#organization`;
 
 /** 경로별 WebPage 구조화 데이터 (Organization JSON-LD는 index.html 유지) */
 export function webPageJsonLd(resolved: ResolvedSeo): Record<string, unknown> {
@@ -220,11 +265,104 @@ export function webPageJsonLd(resolved: ResolvedSeo): Record<string, unknown> {
     inLanguage: resolved.lang === 'en' ? 'en-US' : 'ko-KR',
     isPartOf: {
       '@type': 'WebSite',
+      '@id': `${SITE_URL.replace(/\/$/, '')}/#website`,
       url: SITE_URL.replace(/\/$/, ''),
       name: BRAND_KO,
       alternateName: [BRAND_EN, 'Samyang Environmental'],
     },
+    publisher: { '@id': ORG_ID },
   };
+}
+
+function articleJsonLd(resolved: ResolvedSeo): Record<string, unknown> | null {
+  const match = resolved.pathKey.match(/^\/news\/([^/]+)$/);
+  if (!match) return null;
+  const id = match[1];
+  const detail = newsDetails[id as keyof typeof newsDetails];
+  const item = newsItems.find((n) => n.id === id);
+  if (!detail && !item) return null;
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: resolved.title,
+    description: resolved.description,
+    url: resolved.canonicalUrl,
+    datePublished: resolved.articlePublishedTime,
+    inLanguage: resolved.lang === 'en' ? 'en-US' : 'ko-KR',
+    image: OG_IMAGE_URL,
+    author: { '@id': ORG_ID },
+    publisher: { '@id': ORG_ID },
+    mainEntityOfPage: resolved.canonicalUrl,
+  };
+}
+
+function breadcrumbJsonLd(resolved: ResolvedSeo): Record<string, unknown> | null {
+  if (resolved.pathKey === '/' || !resolved.isKnown) return null;
+
+  const homeLabel = resolved.lang === 'en' ? 'Home' : '홈';
+  const homeUrl = resolved.lang === 'en' ? absoluteUrl('/en') : absoluteUrl('/');
+  const items: { name: string; url: string }[] = [{ name: homeLabel, url: homeUrl }];
+
+  const segments = resolved.pathKey.split('/').filter(Boolean);
+  let acc = '';
+  for (const seg of segments) {
+    acc += `/${seg}`;
+    const page = PAGE_SEO[acc];
+    if (page) {
+      items.push({
+        name: page.title[resolved.lang].split(' | ')[0],
+        url: resolved.lang === 'en' ? absoluteUrl(`/en${acc}`) : absoluteUrl(acc),
+      });
+    }
+  }
+
+  const newsMatch = resolved.pathKey.match(/^\/news\/([^/]+)$/);
+  if (newsMatch) {
+    const list = PAGE_SEO['/news'];
+    if (list) {
+      items.push({
+        name: list.title[resolved.lang].split(' | ')[0],
+        url: resolved.lang === 'en' ? absoluteUrl('/en/news') : absoluteUrl('/news'),
+      });
+    }
+    items.push({ name: resolved.title.split(' | ')[0], url: resolved.canonicalUrl });
+  }
+
+  const portfolioMatch = resolved.pathKey.match(/^\/portfolio\/([^/]+)$/);
+  if (portfolioMatch) {
+    const list = PAGE_SEO['/portfolio'];
+    if (list) {
+      items.push({
+        name: list.title[resolved.lang].split(' | ')[0],
+        url: resolved.lang === 'en' ? absoluteUrl('/en/portfolio') : absoluteUrl('/portfolio'),
+      });
+    }
+    items.push({ name: resolved.title.split(' | ')[0], url: resolved.canonicalUrl });
+  }
+
+  if (items.length < 2) return null;
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: items.map((item, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: item.name,
+      item: item.url,
+    })),
+  };
+}
+
+/** Helmet에 넣을 JSON-LD 배열 (WebPage + Article/Breadcrumb) */
+export function structuredDataGraph(resolved: ResolvedSeo): Record<string, unknown>[] {
+  const graph: Record<string, unknown>[] = [webPageJsonLd(resolved)];
+  const article = articleJsonLd(resolved);
+  if (article) graph.push(article);
+  const breadcrumb = breadcrumbJsonLd(resolved);
+  if (breadcrumb) graph.push(breadcrumb);
+  return graph;
 }
 
 export function ogTypeForPath(pathKey: string): 'website' | 'article' {
